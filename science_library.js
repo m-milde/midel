@@ -2095,7 +2095,37 @@ function libRandomFactsIn(category, userLessons, count, avoid) {
     scored.push({ d, score: score + Math.random() * 2.5 });
   });
   scored.sort((a, b) => b.score - a.score);
-  return scored.slice(0, count).map(({ d }) => ({
+
+  const catList = Array.isArray(category) ? category : [category];
+  let chosen = scored;
+  if (catList.length > 1) {
+    /* Explore merges several library categories (e.g. Geography + Places). Top-score-only
+       would show five similar "which/where" rows from one subcategory (often Bulgarian Geography). */
+    const byCat = new Map(catList.map((c) => [c, []]));
+    scored.forEach((row) => {
+      const c = row.d.fact && row.d.fact.category;
+      if (byCat.has(c)) byCat.get(c).push(row);
+    });
+    const merged = [];
+    let round = 0;
+    while (merged.length < count) {
+      let added = false;
+      for (const c of catList) {
+        const bucket = byCat.get(c) || [];
+        if (round < bucket.length && merged.length < count) {
+          merged.push(bucket[round]);
+          added = true;
+        }
+      }
+      if (!added) break;
+      round += 1;
+    }
+    if (merged.length) chosen = merged;
+  } else {
+    chosen = scored.slice(0, count);
+  }
+
+  return chosen.slice(0, count).map(({ d }) => ({
     q: libSuggestAsQuestion(d.qs),
     text: String(d.fact.text),
     key: d.qk
@@ -2136,7 +2166,10 @@ function relatedQuestions(prompt, facts, userLessons, max, shortFacts, seenQuest
   const weight = w => Math.log(N / (1 + (idx.df.get(w) || 0)));
   const scoreQuestion = (qk, qWords, tWords) => {
     if (!qk || qk === askedKey || seen.has(qk)) return 0;
-    let score = 0, rare = 0, rarest = Infinity;
+    let score = 0;
+    let rare = 0;
+    let rarest = Infinity;
+    let fromPrompt = 0;
     const take = (w, mult) => {
       const df = idx.df.get(w) || 0;
       if (df > rareMax) return;
@@ -2144,8 +2177,20 @@ function relatedQuestions(prompt, facts, userLessons, max, shortFacts, seenQuest
       rare++;
       rarest = Math.min(rarest, df);
     };
-    qw.forEach(w => { if (qWords.has(w) || tWords.has(w)) take(w, 2); });
-    tw.forEach(w => { if (!qw.has(w) && qWords.has(w)) take(w, 1); });
+    qw.forEach(w => {
+      if (qWords.has(w) || tWords.has(w)) {
+        take(w, 2);
+        fromPrompt++;
+      }
+    });
+    const rareBeforeTw = rare;
+    tw.forEach(w => {
+      if (!qw.has(w) && qWords.has(w)) take(w, 1);
+    });
+    const fromAnswer = rare - rareBeforeTw;
+    /* Answer-text spillover alone (e.g. "river" → any question containing "rivers") is too loose for Related. */
+    if (!fromPrompt && fromAnswer < 2) return 0;
+    if (!fromPrompt && fromAnswer === 1 && rarest > 25) return 0;
     return rare >= 2 || (rare === 1 && rarest <= 8) ? score : 0;
   };
   const model = libFieldModel(idx);
@@ -2204,7 +2249,10 @@ function relatedQuestions(prompt, facts, userLessons, max, shortFacts, seenQuest
   const first = relevant[0];
   if (first && add(first)) relatedCats.add(first.category);
   const nearby = relevant.slice(1, 7).filter(c => !used.has(libSuggestNorm(libSuggestAsQuestion(c.q))));
-  const second = pickRandom(nearby.slice(0, 5));
+  const secondPool = nearby.length
+    ? nearby.filter(c => first && c.field && first.field && c.field === first.field).concat(nearby)
+    : [];
+  const second = secondPool[0] || null;
   if (second && add(second)) relatedCats.add(second.category);
 
   /* Not enough on-topic lessons: stay in the same field as the answer before anything else. */
@@ -2216,8 +2264,12 @@ function relatedQuestions(prompt, facts, userLessons, max, shortFacts, seenQuest
     if (add(pick)) relatedCats.add(pick.category);
   }
 
-  /* 2) One chip that hops to a neighbouring field, so the person can travel across the library without typing. */
+  /* 2) Third chip only: hop to another field (random question + dropdown to swap field). */
   const meta = {};
+  if (limit < 3) {
+    out.meta = meta;
+    return out;
+  }
   const everything = allLongCandidates.concat(allShortCandidates);
   const fieldCounts = new Map();
   const bump = f => {
@@ -2279,25 +2331,40 @@ function relatedQuestions(prompt, facts, userLessons, max, shortFacts, seenQuest
       })
       .filter(r => r.shared >= 2 || (r.shared === 1 && (idx.df.get(r.word) || 0) <= 25))
       .sort((x, y) => y.sc - x.sc);
+    const markHop = c => {
+      meta[libSuggestAsQuestion(c.q)] = { field: hopField, bridge: "" };
+    };
+    const tryHop = c => {
+      if (out.length >= limit) return false;
+      if (add(c)) {
+        markHop(c);
+        hopped = true;
+        return true;
+      }
+      return false;
+    };
     const pick = bridged.length ? pickRandom(bridged.slice(0, 3)) : null;
     let tries;
     if (pick) {
       tries = [pick].concat(bridged.filter(r => r !== pick)).slice(0, 6);
+      for (const r of tries) {
+        if (add(r.c)) {
+          meta[libSuggestAsQuestion(r.c.q)] = { field: hopField, bridge: r.word || "" };
+          hopped = true;
+          break;
+        }
+      }
     } else {
-      /* No specific link: a broad "What is …?" question from the chosen field is a good place to start exploring. */
+      /* Third chip: random starter question in another field (dropdown lets them pick a different field). */
       const broad = good.filter(c => /^what (is|are)\b/i.test(c.q));
       const poolRep = broad.length >= 3 ? broad : good;
       tries = poolRep
         .slice()
         .sort(() => Math.random() - 0.5)
         .slice(0, 8)
-        .map(c => ({ c, sc: 0, shared: 0, word: "" }));
-    }
-    for (const r of tries) {
-      if (add(r.c)) {
-        meta[libSuggestAsQuestion(r.c.q)] = { field: hopField, bridge: r.word || "" };
-        hopped = true;
-        break;
+        .map(c => ({ c }));
+      for (const r of tries) {
+        if (tryHop(r.c)) break;
       }
     }
   }
@@ -2307,26 +2374,9 @@ function relatedQuestions(prompt, facts, userLessons, max, shortFacts, seenQuest
     while (LIB_FIELD_TRAIL.length > 6) LIB_FIELD_TRAIL.shift();
   }
 
-  /* No usable neighbouring field: fall back to any other category (never the excluded ones). */
-  if (!hopped) {
-    const awayCats = new Set(currentCategories);
-    relatedCats.forEach(c => awayCats.add(c));
-    byScore(longCandidates.concat(shortCandidates)).slice(0, 12).forEach(c => awayCats.add(c.category));
-    const away = everything.filter(c => !awayCats.has(c.category) && c.field !== LIB_FIELD_EXCLUDED);
-    const groups = new Map();
-    away.forEach(c => {
-      if (!groups.has(c.category)) groups.set(c.category, []);
-      groups.get(c.category).push(c);
-    });
-    const cats = Array.from(groups.keys());
-    const jump = cats.length ? pickRandom(groups.get(pickRandom(cats))) : null;
-    if (jump) add(jump);
-  }
-
-  while (out.length < limit) {
-    const remaining = allLongCandidates.concat(allShortCandidates).filter(c => !used.has(libSuggestNorm(c.q)) && c.field !== LIB_FIELD_EXCLUDED);
-    if (!remaining.length) break;
-    add(pickRandom(byScore(remaining).slice(0, 20)));
+  /* Slot 3 is always the field hop above — never pad with another unrelated Related chip. */
+  if (limit >= 3 && out.length === 3 && !hopped) {
+    out.pop();
   }
   out.meta = meta;
   return out;

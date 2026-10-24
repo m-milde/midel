@@ -7,7 +7,6 @@
 from __future__ import annotations
 
 import argparse
-import importlib
 import json
 import re
 import sys
@@ -17,17 +16,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
-import train_stage3 as t  # noqa: E402
 from midel_bpe import MidelBPE, save_tokenizer  # noqa: E402
+from midel_data import load_frozen_corpus_rows  # noqa: E402
 from midel_tokenizer_v2 import prepare_text  # noqa: E402
 from training_text import training_text  # noqa: E402
-
-# Keep in sync with scripts/corpus-inventory.py
-RESTRICTED_CATEGORY_RE = re.compile(r"swear|\bweed\b|controlled substances", re.I)
-
-
-def restricted(category: str) -> bool:
-    return bool(RESTRICTED_CATEGORY_RE.search(category or ""))
 
 
 def derive_question(text: str) -> str:
@@ -54,37 +46,17 @@ def qa_string(question: str, answer: str) -> str:
 
 
 def collect_strings() -> list[str]:
-    sys.path.insert(0, str(ROOT / "scripts"))
-    ci = importlib.import_module("corpus_inventory")
     out: list[str] = []
-    for row in t.load_fact_packs():
+    for row in load_frozen_corpus_rows(include_core=True, include_short=True):
         q = (row.get("question") or "").strip()
-        a = (row.get("text") or "").strip()
-        if not a or restricted(row.get("category") or ""):
+        a = training_text((row.get("text") or "").strip())
+        if not a:
             continue
         if not q:
             q = derive_question(a)
         if q:
             out.append(qa_string(q, a))
             out.append(prepare_text(training_text(a)))
-    for row in ci.load_science_core():
-        a = (row.get("text") or "").strip()
-        if not a:
-            continue
-        q = derive_question(a)
-        if q:
-            out.append(qa_string(q, a))
-            out.append(prepare_text(training_text(a)))
-    seen = set()
-    for line in ci.load_short_added_lines():
-        text = str(line or "").strip()
-        if not text or text.lower() in seen:
-            continue
-        seen.add(text.lower())
-        q = derive_question(text)
-        if q:
-            out.append(qa_string(q, text))
-            out.append(prepare_text(training_text(text)))
     return out
 
 

@@ -36,7 +36,7 @@ try:
 except ImportError:
     NORMALIZATION_VERSION = "none"
 
-# Owner decision §10 #3 — library-only categories (not trained into the public network).
+# Legacy exclusion rule (optional --exclude-restricted). Deep rebuild trains all categories by default.
 RESTRICTED_CATEGORY_RE = re.compile(r"swear|\bweed\b|controlled substances", re.I)
 
 SCIENCE_CORE_MARKER = "var SCIENCE_LIBRARY ="
@@ -162,7 +162,9 @@ def restricted_category(category: str) -> bool:
     return bool(RESTRICTED_CATEGORY_RE.search(category or ""))
 
 
-def classify_row(row: dict, *, source: str) -> tuple[str | None, str | None]:
+def classify_row(
+    row: dict, *, source: str, exclude_restricted: bool = False
+) -> tuple[str | None, str | None]:
     """Returns (status, exclude_reason). status: trainable | excluded."""
     question = (row.get("question") or "").strip()
     answer = (row.get("text") or "").strip()
@@ -174,12 +176,12 @@ def classify_row(row: dict, *, source: str) -> tuple[str | None, str | None]:
         if not question:
             return "excluded", "no question (could not derive)"
         row = {**row, "question": question, "_derived_question": True}
-    if restricted_category(category):
+    if exclude_restricted and restricted_category(category):
         return "excluded", "restricted category (library-only)"
     return "trainable", None
 
 
-def inventory_fact_file(path: Path) -> dict:
+def inventory_fact_file(path: Path, *, exclude_restricted: bool = False) -> dict:
     text = path.read_text()
     if path.name == "taught_facts.js":
         rows = t._extract_taught_library(text)
@@ -194,7 +196,7 @@ def inventory_fact_file(path: Path) -> dict:
             stats["unparsable"] += 1
             continue
         stats["rows_read"] += 1
-        status, reason = classify_row(row, source=path.name)
+        status, reason = classify_row(row, source=path.name, exclude_restricted=exclude_restricted)
         if status == "trainable":
             stats["trainable"] += 1
         else:
@@ -211,13 +213,15 @@ def inventory_fact_file(path: Path) -> dict:
     }
 
 
-def inventory_science_core() -> dict:
+def inventory_science_core(*, exclude_restricted: bool = False) -> dict:
     rows = load_science_core()
     stats = Counter()
     reasons = Counter()
     for row in rows:
         stats["rows_read"] += 1
-        status, reason = classify_row(row, source="science_library.js")
+        status, reason = classify_row(
+            row, source="science_library.js", exclude_restricted=exclude_restricted
+        )
         if status == "trainable":
             stats["trainable"] += 1
         else:
@@ -233,7 +237,7 @@ def inventory_science_core() -> dict:
     }
 
 
-def inventory_short_added() -> dict:
+def inventory_short_added(*, exclude_restricted: bool = False) -> dict:
     lines = load_short_added_lines()
     stats = Counter()
     reasons = Counter()
@@ -249,7 +253,7 @@ def inventory_short_added() -> dict:
         seen.add(key)
         stats["rows_read"] += 1
         row = {"text": text, "category": "Small network", "source": "short"}
-        status, reason = classify_row(row, source="short_added.js")
+        status, reason = classify_row(row, source="short_added.js", exclude_restricted=exclude_restricted)
         if status == "trainable":
             stats["trainable"] += 1
         else:
@@ -267,17 +271,17 @@ def inventory_short_added() -> dict:
     }
 
 
-def run_inventory() -> dict:
+def run_inventory(*, exclude_restricted: bool = False) -> dict:
     fact_paths = sorted(ROOT.glob("*_facts.js"))
     lines = []
     for path in fact_paths:
         try:
-            lines.append(inventory_fact_file(path))
+            lines.append(inventory_fact_file(path, exclude_restricted=exclude_restricted))
         except (json.JSONDecodeError, ValueError) as e:
             print(f"FAIL {path.name}: {e}", file=sys.stderr)
             raise SystemExit(1) from e
-    lines.append(inventory_science_core())
-    lines.append(inventory_short_added())
+    lines.append(inventory_science_core(exclude_restricted=exclude_restricted))
+    lines.append(inventory_short_added(exclude_restricted=exclude_restricted))
 
     pack_trainable = sum(x["trainable"] for x in lines if x["source"] == "fact_pack")
     pack_excluded = sum(x["excluded"] for x in lines if x["source"] == "fact_pack")
@@ -289,9 +293,13 @@ def run_inventory() -> dict:
 
     totals = {
         "fact_packs_rows_read": pack_read,
+        "fact_packs_trainable": pack_trainable,
         "fact_packs_trainable_current_trainer": trainer_teachable,
-        "fact_packs_trainable_after_restricted_exclusion": pack_trainable,
+        "fact_packs_trainable_after_restricted_exclusion": pack_trainable
+        if exclude_restricted
+        else None,
         "fact_packs_excluded": pack_excluded,
+        "exclude_restricted_categories": exclude_restricted,
         "science_core_trainable": next(x["trainable"] for x in lines if x["source"] == "science_core"),
         "short_added_trainable": next(x["trainable"] for x in lines if x["source"] == "short_added"),
         "planned_trainable_all_sources": pack_trainable
@@ -304,6 +312,7 @@ def run_inventory() -> dict:
         "tokenizerVersion": TOKENIZER_VERSION,
         "normalizationVersion": NORMALIZATION_VERSION,
         "restrictedRule": RESTRICTED_CATEGORY_RE.pattern,
+        "include_restricted_categories": not exclude_restricted,
         "sources": lines,
         "totals": totals,
         "trainerCrossCheck": {
@@ -317,7 +326,10 @@ def run_inventory() -> dict:
 def print_report(inv: dict) -> None:
     print("CORPUS INVENTORY (read-only)")
     print(f"  tokenizer: {inv['tokenizerVersion']}  normalization: {inv['normalizationVersion']}")
-    print(f"  restricted: /{inv['restrictedRule']}/i on category (library-only for training)")
+    if inv.get("include_restricted_categories"):
+        print("  restricted categories: included in trainable counts (deep rebuild default)")
+    else:
+        print(f"  restricted: /{inv['restrictedRule']}/i excluded from training (--exclude-restricted)")
     print()
     for src in inv["sources"]:
         print(
@@ -327,15 +339,19 @@ def print_report(inv: dict) -> None:
             print(f"      - {reason}: {n}")
     t = inv["totals"]
     print()
-    print(f"  fact packs trainable (after restricted exclusion): {t['fact_packs_trainable_after_restricted_exclusion']}")
-    print(f"  fact packs trainable (current trainer, no exclusion): {t['fact_packs_trainable_current_trainer']}")
+    print(f"  fact packs trainable: {t['fact_packs_trainable']}")
+    if t.get("fact_packs_trainable_after_restricted_exclusion") is not None:
+        print(
+            f"  fact packs trainable (legacy restricted exclusion): "
+            f"{t['fact_packs_trainable_after_restricted_exclusion']}"
+        )
     print(f"  + science core: {t['science_core_trainable']}  + short_added: {t['short_added_trainable']}")
     print(f"  planned trainable (all sources): {t['planned_trainable_all_sources']}")
     chk = inv["trainerCrossCheck"]
     if chk["delta_trainable_vs_inventory_packs"] != 0:
         print(
-            f"  WARN trainer teachable {chk['teachable_lesson_rows']} vs inventory packs {t['fact_packs_trainable_after_restricted_exclusion']} "
-            f"(delta {chk['delta_trainable_vs_inventory_packs']}; restricted rows still in trainer until rebuild trainer)"
+            f"  WARN trainer teachable {chk['teachable_lesson_rows']} vs inventory packs {t['fact_packs_trainable']} "
+            f"(delta {chk['delta_trainable_vs_inventory_packs']})"
         )
 
 
@@ -365,7 +381,7 @@ def write_freeze_manifest(freeze_date: str, inv: dict) -> Path:
         "notes": [
             "Train only from this snapshot; do not replace live brain without passing Section 7 acceptance.",
             "Pause wiki batches and per-lesson learn-new during joint training on this manifest.",
-            "Restricted categories are excluded from planned trainable counts (library still serves them).",
+            "Deep rebuild trains all fact-pack categories unless --exclude-restricted is used.",
         ],
     }
     out = ROOT / "versions" / f"corpus-manifest-{freeze_date}.json"
@@ -377,9 +393,14 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--freeze", metavar="YYYY-MM-DD", help="write versions/corpus-manifest-DATE.json with file hashes")
     ap.add_argument("--json", metavar="PATH", help="write inventory JSON to PATH")
+    ap.add_argument(
+        "--exclude-restricted",
+        action="store_true",
+        help="count swear/weed/controlled-substance categories as non-trainable (legacy policy)",
+    )
     args = ap.parse_args()
 
-    inv = run_inventory()
+    inv = run_inventory(exclude_restricted=args.exclude_restricted)
     print_report(inv)
 
     if args.json:

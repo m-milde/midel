@@ -1,0 +1,265 @@
+<!doctype html>
+<!--
+Copyright (c) 2026 M.Milde <m.milde@gmail.com>
+Free use; no sale, rebrand, or profit from this software.
+See LICENSE.
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Midel — Deep network dashboard</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="network_dashboard.css?v=20261031" />
+  </head>
+  <body>
+    <div class="bg-grid" aria-hidden="true"></div>
+    <div class="wrap">
+      <header class="top">
+        <div>
+          <h1>Midel <span>rebuild</span> dashboard</h1>
+          <p class="sub">Rebuild deep network — what is learning, what is left, and how strong it is</p>
+          <p class="note" id="updated-at"></p>
+          <p class="note" id="boot-err" style="color: var(--bad)"></p>
+        </div>
+        <div class="pill-row" id="live-pills"></div>
+      </header>
+
+      <div class="live-banner hidden" id="live-learning-banner" aria-live="polite"></div>
+
+      <section class="grid grid-3 section-stagger">
+        <div class="card">
+          <h2>Deep library <small>(Midel lab chip)</small></h2>
+          <div class="stat" id="stat-lab-total">—</div>
+          <div class="stat-label" id="stat-lab-split">built-in + Teaching</div>
+        </div>
+        <div class="card">
+          <h2>Small network</h2>
+          <div class="stat" id="stat-short-total">—</div>
+          <div class="stat-label" id="stat-short-note">short_added.js</div>
+        </div>
+        <div class="card">
+          <h2>Rebuild trainer</h2>
+          <div class="stat" id="stat-trainer-qa">—</div>
+          <div class="stat-label" id="stat-trainer-note">Q+A rows · tier <span id="stat-tier">—</span></div>
+        </div>
+      </section>
+      <section class="grid grid-3 section-stagger">
+        <div class="card">
+          <h2>Parameters</h2>
+          <div class="stat" id="stat-params">—</div>
+          <div class="stat-label">PyTorch checkpoint</div>
+        </div>
+        <div class="card">
+          <h2>Full rebuild target</h2>
+          <div class="stat" id="stat-full-target">—</div>
+          <div class="stat-label">packs + core + short (planned)</div>
+        </div>
+        <div class="card">
+          <h2>Needle eval set</h2>
+          <div class="stat" id="stat-eval-n">—</div>
+          <div class="stat-label">fact-pack ids (restricted out)</div>
+        </div>
+      </section>
+
+      <section class="card card--footprint section-stagger">
+        <div class="footprint-head">
+          <div>
+            <h2>Learning at a glance</h2>
+            <p class="lede" id="insights-lede">Loading explanation…</p>
+          </div>
+          <div class="strength-badge" id="strength-badge" title="Composite score from needle recall, vocab use, weight activity, and epoch progress">
+            <span class="strength-value" id="strength-value">—</span>
+            <span class="strength-label" id="strength-label">—</span>
+          </div>
+        </div>
+
+        <div class="insight-grid">
+          <div class="insight-box">
+            <h3>What the dots mean</h3>
+            <ul class="plain-list">
+              <li><strong>Left (teal)</strong> — slices of the word-piece vocabulary. Brighter = that slice appears often in your frozen lessons.</li>
+              <li><strong>Right (mauve)</strong> — slices of all ~22M trained numbers. Brighter = larger typical weight magnitude there.</li>
+              <li>Each dot is a summary of thousands of ids or weights — a map, not a single token.</li>
+            </ul>
+          </div>
+          <div class="insight-box">
+            <h3>Learned so far</h3>
+            <div class="meter-list" id="insights-meters"></div>
+          </div>
+          <div class="insight-box">
+            <h3>Still to learn</h3>
+            <ul class="plain-list" id="insights-left"></ul>
+          </div>
+          <div class="insight-box insight-box--warn hidden" id="insights-weak-wrap">
+            <h3>Weak spots</h3>
+            <ul class="plain-list" id="insights-weak"></ul>
+          </div>
+        </div>
+
+        <div class="pixel-map-wrap">
+          <div class="pixel-panel">
+            <h3>Lesson vocabulary footprint</h3>
+            <p class="map-caption">What the trainer <em>can</em> read — hover any dot for details</p>
+            <div class="pixel-map pixel-map--tokens pixel-map--anim" id="pixel-corpus" role="img" aria-label="Corpus token density"></div>
+            <p class="note" id="pixel-corpus-stats"></p>
+          </div>
+          <div class="pixel-panel">
+            <h3>Trained weight footprint</h3>
+            <p class="map-caption" id="pixel-weights-caption">What the network <em>has</em> stored — hover dots; updates live while training</p>
+            <div class="pixel-map pixel-map--weights pixel-map--anim" id="pixel-weights" role="img" aria-label="Weight magnitude field"></div>
+            <p class="note" id="pixel-weights-stats"></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="grid grid-2 section-stagger">
+        <div class="card">
+          <h2>Training progress</h2>
+          <div class="progress-ring" id="epoch-ring" data-label="—" style="--p: 0"></div>
+          <p class="note" id="rebuild-summary"></p>
+          <canvas class="chart" id="chart-loss" aria-label="Loss by epoch"></canvas>
+        </div>
+        <div class="card">
+          <h2>Needle recall <small>(sample eval)</small></h2>
+          <div class="stat" id="stat-needle">—</div>
+          <div class="bar-track" style="margin: 8px 0 4px">
+            <div class="bar-fill" id="stat-needle-bar" style="width: 0%"></div>
+          </div>
+          <div class="stat-label" id="stat-target-bar">Target 80%</div>
+          <canvas class="chart" id="chart-needle" aria-label="Needle pass rate by epoch"></canvas>
+          <p class="note" id="legacy-summary"></p>
+        </div>
+      </section>
+
+      <section class="card" style="margin-bottom: 16px">
+        <h2>Library & fact files</h2>
+        <div class="grid grid-2">
+          <div>
+            <h3 style="font-size: 0.9rem; color: var(--muted); margin: 0 0 8px">Rows by source</h3>
+            <div class="bar-list" id="corpus-bars"></div>
+          </div>
+          <div>
+            <h3 style="font-size: 0.9rem; color: var(--muted); margin: 0 0 8px">Pack files (size)</h3>
+            <div style="max-height: 280px; overflow: auto">
+              <table class="data">
+                <thead>
+                  <tr>
+                    <th>File</th>
+                    <th>Size</th>
+                  </tr>
+                </thead>
+                <tbody id="fact-files-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" style="margin-bottom: 16px">
+        <h2>Target state <small>from current facts on disk</small></h2>
+        <div id="target-copy"></div>
+      </section>
+
+      <section class="card card--deep-network">
+        <h2>Deep network <small>PyTorch rebuild checkpoint only</small></h2>
+        <div class="deep-guide" id="deep-network-guide">
+          <p>
+            This area inspects the <strong>new</strong> trained file (<code>stage3_brain.joint.*.pt</code>) — not the old
+            JavaScript brain used in chat. Same facts, different engine. Use the four tabs as four views of one snapshot;
+            nothing here trains the model (training runs in Python; the dashboard only displays exports).
+          </p>
+          <ol class="deep-guide-steps">
+            <li><strong>Layer stack</strong> — click Block 1…10; a heatmap preview opens under the list.</li>
+            <li><strong>Full layer list</strong> — every weight table in the file (◆ = picture available).</li>
+            <li><strong>Large heatmap</strong> — same picture as (1), bigger, for one layer you picked.</li>
+            <li><strong>Word pieces</strong> — type text → see how the tokenizer splits it → bar chart of numbers.</li>
+          </ol>
+        </div>
+        <p class="tab-hint" id="deep-tab-hint" aria-live="polite"></p>
+        <div class="tabs" role="tablist" aria-label="Deep network views">
+          <button type="button" class="tab active" data-view="overview" title="Layer stack and block preview">① Layer stack</button>
+          <button type="button" class="tab" data-view="params" title="Complete list of weight tensors">② Layer list</button>
+          <button type="button" class="tab" data-view="weights" title="Full-size heatmap for one tensor">③ Heatmap</button>
+          <button type="button" class="tab" data-view="tokens" title="Tokenizer and embedding vectors">④ Word pieces</button>
+        </div>
+
+        <div class="view-panel active" data-view="overview">
+          <div class="grid grid-2 overview-split">
+            <div>
+              <h3 class="subsection-title">Transformer layers (10 blocks)</h3>
+              <p class="note">Each block = multi-head attention + feed-forward. <strong>Click a block</strong> — scroll down if needed.</p>
+              <div class="arch-stack" id="arch-stack"></div>
+            </div>
+            <div>
+              <h3 class="subsection-title">Where parameters live</h3>
+              <p class="note">How the ~22M numbers are split (embeddings vs the 10 blocks).</p>
+              <div class="bar-list" id="param-groups"></div>
+            </div>
+          </div>
+          <div id="arch-block-detail" class="arch-block-detail arch-block-detail--empty" aria-live="polite">
+            <p class="note">Select a block above to inspect its weight layers.</p>
+          </div>
+        </div>
+
+        <div class="view-panel" data-view="params">
+          <p class="note">
+            <strong>② Layer list</strong> — one row per weight blob. Click a row with ◆ to open its heatmap in tab ③.
+          </p>
+          <div style="max-height: 420px; overflow: auto">
+            <table class="data">
+              <thead>
+                <tr>
+                  <th>Tensor</th>
+                  <th>Shape</th>
+                  <th>Count</th>
+                  <th>Mean</th>
+                  <th>Std</th>
+                  <th>|mean|</th>
+                </tr>
+              </thead>
+              <tbody id="tensor-body"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="view-panel" data-view="weights">
+          <p class="note">
+            <strong>③ Heatmap</strong> — colors = weight magnitudes (downsampled). Short strips = bias vectors; big grids =
+            matrices. Choose another layer in tab ② or in tab ①.
+          </p>
+          <div class="heat-wrap" id="heat-wrap"></div>
+        </div>
+
+        <div class="view-panel" data-view="tokens">
+          <h3 class="subsection-title">Step A — Type lesson text</h3>
+          <label for="encode-input">Same tokenizer as training (BPE v2)</label>
+          <div class="encode-row">
+            <input id="encode-input" type="text" placeholder="What is photosynthesis?" />
+            <button type="button" id="btn-encode" class="btn-secondary">Split into pieces</button>
+          </div>
+          <p class="note" id="encode-out">Press Split or Enter. Token ids appear below.</p>
+          <p class="map-caption" id="encode-chips-label">Step A — Your split (updates when you press Split)</p>
+          <div class="token-chips token-chips--encode" id="encode-chips"></div>
+          <hr class="divider" />
+          <h3 class="subsection-title">Step B — Or pick a sample piece</h3>
+          <p class="note">Fixed list from the checkpoint (does not change when you type above). Click one for step C.</p>
+          <div class="token-chips" id="token-preview"></div>
+          <h3 class="subsection-title">Step C — Embedding bar chart</h3>
+          <p id="token-id-out"></p>
+          <p class="note" id="token-text-out">Each word piece is stored as a list of numbers (the bars). Full 384-d vector loads when the page is served over HTTP.</p>
+          <canvas class="chart chart--token" id="token-emb-chart"></canvas>
+        </div>
+      </section>
+    </div>
+
+    <script src="midel_tokenizer_v2.js"></script>
+    <script src="network_dashboard_tokenizer.js?v=20261026"></script>
+    <script src="network_dashboard_data.js?v=20261026"></script>
+    <script src="network_dashboard.js?v=20261031"></script>
+    <p class="note wrap" style="position:relative;z-index:1;max-width:1400px;margin:-24px auto 32px;padding:0 20px">
+      Tip: open via <code>python3 -m http.server 8080</code> in nn-tutorial for live training polls and embedding plots.
+      Hard-refresh (Cmd+Shift+R) after <code>npm run dashboard:export</code>.
+    </p>
+  </body>
+</html>

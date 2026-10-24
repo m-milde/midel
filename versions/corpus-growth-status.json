@@ -1,0 +1,28 @@
+{
+  "updatedAt": "2026-10-24T22:34:57.452299+00:00",
+  "manifest_reference": "versions/corpus-manifest-2026-10-23.json",
+  "pack_manifest_synced": true,
+  "disk_fact_files": 36,
+  "manifest_fact_files": 36,
+  "new_files": [],
+  "removed_files": [],
+  "hash_mismatch": [
+    "geography_facts.js"
+  ],
+  "teachable_fact_rows": 10394,
+  "teachable_at_manifest_baseline": 10026,
+  "growth_pct_since_baseline": 3.67,
+  "release_recommended": false,
+  "full_rebuild_row_counts": {
+    "fact_pack": 10394,
+    "science_core": 100,
+    "short": 17975
+  },
+  "full_rebuild_total_rows": 28469,
+  "trainer_discovery": "PyTorch and train_stage3 load every *_facts.js by folder glob (not pack_manifest.js).",
+  "chat_discovery": "neural_lab loads packs listed in pack_manifest.js (synced above).",
+  "new_manifest_written": null,
+  "next_steps": [
+    "Edited lesson file(s) since last freeze \u2014 run npm run corpus:grow -- --refresh-manifest, then joint-train."
+  ]
+}

@@ -635,4 +635,4 @@ From the parent repo: `npm run midel:backup`. The same steps without npm: `npm r
 5. Copy `stage3_brain.js` only when the file is complete (ends with `;`). If a lesson is still being taught, wait until that save has finished. Do not stop a running `--learn-new` loop for the backup.
 6. Chat on FTP works from `neural_lab.html` with no Python. Teaching Add still needs `save_taught.py` on a computer that can write the lesson files, not on the static host.
 
-The latest pair is `dist/midel-2026-10-23-deploy.zip` (FTP) and `dist/midel-2026-10-23-dev.zip` (dev). Older zips in `dist/` stay as history.
+The latest pair is `dist/midel-2026-10-25-deploy.zip` (FTP) and `dist/midel-2026-10-25-dev.zip` (dev). Older zips in `dist/` stay as history.

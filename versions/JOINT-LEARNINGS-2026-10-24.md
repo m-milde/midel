@@ -26,7 +26,7 @@ Train **from scratch** (new `.pt` path), do not resume M weights into L.
 | Change | Rationale |
 |--------|-----------|
 | **Tier L** | More capacity (trial winner) |
-| **`--packs-only`** | Fact packs + 100 core; **no short_added** for this pass |
+| **`--packs-only`** | **No short_added** for this pass (packs + core + taught Q+A still in trainer rows) |
 | **`--answer-focus-len 64`** | 2× loss on opening answer tokens (where needle lives) |
 | **`--lr-schedule cosine`** | Warmup + decay |
 | 40–60 epochs | More time at lower LR |

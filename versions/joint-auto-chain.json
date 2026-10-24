@@ -1,0 +1,10 @@
+{
+  "phase": "waiting_phase2",
+  "message": "Waiting for current L phase-2 joint trainer to exit",
+  "checkpoint": "versions/stage3_brain.joint.L-packs-2026-10-24.pt",
+  "phase2Epochs": 40,
+  "phase2bTotalEpochs": 60,
+  "startedAt": "2026-10-24T21:07:00.485Z",
+  "updatedAt": "2026-10-24T21:07:00.487Z",
+  "waitPid": 45798
+}

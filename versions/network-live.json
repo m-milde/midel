@@ -1,0 +1,415 @@
+{
+  "updatedAt": "2026-10-24T20:58:07.609657+00:00",
+  "status": "training",
+  "tier": "L",
+  "kind": "joint-full",
+  "epoch_done": 10,
+  "epochs_planned": 40,
+  "last_loss": 0.5992,
+  "pass_pct": 5.38,
+  "train_seconds": 8060.4,
+  "checkpoint": "versions/stage3_brain.joint.L-packs-2026-10-24.pt",
+  "history": [
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch005.eval.json",
+      "epoch": 5,
+      "pass_pct": 2.38,
+      "loss": 4.0748
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch010.eval.json",
+      "epoch": 10,
+      "pass_pct": 1.88,
+      "loss": 1.8919
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch015.eval.json",
+      "epoch": 15,
+      "pass_pct": 2.62,
+      "loss": 1.0627
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch020.eval.json",
+      "epoch": 20,
+      "pass_pct": 2.88,
+      "loss": 0.6891
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch025.eval.json",
+      "epoch": 25,
+      "pass_pct": 3.5,
+      "loss": 0.5053
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch030.eval.json",
+      "epoch": 30,
+      "pass_pct": 2.38,
+      "loss": 0.4089
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch035.eval.json",
+      "epoch": 35,
+      "pass_pct": 3.88,
+      "loss": 0.3522
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch040.eval.json",
+      "epoch": 40,
+      "pass_pct": 3.12,
+      "loss": 0.3205
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch045.eval.json",
+      "epoch": 45,
+      "pass_pct": 3.38,
+      "loss": 0.3022
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch050.eval.json",
+      "epoch": 50,
+      "pass_pct": 3.62,
+      "loss": 0.2923
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch055.eval.json",
+      "epoch": 55,
+      "pass_pct": 4.0,
+      "loss": 0.2885
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch060.eval.json",
+      "epoch": 60,
+      "pass_pct": 3.38,
+      "loss": 0.287
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.eval.json",
+      "epoch": 60,
+      "pass_pct": 3.38,
+      "loss": 0.287
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch005.eval.json",
+      "epoch": 5,
+      "pass_pct": 2.38,
+      "loss": 4.0748
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch010.eval.json",
+      "epoch": 10,
+      "pass_pct": 1.88,
+      "loss": 1.8919
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch015.eval.json",
+      "epoch": 15,
+      "pass_pct": 2.62,
+      "loss": 1.0627
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch020.eval.json",
+      "epoch": 20,
+      "pass_pct": 2.88,
+      "loss": 0.6891
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch025.eval.json",
+      "epoch": 25,
+      "pass_pct": 3.5,
+      "loss": 0.5053
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch030.eval.json",
+      "epoch": 30,
+      "pass_pct": 2.38,
+      "loss": 0.4089
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch035.eval.json",
+      "epoch": 35,
+      "pass_pct": 3.88,
+      "loss": 0.3522
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch040.eval.json",
+      "epoch": 40,
+      "pass_pct": 3.12,
+      "loss": 0.3205
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch045.eval.json",
+      "epoch": 45,
+      "pass_pct": 3.38,
+      "loss": 0.3022
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch050.eval.json",
+      "epoch": 50,
+      "pass_pct": 3.62,
+      "loss": 0.2923
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch055.eval.json",
+      "epoch": 55,
+      "pass_pct": 4.0,
+      "loss": 0.2885
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch060.eval.json",
+      "epoch": 60,
+      "pass_pct": 3.38,
+      "loss": 0.287
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.eval.json",
+      "epoch": 60,
+      "pass_pct": 3.38,
+      "loss": 0.287
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch005.eval.json",
+      "epoch": 5,
+      "pass_pct": 2.38,
+      "loss": 4.0748
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch010.eval.json",
+      "epoch": 10,
+      "pass_pct": 1.88,
+      "loss": 1.8919
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch015.eval.json",
+      "epoch": 15,
+      "pass_pct": 2.62,
+      "loss": 1.0627
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch020.eval.json",
+      "epoch": 20,
+      "pass_pct": 2.88,
+      "loss": 0.6891
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch025.eval.json",
+      "epoch": 25,
+      "pass_pct": 3.5,
+      "loss": 0.5053
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch030.eval.json",
+      "epoch": 30,
+      "pass_pct": 2.38,
+      "loss": 0.4089
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch035.eval.json",
+      "epoch": 35,
+      "pass_pct": 3.88,
+      "loss": 0.3522
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch040.eval.json",
+      "epoch": 40,
+      "pass_pct": 3.12,
+      "loss": 0.3205
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch045.eval.json",
+      "epoch": 45,
+      "pass_pct": 3.38,
+      "loss": 0.3022
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch050.eval.json",
+      "epoch": 50,
+      "pass_pct": 3.62,
+      "loss": 0.2923
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch055.eval.json",
+      "epoch": 55,
+      "pass_pct": 4.0,
+      "loss": 0.2885
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch060.eval.json",
+      "epoch": 60,
+      "pass_pct": 3.38,
+      "loss": 0.287
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.eval.json",
+      "epoch": 60,
+      "pass_pct": 3.38,
+      "loss": 0.287
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch005.eval.json",
+      "epoch": 5,
+      "pass_pct": 2.38,
+      "loss": 4.0748
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch010.eval.json",
+      "epoch": 10,
+      "pass_pct": 1.88,
+      "loss": 1.8919
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch015.eval.json",
+      "epoch": 15,
+      "pass_pct": 2.62,
+      "loss": 1.0627
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch020.eval.json",
+      "epoch": 20,
+      "pass_pct": 2.88,
+      "loss": 0.6891
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch025.eval.json",
+      "epoch": 25,
+      "pass_pct": 3.5,
+      "loss": 0.5053
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch030.eval.json",
+      "epoch": 30,
+      "pass_pct": 2.38,
+      "loss": 0.4089
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch035.eval.json",
+      "epoch": 35,
+      "pass_pct": 3.88,
+      "loss": 0.3522
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch040.eval.json",
+      "epoch": 40,
+      "pass_pct": 3.12,
+      "loss": 0.3205
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch045.eval.json",
+      "epoch": 45,
+      "pass_pct": 3.38,
+      "loss": 0.3022
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch050.eval.json",
+      "epoch": 50,
+      "pass_pct": 3.62,
+      "loss": 0.2923
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch055.eval.json",
+      "epoch": 55,
+      "pass_pct": 4.0,
+      "loss": 0.2885
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch060.eval.json",
+      "epoch": 60,
+      "pass_pct": 3.38,
+      "loss": 0.287
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.eval.json",
+      "epoch": 60,
+      "pass_pct": 3.38,
+      "loss": 0.287
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch005.eval.json",
+      "epoch": 5,
+      "pass_pct": 2.38,
+      "loss": 4.0748
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch010.eval.json",
+      "epoch": 10,
+      "pass_pct": 1.88,
+      "loss": 1.8919
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch015.eval.json",
+      "epoch": 15,
+      "pass_pct": 2.62,
+      "loss": 1.0627
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch020.eval.json",
+      "epoch": 20,
+      "pass_pct": 2.88,
+      "loss": 0.6891
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch025.eval.json",
+      "epoch": 25,
+      "pass_pct": 3.5,
+      "loss": 0.5053
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch030.eval.json",
+      "epoch": 30,
+      "pass_pct": 2.38,
+      "loss": 0.4089
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch035.eval.json",
+      "epoch": 35,
+      "pass_pct": 3.88,
+      "loss": 0.3522
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch040.eval.json",
+      "epoch": 40,
+      "pass_pct": 3.12,
+      "loss": 0.3205
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch045.eval.json",
+      "epoch": 45,
+      "pass_pct": 3.38,
+      "loss": 0.3022
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch050.eval.json",
+      "epoch": 50,
+      "pass_pct": 3.62,
+      "loss": 0.2923
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch055.eval.json",
+      "epoch": 55,
+      "pass_pct": 4.0,
+      "loss": 0.2885
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.epoch060.eval.json",
+      "epoch": 60,
+      "pass_pct": 3.38,
+      "loss": 0.287
+    },
+    {
+      "source": "stage3_brain.joint.M-2026-10-24.eval.json",
+      "epoch": 60,
+      "pass_pct": 3.38,
+      "loss": 0.287
+    },
+    {
+      "epoch": 10,
+      "loss": 0.5992,
+      "pass_pct": 5.38,
+      "at": "2026-10-24T20:58:07.609437+00:00"
+    }
+  ],
+  "acceptance_bar_pct": 80.0,
+  "batch_no": null,
+  "batches_in_epoch": null,
+  "batch_pct": null,
+  "running_loss": null
+}

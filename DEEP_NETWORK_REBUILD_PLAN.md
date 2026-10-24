@@ -408,3 +408,4 @@ Unchanged principle: **the library is the source of truth**, the network is the 
 | Browser: Float32 + worker + latency budget + background brain loading | Not implemented |
 | Joint trials S / M / L, full joint, live replace | M joint **60 ep rejected** (24 Oct); **phase 2** `npm run trainer:joint-phase2` (L, packs-only); steps **11–12** (export v2 + live replace) after §7 |
 | Release-cycle process and retiring `learn:new:loop` | Documented here only |
+| Rebuild network dashboard (`network_dashboard.html`) | **Shipped** (24 Oct 2026): `npm run dashboard:export`; live `versions/network-live.json` during training |

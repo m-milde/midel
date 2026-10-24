@@ -28,11 +28,18 @@ from midel_data import (  # noqa: E402
     load_frozen_corpus_rows,
     load_trial_rows,
     pack_qa_ids,
+    DEFAULT_SKIP_RESTRICTED,
+    corpus_drift_report,
     verify_frozen_manifest,
 )
 from midel_tiers import TIERS  # noqa: E402
 from midel_tokenizer_v2 import decode, encode, load as load_tokenizer  # noqa: E402
 from midel_torch import MidelLM  # noqa: E402
+from network_dashboard_live import (  # noqa: E402
+    write_network_live,
+    write_network_live_pulse,
+    write_network_live_weights,
+)
 
 PASS_BAR_PCT = 80.0
 DEFAULT_MANIFEST = ROOT / "versions" / "corpus-manifest-2026-10-23.json"
@@ -208,6 +215,7 @@ def run_epoch_batches(
     epochs_total: int,
     log_interval: int,
     answer_focus_len: int = 0,
+    live_pulse=None,
 ) -> float:
     random.shuffle(items)
     losses: list[float] = []
@@ -240,11 +248,20 @@ def run_epoch_batches(
             pct = 100.0 * batch_no / n_batches
             eta = elapsed / batch_no * (n_batches - batch_no)
             bps = batch_no / elapsed if elapsed > 0 else 0.0
+            avg = sum(losses) / len(losses)
             log(
                 f"epoch {epoch + 1}/{epochs_total} batch {batch_no}/{n_batches} ({pct:.0f}%) "
-                f"loss {losses[-1]:.3f} avg {sum(losses) / len(losses):.3f} "
+                f"loss {losses[-1]:.3f} avg {avg:.3f} "
                 f"{bps:.2f} batch/s eta {fmt_duration(eta)}"
             )
+            if live_pulse:
+                live_pulse(
+                    epoch=epoch + 1,
+                    batch_no=batch_no,
+                    n_batches=n_batches,
+                    running_loss=avg,
+                    batch_loss=losses[-1],
+                )
     mean_loss = sum(losses) / max(1, len(losses))
     log(f"epoch {epoch + 1}/{epochs_total} done — loss {mean_loss:.3f} in {fmt_duration(time.perf_counter() - epoch_t0)}")
     return mean_loss
@@ -260,6 +277,7 @@ def joint_trial(
     lr: float,
     seed: int,
     log_interval: int = 100,
+    skip_restricted: bool = DEFAULT_SKIP_RESTRICTED,
 ):
     load_tokenizer()
     cfg = TIERS[tier]
@@ -267,7 +285,7 @@ def joint_trial(
     torch.manual_seed(seed)
     random.seed(seed)
 
-    rows = load_trial_rows(limit=lessons)
+    rows = load_trial_rows(limit=lessons, skip_restricted=skip_restricted)
     log(f"building training packs for {len(rows)} lessons …")
     t_pack = time.perf_counter()
     items = build_training_items(rows, max_len=cfg.max_seq_len)
@@ -346,28 +364,51 @@ def joint_full(
     skip_eval_start: bool = False,
     lr_schedule: str = "cosine",
     answer_focus_len: int = 64,
+    skip_manifest_verify: bool = False,
+    skip_restricted: bool = DEFAULT_SKIP_RESTRICTED,
 ):
     load_tokenizer()
-    if manifest.is_file():
+    skip_manifest = skip_manifest_verify or (resume is not None and resume.is_file())
+    if skip_manifest:
+        log(
+            "WARN skipping frozen manifest hash check "
+            "(resume or --skip-manifest-verify; lesson files may differ from freeze)"
+        )
+    elif manifest.is_file():
+        drift = corpus_drift_report(manifest)
+        if drift.get("new_files") or drift.get("hash_mismatch"):
+            log(
+                "WARN corpus drift vs manifest — run: npm run corpus:grow -- --refresh-manifest "
+                f"(new={drift.get('new_files') or []} changed={drift.get('hash_mismatch') or []})"
+            )
         verify_frozen_manifest(manifest)
         log(f"manifest OK {manifest.name}")
     else:
         log(f"WARN no manifest at {manifest} — skipping hash check")
+        drift = corpus_drift_report(None)
+        if drift.get("new_files"):
+            log(f"WARN {len(drift['new_files'])} fact pack(s) on disk with no manifest — freeze before a reproducible joint run")
 
     cfg = TIERS[tier]
     device = pick_device()
     torch.manual_seed(seed)
     random.seed(seed)
 
+    if skip_restricted:
+        log("WARN excluding restricted categories (swear / weed / controlled substances) from corpus")
+    else:
+        log("corpus includes all fact-pack categories (no restricted-topic exclusion)")
     log("loading frozen corpus rows …")
-    corpus_rows = load_frozen_corpus_rows(include_core=include_core, include_short=include_short)
+    corpus_rows = load_frozen_corpus_rows(
+        include_core=include_core, include_short=include_short, skip_restricted=skip_restricted
+    )
     counts = corpus_counts(corpus_rows)
     log(f"corpus rows {len(corpus_rows)} {counts}")
     log("building BPE training packs (~1–2 min) …")
     t_pack = time.perf_counter()
     items = build_training_items(corpus_rows, max_len=cfg.max_seq_len)
     log(f"training packs {len(items)} built in {fmt_duration(time.perf_counter() - t_pack)}")
-    eval_all = load_eval_rows()
+    eval_all = load_eval_rows(skip_restricted=skip_restricted)
     eval_rows = sample_eval_rows(eval_all, eval_sample, seed) if eval_sample else eval_all
 
     if not items:
@@ -388,6 +429,7 @@ def joint_full(
         "tokenizer": "versions/midel-tokenizer-v2.json",
         "include_core": include_core,
         "include_short": include_short,
+        "include_restricted_categories": not skip_restricted,
         "eval_sample": eval_sample,
         "lr_schedule": lr_schedule,
         "answer_focus_len": answer_focus_len,
@@ -411,6 +453,17 @@ def joint_full(
         f"device={device} batch={batch_size} log_every={log_interval} batches"
     )
     log(f"model params ~{model.count_params() / 1e6:.1f}M")
+    live_meta = {**meta, "epochs_planned": epochs}
+
+    def _live_pulse(**kw):
+        write_network_live_pulse(meta=live_meta, checkpoint=str(out), **kw)
+
+    write_network_live(
+        status="training",
+        meta=live_meta,
+        checkpoint=str(out),
+    )
+    write_network_live_weights(model.state_dict())
 
     t0 = time.perf_counter()
     last_eval = None
@@ -443,9 +496,12 @@ def joint_full(
             epochs_total=epochs,
             log_interval=log_interval,
             answer_focus_len=answer_focus_len,
+            live_pulse=_live_pulse,
         )
 
         meta["epoch_done"] = epoch + 1
+        live_meta["epoch_done"] = epoch + 1
+        live_meta["train_seconds"] = round(time.perf_counter() - t0, 1)
         meta["train_seconds"] = round(time.perf_counter() - t0, 1)
         meta["last_loss"] = round(mean_loss, 4)
         done_epochs = epoch + 1 - epoch_start
@@ -475,6 +531,15 @@ def joint_full(
             snap = out.with_suffix(f".epoch{epoch + 1:03d}.eval.json")
             snap.write_text(json.dumps({"meta": meta, "eval": last_eval}, indent=2) + "\n")
 
+        write_network_live(
+            status="training",
+            meta=live_meta,
+            mean_loss=mean_loss,
+            eval_result=last_eval if eval_every > 0 and (epoch + 1) % eval_every == 0 else None,
+            checkpoint=str(out),
+        )
+        write_network_live_weights(model.state_dict())
+
     meta["train_seconds"] = round(time.perf_counter() - t0, 1)
     atomic_torch_save({"model": model.state_dict(), "meta": meta, "optimizer": opt.state_dict()}, out)
     log(f"wrote joint weights {out.name} ({out.stat().st_size // 1024 // 1024} MB)")
@@ -500,6 +565,13 @@ def joint_full(
     accepted = last_eval["pass_pct"] >= PASS_BAR_PCT
     status = "accepted" if accepted else "rejected"
     log(f"JOINT-STATUS {status} pass={last_eval['pass_pct']:.1f}% bar={PASS_BAR_PCT:.0f}% tier={tier} epochs={epochs}")
+    write_network_live(
+        status="accepted" if accepted else "idle",
+        meta=meta,
+        mean_loss=meta.get("last_loss"),
+        eval_result=last_eval,
+        checkpoint=str(out),
+    )
     status_path = out.parent / f"joint-status-{datetime.now(timezone.utc).strftime('%Y-%m-%d')}.json"
     status_path.write_text(
         json.dumps(
@@ -572,9 +644,20 @@ def main():
         action="store_true",
         help="fact packs + science core only (skip short_added.js)",
     )
+    ap.add_argument(
+        "--skip-manifest-verify",
+        action="store_true",
+        help="do not require corpus files to match frozen manifest SHA-256",
+    )
+    ap.add_argument(
+        "--exclude-restricted",
+        action="store_true",
+        help="omit swear / weed / controlled-substance categories (legacy rebuild policy)",
+    )
     args = ap.parse_args()
     if args.packs_only:
         args.no_short = True
+    skip_restricted = bool(args.exclude_restricted)
 
     if args.eval_checkpoint:
         load_tokenizer()
@@ -588,7 +671,7 @@ def main():
         if meta.get("kind") == "joint-trial":
             rows = load_trial_rows(limit=meta.get("lessons", args.lessons))
         else:
-            rows = load_eval_rows()
+            rows = load_eval_rows(skip_restricted=skip_restricted)
             if args.eval_sample and len(rows) > args.eval_sample:
                 rows = sample_eval_rows(rows, args.eval_sample, args.seed)
         eval_result = eval_trial(
@@ -635,6 +718,8 @@ def main():
             skip_eval_start=args.skip_eval_start,
             lr_schedule=args.lr_schedule,
             answer_focus_len=args.answer_focus_len,
+            skip_manifest_verify=args.skip_manifest_verify,
+            skip_restricted=skip_restricted,
         )
         raise SystemExit(0)
 
@@ -652,6 +737,7 @@ def main():
         lr=args.lr,
         seed=args.seed,
         log_interval=args.log_interval,
+        skip_restricted=skip_restricted,
     )
 
 

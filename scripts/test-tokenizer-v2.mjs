@@ -67,12 +67,8 @@ sys.path.insert(0, ${JSON.stringify(ROOT)})
 import train_stage3 as t
 from training_text import training_text
 from midel_tokenizer_v2 import prepare_text
-import re
-RESTRICTED = re.compile(r"swear|\\\\bweed\\\\b|controlled substances", re.I)
 out = []
 for row in t.teachable_lesson_rows():
-    if RESTRICTED.search(row.get("category") or ""):
-        continue
     q = (row.get("question") or "").strip()
     a = training_text((row.get("text") or "").strip())
     s = prepare_text(q + " " + a)

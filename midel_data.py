@@ -28,6 +28,10 @@ from training_text import training_text  # noqa: E402
 
 RESTRICTED_CATEGORY_RE = re.compile(r"swear|\bweed\b|controlled substances", re.I)
 
+# Deep rebuild: train all fact-pack categories (swear, weed, controlled-substance topics, etc.).
+# Set skip_restricted=True (CLI: --exclude-restricted) to restore the old library-only exclusion.
+DEFAULT_SKIP_RESTRICTED = False
+
 CORE_ID_BASE = 300_000
 SHORT_ID_BASE = 400_000
 
@@ -42,6 +46,48 @@ def sha256_file(path: Path) -> str:
         for chunk in iter(lambda: f.read(1 << 20), b""):
             h.update(chunk)
     return h.hexdigest()
+
+
+def list_fact_pack_filenames() -> list[str]:
+    """Every *_facts.js on disk (trainer discovery — same as load_fact_packs)."""
+    return sorted(p.name for p in ROOT.glob("*_facts.js"))
+
+
+def latest_corpus_manifest() -> Path | None:
+    paths = sorted((ROOT / "versions").glob("corpus-manifest-*.json"), reverse=True)
+    return paths[0] if paths else None
+
+
+def corpus_drift_report(manifest_path: Path | None) -> dict:
+    """Compare disk fact packs to a frozen manifest (new files, edits, removals)."""
+    disk = set(list_fact_pack_filenames())
+    if not manifest_path or not manifest_path.is_file():
+        return {
+            "manifest": None,
+            "disk_files": len(disk),
+            "manifest_files": 0,
+            "new_files": sorted(disk),
+            "removed_files": [],
+            "hash_mismatch": [],
+        }
+    data = json.loads(manifest_path.read_text())
+    on_record = {ent["path"]: ent.get("sha256") for ent in data.get("files") or [] if ent.get("path", "").endswith("_facts.js")}
+    manifest_set = set(on_record)
+    new_files = sorted(disk - manifest_set)
+    removed_files = sorted(manifest_set - disk)
+    hash_mismatch = []
+    for name in sorted(disk & manifest_set):
+        got = sha256_file(ROOT / name)
+        if got != on_record.get(name):
+            hash_mismatch.append(name)
+    return {
+        "manifest": manifest_path.name,
+        "disk_files": len(disk),
+        "manifest_files": len(manifest_set),
+        "new_files": new_files,
+        "removed_files": removed_files,
+        "hash_mismatch": hash_mismatch,
+    }
 
 
 def verify_frozen_manifest(manifest_path: Path) -> dict:
@@ -77,7 +123,7 @@ def pack_qa_ids(question: str, answer: str, *, max_len: int = 256) -> tuple[list
     return full, q_len
 
 
-def load_trial_rows(*, limit: int | None = None, skip_restricted: bool = True) -> list[dict]:
+def load_trial_rows(*, limit: int | None = None, skip_restricted: bool = DEFAULT_SKIP_RESTRICTED) -> list[dict]:
     rows = []
     for row in t.teachable_lesson_rows():
         if skip_restricted and restricted(row.get("category") or ""):
@@ -89,7 +135,7 @@ def load_trial_rows(*, limit: int | None = None, skip_restricted: bool = True) -
     return rows
 
 
-def load_eval_rows(*, skip_restricted: bool = True) -> list[dict]:
+def load_eval_rows(*, skip_restricted: bool = DEFAULT_SKIP_RESTRICTED) -> list[dict]:
     """Fact-pack lessons only (real ids) for needle eval / install record."""
     return load_trial_rows(limit=None, skip_restricted=skip_restricted)
 
@@ -104,8 +150,6 @@ def _row_from_statement(row: dict, *, source: str, id_base: int, index: int) -> 
     if not question:
         return None
     category = row.get("category") or ""
-    if restricted(category):
-        return None
     return {
         **row,
         "id": id_base + index,
@@ -155,7 +199,7 @@ def load_frozen_corpus_rows(
     *,
     include_core: bool = True,
     include_short: bool = True,
-    skip_restricted: bool = True,
+    skip_restricted: bool = DEFAULT_SKIP_RESTRICTED,
 ) -> list[dict]:
     rows = load_trial_rows(limit=None, skip_restricted=skip_restricted)
     if include_core:
