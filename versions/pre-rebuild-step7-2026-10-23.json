@@ -1,0 +1,15 @@
+{
+  "runbookStep": 7,
+  "date": "2026-10-23",
+  "commands": {
+    "evalModel": "npm run eval:model [-- --eval-file PATH --eval-all-teachable --eval-json OUT]",
+    "networkBaseline": "npm run eval:network-baseline [-- --eval-file scripts/fixtures/eval-baseline.json --eval-file BRAIN]",
+    "extraSets": "npm run eval:sets:extra",
+    "extraEval": "npm run eval:extra"
+  },
+  "fixtures": [
+    "scripts/fixtures/eval-baseline.json (772, library + network needle)",
+    "scripts/fixtures/eval-extra.json (complex/structure/related metadata)"
+  ],
+  "oldBrainStratified": "versions/eval-model-old-brain-2026-10-23.json"
+}

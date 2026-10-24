@@ -1,0 +1,23 @@
+{
+  "max_len": 256,
+  "rows": 10393,
+  "packable": 10393,
+  "not_packable_ids": [],
+  "duplicate_ids": [],
+  "tokens": {
+    "median": 43,
+    "p75": 56,
+    "p90": 70,
+    "p95": 78,
+    "max": 211
+  },
+  "buckets": {
+    "short": 8903,
+    "medium": 1490
+  },
+  "over_max_len": 0,
+  "question_fully_cut": 0,
+  "vocab_distinct": 21859,
+  "vocab_singletons": 7100,
+  "verdict": "FIT"
+}

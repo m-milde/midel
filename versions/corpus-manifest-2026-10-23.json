@@ -1,0 +1,580 @@
+{
+  "frozenDate": "2026-10-23",
+  "frozenAt": "2026-10-23T19:50:55.342628+00:00",
+  "runbook": "DEEP_NETWORK_REBUILD_PLAN.md \u00a75.5",
+  "tokenizerVersion": "word-v1",
+  "normalizationVersion": "training-text-v1",
+  "preRebuildBaselines": "versions/pre-rebuild-steps-0-2-2026-10-23.json",
+  "files": [
+    {
+      "path": "ai_facts.js",
+      "bytes": 35776,
+      "sha256": "500b64a9ec79954b7b6e744b8f0fbea39c1a529047cebe5aa64796c803675b96"
+    },
+    {
+      "path": "animals_facts.js",
+      "bytes": 94061,
+      "sha256": "8cd7a97cadf57c95493add52cd5126509da909a9f0f3980fdb21495f840bfb17"
+    },
+    {
+      "path": "biology_facts.js",
+      "bytes": 8329,
+      "sha256": "01a64949b8c2820f6e84a95059e214f0d43014bb489682d93e831fbc1b4de64c"
+    },
+    {
+      "path": "bulgarian_history_facts.js",
+      "bytes": 90101,
+      "sha256": "87e307f9275b7e3e6a9ddba042b2d90dc238644ef7dd18849b051a8d8b18ea58"
+    },
+    {
+      "path": "chemistry_facts.js",
+      "bytes": 35149,
+      "sha256": "cbbde94de4c27ea6b1fff54e2e953d05b59b1dcf6278a8a75cf3eda44fbd444c"
+    },
+    {
+      "path": "cosmetics_facts.js",
+      "bytes": 32113,
+      "sha256": "b0ae5862304cff076c890125bf761a696e9ed0a8340c194e9a76928ab356851b"
+    },
+    {
+      "path": "cryptocurrency_facts.js",
+      "bytes": 42040,
+      "sha256": "c87ad5bd7a3c3b3c1e4fc7b8a721705fd1633885c700dfde8aac7b9f6fcb1dfb"
+    },
+    {
+      "path": "design_facts.js",
+      "bytes": 46576,
+      "sha256": "0915ee20ecd09c56b2b39167a2bd9a8794ad9da4b68d9a341df468c4ddea7f44"
+    },
+    {
+      "path": "digital_design_facts.js",
+      "bytes": 48187,
+      "sha256": "8e450c775fbc5835227d224c0d02c720a9f48af11d002e476a9387e23cde8e8a"
+    },
+    {
+      "path": "disease_facts.js",
+      "bytes": 113349,
+      "sha256": "0f60a85c9c8071a08bf7767664a28264024cf2ff4038c57c00140b7ce6b5801a"
+    },
+    {
+      "path": "finance_facts.js",
+      "bytes": 82098,
+      "sha256": "d874b5de3431ad2426d5d9f8fb572d3af86b31f8c4f7de9c6f776ba9d0f3459d"
+    },
+    {
+      "path": "food_facts.js",
+      "bytes": 136721,
+      "sha256": "c3b4b1dce236cc3edc599709f013d13700adb2d8147931c071969d8f15cc63f3"
+    },
+    {
+      "path": "gemstone_facts.js",
+      "bytes": 10043,
+      "sha256": "015e45f3b7c2c42de5ccc742e9ded32789f373e938facd2ff57c577d1254d24d"
+    },
+    {
+      "path": "geography_facts.js",
+      "bytes": 75664,
+      "sha256": "f49a40880cc9024127931d0ba6f0560ae6a5f09de1b38829abea8b3fd78c8522"
+    },
+    {
+      "path": "human_body_facts.js",
+      "bytes": 57340,
+      "sha256": "8de656c250880a44a9e2a6b0972140929eb3ba788b6dd8ab6f8717d7623ac523"
+    },
+    {
+      "path": "life_facts.js",
+      "bytes": 34082,
+      "sha256": "e728796d6d1b14c1f023cf51dcbe90e8718dd1fd9b1a29c6b3fe2a238fe9e1c8"
+    },
+    {
+      "path": "materials_facts.js",
+      "bytes": 38125,
+      "sha256": "44ae69de101c4331b7f8ff1a34e9e359e93aff76118260bebb80c9f78a30459a"
+    },
+    {
+      "path": "math_facts.js",
+      "bytes": 84801,
+      "sha256": "0b796baf5f6e6a8d0e0fdb8fb599a191cab45563ac79463690581479257739db"
+    },
+    {
+      "path": "nature_facts.js",
+      "bytes": 102158,
+      "sha256": "38d7ac25bf8a234202768b73b73e441582ca17561c1c5e57b1d3958012e0f8ca"
+    },
+    {
+      "path": "online_platforms_facts.js",
+      "bytes": 28661,
+      "sha256": "eb24e5aedba15da41700a30ff61d8f08e32b029f82651f61baf9a384968659a1"
+    },
+    {
+      "path": "philosophy_facts.js",
+      "bytes": 34997,
+      "sha256": "2baa40125057c25747dbbd5bdf18816c8ae6073f6cb45921ee728302ca275594"
+    },
+    {
+      "path": "plants_facts.js",
+      "bytes": 79562,
+      "sha256": "b5c9ae2c6ed50d1439a8d1946bd0a347670ca3a2d5125ca61da2fc3fd544b8b8"
+    },
+    {
+      "path": "poison_facts.js",
+      "bytes": 32280,
+      "sha256": "863e89025dc4730677f96a4fec8adcfc2785e73379536847f0466e053d1b3411"
+    },
+    {
+      "path": "science_fiction_facts.js",
+      "bytes": 30004,
+      "sha256": "3ed07cdcd7920da0dce5deb0a4b6ccc7c1470f33ab93d43e266ed29adb553455"
+    },
+    {
+      "path": "scientists_facts.js",
+      "bytes": 29888,
+      "sha256": "064beac1c87411a6ccb0aaf2dc1839efa748d1e56a57ec4b7db9240732a9b193"
+    },
+    {
+      "path": "skills_facts.js",
+      "bytes": 2736,
+      "sha256": "4b8acb292bd326fc621e2dafea9d2278a202d4eac14810d20da3f6a01fd69a64"
+    },
+    {
+      "path": "space_and_universe_facts.js",
+      "bytes": 108909,
+      "sha256": "63511ca54cbcb39948aac6300e46ed0c621dbda9d17f108b45546b0aba7fc4d9"
+    },
+    {
+      "path": "sport_facts.js",
+      "bytes": 90717,
+      "sha256": "08fcb697c50e4e6e159290f148ad4c91c0f861795c39e8fc4171acf1e2dca702"
+    },
+    {
+      "path": "substances_facts.js",
+      "bytes": 33674,
+      "sha256": "603f14390577ed7b9f861c77af4fdf3d8d4c0cdb2012ba11f86a1dbbe2d4e6d9"
+    },
+    {
+      "path": "survival_facts.js",
+      "bytes": 349460,
+      "sha256": "1667380fb75b5828053ae89a22b2e254117abc62169929d7139b38ae78d4a634"
+    },
+    {
+      "path": "swear_words_facts.js",
+      "bytes": 123110,
+      "sha256": "2f38727d247d94b255eeb969be4a3223eb38347885b268056d96580cde10006e"
+    },
+    {
+      "path": "tattoo_facts.js",
+      "bytes": 21167,
+      "sha256": "96783f350c6c6b225c2dd43314828b4707af062dc3db104e2c56ba4cd63ac3a7"
+    },
+    {
+      "path": "taught_facts.js",
+      "bytes": 1221849,
+      "sha256": "f2ad56855b5f13e92499921b5fff0d0581b7b120d7aa049944439ee97b028535"
+    },
+    {
+      "path": "treatment_facts.js",
+      "bytes": 221865,
+      "sha256": "120d64131ba1f6091803cf5efa5e21a6f15e3cc46d98d84456ea19fd345acc16"
+    },
+    {
+      "path": "weed_facts.js",
+      "bytes": 12605,
+      "sha256": "60b76e7062092b8c7f37728e3d0d6c473e7968a80fe81d57b931f4a76042befc"
+    },
+    {
+      "path": "world_records_facts.js",
+      "bytes": 45039,
+      "sha256": "d6ca3a3c7a0b93ff8245127734eb451840f4526da1e9c4d5f04941d8d3009e21"
+    },
+    {
+      "path": "science_library.js",
+      "bytes": 93727,
+      "sha256": "a6baff33fe49aaa7cc57222af3a1d681b02a724e4cf55e5c67080f16868c8953"
+    },
+    {
+      "path": "short_added.js",
+      "bytes": 867759,
+      "sha256": "0972c5393b38f84d77fde4d5bff456b7d222db4cd4fe432338f985a91f8fe785"
+    },
+    {
+      "path": "short_added.meta.js",
+      "bytes": 226,
+      "sha256": "66eae089cf6b7d3d3d4a841f736f1443ef66641cf090e96424aea3532f69347a"
+    }
+  ],
+  "inventory": {
+    "generatedAt": "2026-10-23T19:50:55.338851+00:00",
+    "tokenizerVersion": "word-v1",
+    "normalizationVersion": "training-text-v1",
+    "restrictedRule": "swear|\\bweed\\b|controlled substances",
+    "sources": [
+      {
+        "file": "ai_facts.js",
+        "source": "fact_pack",
+        "rows_read": 100,
+        "trainable": 100,
+        "excluded": 0,
+        "unparsable": 0,
+        "exclude_reasons": {}
+      },
+      {
+        "file": "animals_facts.js",
+        "source": "fact_pack",
+        "rows_read": 300,
+        "trainable": 300,
+        "excluded": 0,
+        "unparsable": 0,
+        "exclude_reasons": {}
+      },
+      {
+        "file": "biology_facts.js",
+        "source": "fact_pack",
+        "rows_read": 34,
+        "trainable": 34,
+        "excluded": 0,
+        "unparsable": 0,
+        "exclude_reasons": {}
+      },
+      {
+        "file": "bulgarian_history_facts.js",
+        "source": "fact_pack",
+        "rows_read": 200,
+        "trainable": 200,
+        "excluded": 0,
+        "unparsable": 0,
+        "exclude_reasons": {}
+      },
+      {
+        "file": "chemistry_facts.js",
+        "source": "fact_pack",
+        "rows_read": 158,
+        "trainable": 158,
+        "excluded": 0,
+        "unparsable": 0,
+        "exclude_reasons": {}
+      },
+      {
+        "file": "cosmetics_facts.js",
+        "source": "fact_pack",
+        "rows_read": 100,
+        "trainable": 100,
+        "excluded": 0,
+        "unparsable": 0,
+        "exclude_reasons": {}
+      },
+      {
+        "file": "cryptocurrency_facts.js",
+        "source": "fact_pack",
+        "rows_read": 100,
+        "trainable": 100,
+        "excluded": 0,
+        "unparsable": 0,
+        "exclude_reasons": {}
+      },
+      {
+        "file": "design_facts.js",
+        "source": "fact_pack",
+        "rows_read": 200,
+        "trainable": 200,
+        "excluded": 0,
+        "unparsable": 0,
+        "exclude_reasons": {}
+      },
+      {
+        "file": "digital_design_facts.js",
+        "source": "fact_pack",
+        "rows_read": 120,
+        "trainable": 120,
+        "excluded": 0,
+        "unparsable": 0,
+        "exclude_reasons": {}
+      },
+      {
+        "file": "disease_facts.js",
+        "source": "fact_pack",
+        "rows_read": 246,
+        "trainable": 246,
+        "excluded": 0,
+        "unparsable": 0,
+        "exclude_reasons": {}
+      },
+      {
+        "file": "finance_facts.js",
+        "source": "fact_pack",
+        "rows_read": 181,
+        "trainable": 181,
+        "excluded": 0,
+        "unparsable": 0,
+        "exclude_reasons": {}
+      },
+      {
+        "file": "food_facts.js",
+        "source": "fact_pack",
+        "rows_read": 465,
+        "trainable": 465,
+        "excluded": 0,
+        "unparsable": 0,
+        "exclude_reasons": {}
+      },
+      {
+        "file": "gemstone_facts.js",
+        "source": "fact_pack",
+        "rows_read": 40,
+        "trainable": 40,
+        "excluded": 0,
+        "unparsable": 0,
+        "exclude_reasons": {}
+      },
+      {
+        "file": "geography_facts.js",
+        "source": "fact_pack",
+        "rows_read": 336,
+        "trainable": 336,
+        "excluded": 0,
+        "unparsable": 0,
+        "exclude_reasons": {}
+      },
+      {
+        "file": "human_body_facts.js",
+        "source": "fact_pack",
+        "rows_read": 197,
+        "trainable": 197,
+        "excluded": 0,
+        "unparsable": 0,
+        "exclude_reasons": {}
+      },
+      {
+        "file": "life_facts.js",
+        "source": "fact_pack",
+        "rows_read": 100,
+        "trainable": 100,
+        "excluded": 0,
+        "unparsable": 0,
+        "exclude_reasons": {}
+      },
+      {
+        "file": "materials_facts.js",
+        "source": "fact_pack",
+        "rows_read": 128,
+        "trainable": 128,
+        "excluded": 0,
+        "unparsable": 0,
+        "exclude_reasons": {}
+      },
+      {
+        "file": "math_facts.js",
+        "source": "fact_pack",
+        "rows_read": 326,
+        "trainable": 326,
+        "excluded": 0,
+        "unparsable": 0,
+        "exclude_reasons": {}
+      },
+      {
+        "file": "nature_facts.js",
+        "source": "fact_pack",
+        "rows_read": 300,
+        "trainable": 300,
+        "excluded": 0,
+        "unparsable": 0,
+        "exclude_reasons": {}
+      },
+      {
+        "file": "online_platforms_facts.js",
+        "source": "fact_pack",
+        "rows_read": 87,
+        "trainable": 87,
+        "excluded": 0,
+        "unparsable": 0,
+        "exclude_reasons": {}
+      },
+      {
+        "file": "philosophy_facts.js",
+        "source": "fact_pack",
+        "rows_read": 88,
+        "trainable": 88,
+        "excluded": 0,
+        "unparsable": 0,
+        "exclude_reasons": {}
+      },
+      {
+        "file": "plants_facts.js",
+        "source": "fact_pack",
+        "rows_read": 260,
+        "trainable": 260,
+        "excluded": 0,
+        "unparsable": 0,
+        "exclude_reasons": {}
+      },
+      {
+        "file": "poison_facts.js",
+        "source": "fact_pack",
+        "rows_read": 100,
+        "trainable": 100,
+        "excluded": 0,
+        "unparsable": 0,
+        "exclude_reasons": {}
+      },
+      {
+        "file": "science_fiction_facts.js",
+        "source": "fact_pack",
+        "rows_read": 75,
+        "trainable": 75,
+        "excluded": 0,
+        "unparsable": 0,
+        "exclude_reasons": {}
+      },
+      {
+        "file": "scientists_facts.js",
+        "source": "fact_pack",
+        "rows_read": 100,
+        "trainable": 100,
+        "excluded": 0,
+        "unparsable": 0,
+        "exclude_reasons": {}
+      },
+      {
+        "file": "skills_facts.js",
+        "source": "fact_pack",
+        "rows_read": 9,
+        "trainable": 9,
+        "excluded": 0,
+        "unparsable": 0,
+        "exclude_reasons": {}
+      },
+      {
+        "file": "space_and_universe_facts.js",
+        "source": "fact_pack",
+        "rows_read": 294,
+        "trainable": 294,
+        "excluded": 0,
+        "unparsable": 0,
+        "exclude_reasons": {}
+      },
+      {
+        "file": "sport_facts.js",
+        "source": "fact_pack",
+        "rows_read": 300,
+        "trainable": 300,
+        "excluded": 0,
+        "unparsable": 0,
+        "exclude_reasons": {}
+      },
+      {
+        "file": "substances_facts.js",
+        "source": "fact_pack",
+        "rows_read": 118,
+        "trainable": 118,
+        "excluded": 0,
+        "unparsable": 0,
+        "exclude_reasons": {}
+      },
+      {
+        "file": "survival_facts.js",
+        "source": "fact_pack",
+        "rows_read": 898,
+        "trainable": 898,
+        "excluded": 0,
+        "unparsable": 0,
+        "exclude_reasons": {}
+      },
+      {
+        "file": "swear_words_facts.js",
+        "source": "fact_pack",
+        "rows_read": 303,
+        "trainable": 0,
+        "excluded": 303,
+        "unparsable": 0,
+        "exclude_reasons": {
+          "restricted category (library-only)": 303
+        }
+      },
+      {
+        "file": "tattoo_facts.js",
+        "source": "fact_pack",
+        "rows_read": 50,
+        "trainable": 50,
+        "excluded": 0,
+        "unparsable": 0,
+        "exclude_reasons": {}
+      },
+      {
+        "file": "taught_facts.js",
+        "source": "fact_pack",
+        "rows_read": 3492,
+        "trainable": 3472,
+        "excluded": 20,
+        "unparsable": 0,
+        "exclude_reasons": {
+          "restricted category (library-only)": 20
+        }
+      },
+      {
+        "file": "treatment_facts.js",
+        "source": "fact_pack",
+        "rows_read": 424,
+        "trainable": 424,
+        "excluded": 0,
+        "unparsable": 0,
+        "exclude_reasons": {}
+      },
+      {
+        "file": "weed_facts.js",
+        "source": "fact_pack",
+        "rows_read": 45,
+        "trainable": 0,
+        "excluded": 45,
+        "unparsable": 0,
+        "exclude_reasons": {
+          "restricted category (library-only)": 45
+        }
+      },
+      {
+        "file": "world_records_facts.js",
+        "source": "fact_pack",
+        "rows_read": 120,
+        "trainable": 120,
+        "excluded": 0,
+        "unparsable": 0,
+        "exclude_reasons": {}
+      },
+      {
+        "file": "science_library.js (SCIENCE_LIBRARY core)",
+        "source": "science_core",
+        "rows_read": 100,
+        "trainable": 100,
+        "excluded": 0,
+        "exclude_reasons": {}
+      },
+      {
+        "file": "short_added.js (SHORT_ADDED.added)",
+        "source": "short_added",
+        "rows_read": 17975,
+        "trainable": 17975,
+        "excluded": 0,
+        "duplicate_lines_skipped": 0,
+        "exclude_reasons": {},
+        "note": "Rebuild: train with lower weight than full lessons (not in manifest totals until trainer implements)."
+      }
+    ],
+    "totals": {
+      "fact_packs_rows_read": 10394,
+      "fact_packs_trainable_current_trainer": 10393,
+      "fact_packs_trainable_after_restricted_exclusion": 10026,
+      "fact_packs_excluded": 368,
+      "science_core_trainable": 100,
+      "short_added_trainable": 17975,
+      "planned_trainable_all_sources": 28101
+    },
+    "trainerCrossCheck": {
+      "load_fact_packs_rows": 10394,
+      "teachable_lesson_rows": 10393,
+      "delta_trainable_vs_inventory_packs": 367
+    }
+  },
+  "notes": [
+    "Train only from this snapshot; do not replace live brain without passing Section 7 acceptance.",
+    "Pause wiki batches and per-lesson learn-new during joint training on this manifest.",
+    "Restricted categories are excluded from planned trainable counts (library still serves them)."
+  ]
+}

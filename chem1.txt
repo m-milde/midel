@@ -1,0 +1,289 @@
+# Copyright (c) 2026 M.Milde <m.milde@gmail.com>
+# Free use; no sale, rebrand, or profit from this software.
+# See LICENSE.
+
+{
+"dataset_name": "chemistry",
+"facts": [
+{
+"id": 1,
+"category": "Chemistry",
+"fact": "Hydrogen is the most abundant chemical element in the universe, and it consists of just one proton and one electron.",
+"question": "What is the most abundant chemical element in the universe?",
+"answer": "Hydrogen is the most abundant chemical element in the universe, and it consists of just one proton and one electron."
+},
+{
+"id": 2,
+"category": "Chemistry",
+"fact": "Helium is the second lightest element in the periodic table, though it is chemically inert under standard conditions.",
+"question": "What is helium's position in the periodic table?",
+"answer": "Helium is the second lightest element in the periodic table, though it is chemically inert under standard conditions."
+},
+{
+"id": 3,
+"category": "Chemistry",
+"fact": "Water is a universal solvent because its polar molecular structure allows it to dissolve many ionic and covalent compounds.",
+"question": "Why is water considered a universal solvent?",
+"answer": "Water is a universal solvent because its polar molecular structure allows it to dissolve many ionic and covalent compounds."
+},
+{
+"id": 4,
+"category": "Chemistry",
+"fact": "Sodium is a highly reactive alkali metal that reacts violently with water to produce hydrogen gas and sodium hydroxide.",
+"question": "How does sodium react with water?",
+"answer": "Sodium is a highly reactive alkali metal that reacts violently with water to produce hydrogen gas and sodium hydroxide."
+},
+{
+"id": 5,
+"category": "Chemistry",
+"fact": "Chlorine is a yellow-green gas at room temperature, and it is widely used as a powerful disinfectant in water treatment.",
+"question": "What state of matter is chlorine at room temperature?",
+"answer": "Chlorine is a yellow-green gas at room temperature, and it is widely used as a powerful disinfectant in water treatment."
+},
+{
+"id": 6,
+"category": "Chemistry",
+"fact": "Carbon forms more compounds than any other chemical element due to its unique ability to form stable covalent bonds with itself.",
+"question": "Why does carbon form more compounds than any other element?",
+"answer": "Carbon forms more compounds than any other chemical element due to its unique ability to form stable covalent bonds with itself."
+},
+{
+"id": 7,
+"category": "Chemistry",
+"fact": "Oxygen makes up about 21 percent of Earth's atmosphere and is essential for aerobic cellular respiration in most living organisms.",
+"question": "What percentage of Earth's atmosphere does oxygen make up?",
+"answer": "Oxygen makes up about 21 percent of Earth's atmosphere and is essential for aerobic cellular respiration in most living organisms."
+},
+{
+"id": 8,
+"category": "Chemistry",
+"fact": "Nitrogen is a colorless and odorless gas that accounts for about 78 percent of Earth's atmosphere.",
+"question": "What percentage of Earth's atmosphere does nitrogen account for?",
+"answer": "Nitrogen is a colorless and odorless gas that accounts for about 78 percent of Earth's atmosphere."
+},
+{
+"id": 9,
+"category": "Chemistry",
+"fact": "Iron reacts with oxygen and moisture over time to form hydrated iron oxide, which is commonly known as rust.",
+"question": "What do iron, oxygen, and moisture form over time?",
+"answer": "Iron reacts with oxygen and moisture over time to form hydrated iron oxide, which is commonly known as rust."
+},
+{
+"id": 10,
+"category": "Chemistry",
+"fact": "Copper is a reddish transition metal that is excellent at conducting electricity, though it develops a green patina when exposed to air.",
+"question": "What color patina does copper develop when exposed to air?",
+"answer": "Copper is a reddish transition metal that is excellent at conducting electricity, though it develops a green patina when exposed to air."
+},
+{
+"id": 11,
+"category": "Chemistry",
+"fact": "Mercury is the only metallic element that remains liquid at standard laboratory temperature and pressure conditions.",
+"question": "What is unique about mercury's state of matter at standard conditions?",
+"answer": "Mercury is the only metallic element that remains liquid at standard laboratory temperature and pressure conditions."
+},
+{
+"id": 12,
+"category": "Chemistry",
+"fact": "Gold is a noble metal that does not tarnish or corrode in air, making it highly valued for jewelry and electronics.",
+"question": "Why is gold valued for jewelry and electronics?",
+"answer": "Gold is a noble metal that does not tarnish or corrode in air, making it highly valued for jewelry and electronics."
+},
+{
+"id": 13,
+"category": "Chemistry",
+"fact": "Silver has the highest electrical conductivity of all known metals, but it tarnishes when exposed to sulfur compounds in the air.",
+"question": "What happens when silver is exposed to sulfur compounds in the air?",
+"answer": "Silver has the highest electrical conductivity of all known metals, but it tarnishes when exposed to sulfur compounds in the air."
+},
+{
+"id": 14,
+"category": "Chemistry",
+"fact": "Sulfur is a bright yellow nonmetal that forms various polyatomic molecules and smells strongly of rotten eggs when burned with hydrogen.",
+"question": "What color is sulfur in its elemental form?",
+"answer": "Sulfur is a bright yellow nonmetal that forms various polyatomic molecules and smells strongly of rotten eggs when burned with hydrogen."
+},
+{
+"id": 15,
+"category": "Chemistry",
+"fact": "Phosphorus is an essential chemical element for life, and white phosphorus glows in the dark when exposed to oxygen.",
+"question": "What happens to white phosphorus when exposed to oxygen?",
+"answer": "Phosphorus is an essential chemical element for life, and white phosphorus glows in the dark when exposed to oxygen."
+},
+{
+"id": 16,
+"category": "Chemistry",
+"fact": "Potassium is an essential macronutrient for plant growth that reacts vigorously with water in a manner similar to sodium.",
+"question": "Why is potassium important for plant growth?",
+"answer": "Potassium is an essential macronutrient for plant growth that reacts vigorously with water in a manner similar to sodium."
+},
+{
+"id": 17,
+"category": "Chemistry",
+"fact": "Calcium is an alkaline earth metal that plays a crucial role in forming strong bones and teeth in vertebrates.",
+"question": "What role does calcium play in vertebrates?",
+"answer": "Calcium is an alkaline earth metal that plays a crucial role in forming strong bones and teeth in vertebrates."
+},
+{
+"id": 18,
+"category": "Chemistry",
+"fact": "Aluminum is the most abundant metal in Earth's crust, though it is rarely found in its pure elemental state.",
+"question": "How common is aluminum in Earth's crust?",
+"answer": "Aluminum is the most abundant metal in Earth's crust, though it is rarely found in its pure elemental state."
+},
+{
+"id": 19,
+"category": "Chemistry",
+"fact": "Silicon is a metalloid semiconductor that serves as the foundational material for modern computer microchips and electronic devices.",
+"question": "What is silicon used for in modern electronics?",
+"answer": "Silicon is a metalloid semiconductor that serves as the foundational material for modern computer microchips and electronic devices."
+},
+{
+"id": 20,
+"category": "Chemistry",
+"fact": "Fluorine is the most electronegative and reactive of all chemical elements, making it extremely dangerous to handle.",
+"question": "What makes fluorine unique among all chemical elements?",
+"answer": "Fluorine is the most electronegative and reactive of all chemical elements, making it extremely dangerous to handle."
+},
+{
+"id": 21,
+"category": "Chemistry",
+"fact": "Neon is a noble gas that emits a reddish-orange glow when used in high-voltage electrical discharge signs.",
+"question": "What color does neon emit in electrical discharge signs?",
+"answer": "Neon is a noble gas that emits a reddish-orange glow when used in high-voltage electrical discharge signs."
+},
+{
+"id": 22,
+"category": "Chemistry",
+"fact": "Argon is a noble gas that makes up nearly 1 percent of Earth's atmosphere and is commonly used in incandescent light bulbs.",
+"question": "Where is argon commonly used besides the atmosphere?",
+"answer": "Argon is a noble gas that makes up nearly 1 percent of Earth's atmosphere and is commonly used in incandescent light bulbs."
+},
+{
+"id": 23,
+"category": "Chemistry",
+"fact": "Uranium is a radioactive actinide metal that provides fuel for nuclear power plants around the world.",
+"question": "What is uranium used for in power plants?",
+"answer": "Uranium is a radioactive actinide metal that provides fuel for nuclear power plants around the world."
+},
+{
+"id": 24,
+"category": "Chemistry",
+"fact": "Titanium is a strong transition metal with a high strength-to-weight ratio, though it is highly resistant to corrosion.",
+"question": "What are the main physical properties of titanium?",
+"answer": "Titanium is a strong transition metal with a high strength-to-weight ratio, though it is highly resistant to corrosion."
+},
+{
+"id": 25,
+"category": "Chemistry",
+"fact": "Zinc is a bluish-white metal that is frequently used to coat steel in a process known as galvanization to prevent rust.",
+"question": "What process uses zinc to prevent steel from rusting?",
+"answer": "Zinc is a bluish-white metal that is frequently used to coat steel in a process known as galvanization to prevent rust."
+},
+{
+"id": 26,
+"category": "Chemistry",
+"fact": "Lead is a dense heavy metal that was historically used in plumbing pipes, though its use has declined due to toxicity.",
+"question": "Why has the use of lead declined in modern plumbing?",
+"answer": "Lead is a dense heavy metal that was historically used in plumbing pipes, though its use has declined due to toxicity."
+},
+{
+"id": 27,
+"category": "Chemistry",
+"fact": "Iodine is a dark violet nonmetal that sublimes directly into a purple gas when heated gently under standard pressure.",
+"question": "What happens when iodine is heated gently under standard pressure?",
+"answer": "Iodine is a dark violet nonmetal that sublimes directly into a purple gas when heated gently under standard pressure."
+},
+{
+"id": 28,
+"category": "Chemistry",
+"fact": "Lithium is the lightest of all alkali metals and serves as a vital component in rechargeable batteries for modern electronics.",
+"question": "What makes lithium important for modern electronics?",
+"answer": "Lithium is the lightest of all alkali metals and serves as a vital component in rechargeable batteries for modern electronics."
+},
+{
+"id": 29,
+"category": "Chemistry",
+"fact": "Magnesium is a silvery-white alkaline earth metal that burns with a brilliant white flame when ignited in the air.",
+"question": "What happens when magnesium is ignited in the air?",
+"answer": "Magnesium is a silvery-white alkaline earth metal that burns with a brilliant white flame when ignited in the air."
+},
+{
+"id": 30,
+"category": "Chemistry",
+"fact": "Carbon dioxide is a greenhouse gas composed of one carbon atom bonded to two oxygen atoms.",
+"question": "What atoms make up carbon dioxide?",
+"answer": "Carbon dioxide is a greenhouse gas composed of one carbon atom bonded to two oxygen atoms."
+},
+{
+"id": 31,
+"category": "Chemistry",
+"fact": "Ammonia is a pungent nitrogen hydride compound that is widely manufactured for use in agricultural fertilizers.",
+"question": "What is ammonia widely manufactured to create?",
+"answer": "Ammonia is a pungent nitrogen hydride compound that is widely manufactured for use in agricultural fertilizers."
+},
+{
+"id": 32,
+"category": "Chemistry",
+"fact": "Methane is the simplest alkane hydrocarbon and acts as the primary component of natural gas used for energy.",
+"question": "What is methane's role in natural gas?",
+"answer": "Methane is the simplest alkane hydrocarbon and acts as the primary component of natural gas used for energy."
+},
+{
+"id": 33,
+"category": "Chemistry",
+"fact": "Ethanol is a clear organic alcohol that is commonly produced by fermentation of sugars and used as a fuel additive.",
+"question": "How is ethanol commonly produced?",
+"answer": "Ethanol is a clear organic alcohol that is commonly produced by fermentation of sugars and used as a fuel additive."
+},
+{
+"id": 34,
+"category": "Chemistry",
+"fact": "Acetic acid is a carboxylic acid that gives vinegar its characteristic sour taste and pungent smell.",
+"question": "What compound gives vinegar its sour taste?",
+"answer": "Acetic acid is a carboxylic acid that gives vinegar its characteristic sour taste and pungent smell."
+},
+{
+"id": 35,
+"category": "Chemistry",
+"fact": "Hydrochloric acid is a strong corrosive acid formed by dissolving hydrogen chloride gas in water.",
+"question": "How is hydrochloric acid formed?",
+"answer": "Hydrochloric acid is a strong corrosive acid formed by dissolving hydrogen chloride gas in water."
+},
+{
+"id": 36,
+"category": "Chemistry",
+"fact": "Sulfuric acid is a highly corrosive mineral acid containing sulfur, oxygen, and hydrogen, and it is heavily used in industrial manufacturing.",
+"question": "What elements make up sulfuric acid?",
+"answer": "Sulfuric acid is a highly corrosive mineral acid containing sulfur, oxygen, and hydrogen, and it is heavily used in industrial manufacturing."
+},
+{
+"id": 37,
+"category": "Chemistry",
+"fact": "Sodium chloride, commonly known as table salt, is an ionic compound composed of sodium and chlorine ions.",
+"question": "What ions compose sodium chloride?",
+"answer": "Sodium chloride, commonly known as table salt, is an ionic compound composed of sodium and chlorine ions."
+},
+{
+"id": 38,
+"category": "Chemistry",
+"fact": "Glucose is a simple monosaccharide sugar that serves as a primary source of energy for cellular metabolism in living organisms.",
+"question": "What is the primary function of glucose in living organisms?",
+"answer": "Glucose is a simple monosaccharide sugar that serves as a primary source of energy for cellular metabolism in living organisms."
+},
+{
+"id": 39,
+"category": "Chemistry",
+"fact": "Ozone is an allotrope of oxygen consisting of 3 oxygen atoms, and it forms a protective layer in Earth's stratosphere.",
+"question": "How many oxygen atoms make up an ozone molecule?",
+"answer": "Ozone is an allotrope of oxygen consisting of 3 oxygen atoms, and it forms a protective layer in Earth's stratosphere."
+},
+{
+"id": 40,
+"category": "Chemistry",
+"fact": "Hydrogen peroxide is a pale blue liquid chemical compound consisting of two hydrogen and two oxygen atoms.",
+"question": "What atoms make up hydrogen peroxide?",
+"answer": "Hydrogen peroxide is a pale blue liquid chemical compound consisting of two hydrogen and two oxygen atoms."
+}
+]
+}

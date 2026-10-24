@@ -1,0 +1,22 @@
+{
+  "runbook": "DEEP_NETWORK_REBUILD_PLAN.md §6",
+  "completedSteps": [0, 1, 2, 3, 4, 5],
+  "stoppedBefore": "step 6 tokenizer v2",
+  "date": "2026-10-23",
+  "step3": "Owner decisions recorded in plan §10 (no new prompts)",
+  "step4": {
+    "manifest": "versions/corpus-manifest-2026-10-23.json",
+    "inventoryCommand": "npm run corpus:inventory -- --freeze 2026-10-23",
+    "plannedTrainableAllSources": 28101,
+    "factPacksTrainableAfterRestrictedExclusion": 10026,
+    "restrictedExcluded": 368,
+    "writerAtFreeze": "save_taught.py running on :8787 — snapshot is file hashes at freeze time; pause wiki/learn-new before joint training"
+  },
+  "step5": {
+    "trainingText": ["training_text.js", "training_text.py"],
+    "normalizationVersion": "training-text-v1",
+    "corpusStatsNormalized": "versions/corpus-stats-normalized-2026-10-23-max256.json",
+    "contextDecision": "MAX_LEN 256 — FIT (0 lessons over 256 on normalized fact-pack teachable set; median 43, p95 78, max 211)"
+  },
+  "priorBaselines": "versions/pre-rebuild-steps-0-2-2026-10-23.json"
+}

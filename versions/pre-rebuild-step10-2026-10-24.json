@@ -1,0 +1,24 @@
+{
+  "runbookStep": 10,
+  "startedAt": "2026-10-24T00:00:00+00:00",
+  "trainer": "train_midel_torch.py --joint",
+  "npm": "npm run trainer:joint",
+  "corpus": {
+    "manifest": "versions/corpus-manifest-2026-10-23.json",
+    "manifestVerified": true,
+    "rows": { "fact_pack": 10025, "science_core": 100, "short": 17975, "total": 28100 },
+    "training_packs": 48279,
+    "short_weight": 0.25
+  },
+  "features": ["checkpoint-every", "eval-every", "eval-sample", "resume", "atomic save", "JOINT-STATUS"],
+  "notes": "First full joint run uses tier M (~11 min/epoch est); live brain untouched until step 12.",
+  "epochPlan": {
+    "phase1": { "epochs": 30, "started": "2026-10-24" },
+    "phase2": {
+      "epochs": 60,
+      "after": "phase1 completes",
+      "command": "npm run trainer:joint-bump -- --wait-pid 27465 --epochs 60",
+      "watcherStarted": true
+    }
+  }
+}

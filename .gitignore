@@ -1,0 +1,22 @@
+.venv/
+.venv-torch/
+dist/
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+node_modules/
+learn-new.log
+*.log
+neural_brain_curriculum_*.json
+Midel-network-guide-bg.pdf
+.cursor/
+.playwright-mcp/
+Untitled
+versions/*.pt
+versions/**/*.pt
+versions/**/stage3_brain.js
+*.pt
+*.zip
+* copy*
+* copy.*

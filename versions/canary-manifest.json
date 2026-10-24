@@ -1,0 +1,48 @@
+{
+ "created": "2026-10-22",
+ "private": "Keep this file private. It lives in versions/, which is NOT part of the deploy zip (it IS part of the dev zip, so do not share the dev zip).",
+ "purpose": "Invented, clearly fictional lessons (world: Orrowmere) with rare names. If these names appear in someone else's product or dataset, the lessons were copied from Midel. Check with: npm run canary:check -- <file-or-url>",
+ "tokens": [
+  "Kelvarn",
+  "Orrowmere",
+  "Tolvik",
+  "Quennelby",
+  "Vosskamp",
+  "Drellmoor",
+  "Marrowglass",
+  "Salt Lantern War"
+ ],
+ "lessons": [
+  {
+   "id": 15362,
+   "file": "science_fiction_facts.js",
+   "question": "What is the Kelvarn Reach?"
+  },
+  {
+   "id": 15363,
+   "file": "science_fiction_facts.js",
+   "question": "Who is Captain Ildrith Vosskamp?"
+  },
+  {
+   "id": 15364,
+   "file": "science_fiction_facts.js",
+   "question": "What is the Quennelby Accord?"
+  },
+  {
+   "id": 15365,
+   "file": "science_fiction_facts.js",
+   "question": "What are Tolvik birds?"
+  },
+  {
+   "id": 15366,
+   "file": "science_fiction_facts.js",
+   "question": "What is the Marrowglass Observatory?"
+  }
+ ],
+ "shortLines": [
+  "The Kelvarn Reach is a fictional plateau.",
+  "Tolvik birds are fictional birds with glass feathers.",
+  "Drellmoor is a fictional city in Orrowmere."
+ ],
+ "note": "These names were not found in the library before they were added. They were NOT searched for on the web (no web access when they were created): treat one match as a lead, several different names together as strong evidence."
+}

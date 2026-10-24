@@ -1,0 +1,730 @@
+{
+ "summary": {
+  "created": "2026-10-21T20:02:30.585Z",
+  "fixture": "scripts/fixtures/eval-baseline.json",
+  "questions": 772,
+  "seconds": 122,
+  "overall": {
+   "n": 732,
+   "pass": 689,
+   "wrong": 16,
+   "none": 27
+  },
+  "refusal": {
+   "n": 40,
+   "pass": 39,
+   "wrong": 1,
+   "none": 0
+  },
+  "byKind": {
+   "exact": {
+    "n": 210,
+    "pass": 210,
+    "wrong": 0,
+    "none": 0
+   },
+   "casual": {
+    "n": 210,
+    "pass": 210,
+    "wrong": 0,
+    "none": 0
+   },
+   "reworded": {
+    "n": 109,
+    "pass": 106,
+    "wrong": 3,
+    "none": 0
+   },
+   "typo": {
+    "n": 171,
+    "pass": 133,
+    "wrong": 11,
+    "none": 27
+   },
+   "synonym": {
+    "n": 32,
+    "pass": 30,
+    "wrong": 2,
+    "none": 0
+   },
+   "refusal": {
+    "n": 40,
+    "pass": 39,
+    "wrong": 1,
+    "none": 0
+   }
+  },
+  "byField": {
+   "Animals & nature": {
+    "n": 50,
+    "pass": 49,
+    "wrong": 0,
+    "none": 1
+   },
+   "Beauty & style": {
+    "n": 42,
+    "pass": 40,
+    "wrong": 1,
+    "none": 1
+   },
+   "Body & health": {
+    "n": 54,
+    "pass": 48,
+    "wrong": 2,
+    "none": 4
+   },
+   "Business & brands": {
+    "n": 45,
+    "pass": 41,
+    "wrong": 0,
+    "none": 4
+   },
+   "Design & creative": {
+    "n": 53,
+    "pass": 52,
+    "wrong": 0,
+    "none": 1
+   },
+   "Earth & space": {
+    "n": 51,
+    "pass": 47,
+    "wrong": 2,
+    "none": 2
+   },
+   "Food & drink": {
+    "n": 47,
+    "pass": 40,
+    "wrong": 3,
+    "none": 4
+   },
+   "History & society": {
+    "n": 55,
+    "pass": 54,
+    "wrong": 0,
+    "none": 1
+   },
+   "Language & stories": {
+    "n": 49,
+    "pass": 48,
+    "wrong": 0,
+    "none": 1
+   },
+   "Maths & science": {
+    "n": 55,
+    "pass": 52,
+    "wrong": 1,
+    "none": 2
+   },
+   "Plants & gardens": {
+    "n": 50,
+    "pass": 46,
+    "wrong": 2,
+    "none": 2
+   },
+   "Sport & records": {
+    "n": 54,
+    "pass": 53,
+    "wrong": 1,
+    "none": 0
+   },
+   "Survival & outdoors": {
+    "n": 77,
+    "pass": 73,
+    "wrong": 4,
+    "none": 0
+   },
+   "Tech & computing": {
+    "n": 50,
+    "pass": 46,
+    "wrong": 0,
+    "none": 4
+   }
+  },
+  "weakestCategories": [
+   {
+    "category": "Places",
+    "n": 8,
+    "pass": 6,
+    "wrong": 2,
+    "none": 0
+   },
+   {
+    "category": "Cryptocurrency",
+    "n": 14,
+    "pass": 11,
+    "wrong": 0,
+    "none": 3
+   },
+   {
+    "category": "Human Body",
+    "n": 10,
+    "pass": 8,
+    "wrong": 0,
+    "none": 2
+   },
+   {
+    "category": "Earth and land",
+    "n": 5,
+    "pass": 4,
+    "wrong": 0,
+    "none": 1
+   },
+   {
+    "category": "Food and drink",
+    "n": 5,
+    "pass": 4,
+    "wrong": 1,
+    "none": 0
+   },
+   {
+    "category": "Beverage & Spirits",
+    "n": 5,
+    "pass": 4,
+    "wrong": 0,
+    "none": 1
+   },
+   {
+    "category": "Online Platforms",
+    "n": 5,
+    "pass": 4,
+    "wrong": 0,
+    "none": 1
+   },
+   {
+    "category": "Materials",
+    "n": 6,
+    "pass": 5,
+    "wrong": 1,
+    "none": 0
+   }
+  ],
+  "benchmark": {
+   "n": 100,
+   "pass": 100,
+   "wrong": 0,
+   "none": 0
+  },
+  "slowestMs": 3630,
+  "medianMs": 44
+ },
+ "failures": [
+  {
+   "id": "q0075",
+   "kind": "typo",
+   "prompt": "What is maekup?",
+   "outcome": "wrong",
+   "got": "What detailed representation shows a design's intended appearance?",
+   "wanted": "What is makeup?",
+   "field": "Beauty & style",
+   "category": "Cosmetics",
+   "ids": [
+    12187
+   ]
+  },
+  {
+   "id": "q0124",
+   "kind": "typo",
+   "prompt": "What is a parsite?",
+   "outcome": "wrong",
+   "got": "What is pyrite commonly known as?",
+   "wanted": "What is a parasite?",
+   "field": "Body & health",
+   "category": "Disease",
+   "ids": [
+    4037
+   ]
+  },
+  {
+   "id": "q0143",
+   "kind": "typo",
+   "prompt": "What is the comomn cold?",
+   "outcome": "wrong",
+   "got": "What is a comma?",
+   "wanted": "What is the common cold?",
+   "field": "Body & health",
+   "category": "Disease",
+   "ids": [
+    3761
+   ]
+  },
+  {
+   "id": "q0267",
+   "kind": "typo",
+   "prompt": "What is a steet?",
+   "outcome": "wrong",
+   "got": "What is a steak?",
+   "wanted": "What is a street?",
+   "field": "Earth & space",
+   "category": "Places",
+   "ids": [
+    13214
+   ]
+  },
+  {
+   "id": "q0268",
+   "kind": "reworded",
+   "prompt": "What is street?",
+   "outcome": "wrong",
+   "got": "What is street art?",
+   "wanted": "What is a street?",
+   "field": "Earth & space",
+   "category": "Places",
+   "ids": [
+    3044
+   ]
+  },
+  {
+   "id": "q0295",
+   "kind": "typo",
+   "prompt": "What is spiach?",
+   "outcome": "wrong",
+   "got": "What is a seiche?",
+   "wanted": "What is spinach?",
+   "field": "Food & drink",
+   "category": "Food and drink",
+   "ids": [
+    9949
+   ]
+  },
+  {
+   "id": "q0331",
+   "kind": "typo",
+   "prompt": "What is roseary?",
+   "outcome": "wrong",
+   "got": "What is the capital of Dominica?",
+   "wanted": "What is rosemary?",
+   "field": "Food & drink",
+   "category": "Herbs and Spices",
+   "ids": [
+    13421
+   ]
+  },
+  {
+   "id": "q0334",
+   "kind": "typo",
+   "prompt": "What is a sirit?",
+   "outcome": "wrong",
+   "got": "What is a strait?",
+   "wanted": "What is a spirit?",
+   "field": "Food & drink",
+   "category": "Alcohols",
+   "ids": [
+    3613
+   ]
+  },
+  {
+   "id": "q0465",
+   "kind": "typo",
+   "prompt": "What is porceain?",
+   "outcome": "wrong",
+   "got": "What is a porcupine?",
+   "wanted": "What is porcelain?",
+   "field": "Maths & science",
+   "category": "Materials",
+   "ids": [
+    3319
+   ]
+  },
+  {
+   "id": "q0497",
+   "kind": "typo",
+   "prompt": "What is a samen?",
+   "outcome": "wrong",
+   "got": "What is sage?",
+   "wanted": "What is a stamen?",
+   "field": "Plants & gardens",
+   "category": "Plant Biology",
+   "ids": [
+    7463
+   ]
+  },
+  {
+   "id": "q0543",
+   "kind": "typo",
+   "prompt": "What is a crcus?",
+   "outcome": "wrong",
+   "got": "What is a crepe?",
+   "wanted": "What is a crocus?",
+   "field": "Plants & gardens",
+   "category": "Flowers",
+   "ids": [
+    7301
+   ]
+  },
+  {
+   "id": "q0558",
+   "kind": "typo",
+   "prompt": "What is tenis?",
+   "outcome": "wrong",
+   "got": "What is the penis?",
+   "wanted": "What is tennis?",
+   "field": "Sport & records",
+   "category": "Sport",
+   "ids": [
+    8520
+   ]
+  },
+  {
+   "id": "q0627",
+   "kind": "reworded",
+   "prompt": "What is snow cave?",
+   "outcome": "wrong",
+   "got": "What is snow?",
+   "wanted": "What is a snow cave?",
+   "field": "Survival & outdoors",
+   "category": "Survival Skills & Field Methods",
+   "ids": [
+    3442
+   ]
+  },
+  {
+   "id": "q0634",
+   "kind": "reworded",
+   "prompt": "How to start a fire with a ferro rod?",
+   "outcome": "wrong",
+   "got": "How do I start a fire with a ferro rod?",
+   "wanted": "How can you start a fire with a ferro rod?",
+   "field": "Survival & outdoors",
+   "category": "Survival",
+   "ids": [
+    13848
+   ]
+  },
+  {
+   "id": "q0635",
+   "kind": "synonym",
+   "prompt": "How can you begin a fire with a ferro rod?",
+   "outcome": "wrong",
+   "got": "How do I start a fire with a ferro rod?",
+   "wanted": "How can you start a fire with a ferro rod?",
+   "field": "Survival & outdoors",
+   "category": "Survival",
+   "ids": [
+    13848
+   ]
+  },
+  {
+   "id": "q0710",
+   "kind": "synonym",
+   "prompt": "How do you begin a fire with a hand drill?",
+   "outcome": "wrong",
+   "got": "How can you start a fire with a bow drill?",
+   "wanted": "How do you start a fire with a hand drill?",
+   "field": "Survival & outdoors",
+   "category": "Survival",
+   "ids": [
+    14263
+   ]
+  },
+  {
+   "id": "q0766",
+   "kind": "refusal",
+   "prompt": "blah blah blah",
+   "outcome": "wrong",
+   "got": "What is bash?",
+   "wanted": null,
+   "field": null,
+   "category": null,
+   "ids": [
+    5360
+   ]
+  },
+  {
+   "id": "q0050",
+   "kind": "typo",
+   "prompt": "What are plant cell walls cmposed of?",
+   "outcome": "none",
+   "got": null,
+   "wanted": "What are plant cell walls composed of?",
+   "field": "Animals & nature",
+   "category": "Biology",
+   "ids": []
+  },
+  {
+   "id": "q0089",
+   "kind": "typo",
+   "prompt": "What is Dieel?",
+   "outcome": "none",
+   "got": null,
+   "wanted": "What is Diesel?",
+   "field": "Beauty & style",
+   "category": "Fashion & Luxury",
+   "ids": []
+  },
+  {
+   "id": "q0095",
+   "kind": "typo",
+   "prompt": "What is the earddrum?",
+   "outcome": "none",
+   "got": null,
+   "wanted": "What is the eardrum?",
+   "field": "Body & health",
+   "category": "Human Body",
+   "ids": []
+  },
+  {
+   "id": "q0115",
+   "kind": "typo",
+   "prompt": "What is noroviirus?",
+   "outcome": "none",
+   "got": null,
+   "wanted": "What is norovirus?",
+   "field": "Body & health",
+   "category": "Disease",
+   "ids": []
+  },
+  {
+   "id": "q0132",
+   "kind": "typo",
+   "prompt": "What do platelts do?",
+   "outcome": "none",
+   "got": null,
+   "wanted": "What do platelets do?",
+   "field": "Body & health",
+   "category": "Human Body",
+   "ids": []
+  },
+  {
+   "id": "q0135",
+   "kind": "typo",
+   "prompt": "What is a pandemiic?",
+   "outcome": "none",
+   "got": null,
+   "wanted": "What is a pandemic?",
+   "field": "Body & health",
+   "category": "Disease",
+   "ids": []
+  },
+  {
+   "id": "q0147",
+   "kind": "typo",
+   "prompt": "What is a seed pharse?",
+   "outcome": "none",
+   "got": null,
+   "wanted": "What is a seed phrase?",
+   "field": "Business & brands",
+   "category": "Cryptocurrency",
+   "ids": []
+  },
+  {
+   "id": "q0151",
+   "kind": "typo",
+   "prompt": "What are alcoins?",
+   "outcome": "none",
+   "got": null,
+   "wanted": "What are altcoins?",
+   "field": "Business & brands",
+   "category": "Cryptocurrency",
+   "ids": []
+  },
+  {
+   "id": "q0157",
+   "kind": "typo",
+   "prompt": "What is tokeonmics?",
+   "outcome": "none",
+   "got": null,
+   "wanted": "What is tokenomics?",
+   "field": "Business & brands",
+   "category": "Cryptocurrency",
+   "ids": []
+  },
+  {
+   "id": "q0162",
+   "kind": "typo",
+   "prompt": "What is Equnior?",
+   "outcome": "none",
+   "got": null,
+   "wanted": "What is Equinor?",
+   "field": "Business & brands",
+   "category": "Energy & Oil Supermajors",
+   "ids": []
+  },
+  {
+   "id": "q0209",
+   "kind": "typo",
+   "prompt": "What is an empty state in UI desing?",
+   "outcome": "none",
+   "got": null,
+   "wanted": "What is an empty state in UI design?",
+   "field": "Design & creative",
+   "category": "Digital Design",
+   "ids": []
+  },
+  {
+   "id": "q0244",
+   "kind": "typo",
+   "prompt": "What is a singulaity?",
+   "outcome": "none",
+   "got": null,
+   "wanted": "What is a singularity?",
+   "field": "Earth & space",
+   "category": "Space and Universe",
+   "ids": []
+  },
+  {
+   "id": "q0252",
+   "kind": "typo",
+   "prompt": "what is hemisphre?",
+   "outcome": "none",
+   "got": null,
+   "wanted": "what is hemisphere?",
+   "field": "Earth & space",
+   "category": "Earth and land",
+   "ids": []
+  },
+  {
+   "id": "q0314",
+   "kind": "typo",
+   "prompt": "What is Kirin Holidngs?",
+   "outcome": "none",
+   "got": null,
+   "wanted": "What is Kirin Holdings?",
+   "field": "Food & drink",
+   "category": "Beverage & Spirits",
+   "ids": []
+  },
+  {
+   "id": "q0317",
+   "kind": "typo",
+   "prompt": "What is proessed food?",
+   "outcome": "none",
+   "got": null,
+   "wanted": "What is processed food?",
+   "field": "Food & drink",
+   "category": "Food",
+   "ids": []
+  },
+  {
+   "id": "q0320",
+   "kind": "typo",
+   "prompt": "What are pisttachios?",
+   "outcome": "none",
+   "got": null,
+   "wanted": "What are pistachios?",
+   "field": "Food & drink",
+   "category": "Nuts and Seeds",
+   "ids": []
+  },
+  {
+   "id": "q0323",
+   "kind": "typo",
+   "prompt": "What is a pomerganate?",
+   "outcome": "none",
+   "got": null,
+   "wanted": "What is a pomegranate?",
+   "field": "Food & drink",
+   "category": "Fruits",
+   "ids": []
+  },
+  {
+   "id": "q0345",
+   "kind": "typo",
+   "prompt": "What is dmocracy?",
+   "outcome": "none",
+   "got": null,
+   "wanted": "What is democracy?",
+   "field": "History & society",
+   "category": "Politics & International Relations",
+   "ids": []
+  },
+  {
+   "id": "q0431",
+   "kind": "typo",
+   "prompt": "What is natuure?",
+   "outcome": "none",
+   "got": null,
+   "wanted": "What is nature?",
+   "field": "Language & stories",
+   "category": "Wikipedia",
+   "ids": []
+  },
+  {
+   "id": "q0468",
+   "kind": "typo",
+   "prompt": "What is sulffur?",
+   "outcome": "none",
+   "got": null,
+   "wanted": "What is sulfur?",
+   "field": "Maths & science",
+   "category": "Chemistry",
+   "ids": []
+  },
+  {
+   "id": "q0490",
+   "kind": "typo",
+   "prompt": "What is oxyegn?",
+   "outcome": "none",
+   "got": null,
+   "wanted": "What is oxygen?",
+   "field": "Maths & science",
+   "category": "Science",
+   "ids": []
+  },
+  {
+   "id": "q0519",
+   "kind": "typo",
+   "prompt": "What is a cacuts?",
+   "outcome": "none",
+   "got": null,
+   "wanted": "What is a cactus?",
+   "field": "Plants & gardens",
+   "category": "Houseplants",
+   "ids": []
+  },
+  {
+   "id": "q0534",
+   "kind": "typo",
+   "prompt": "What is a carrto plant?",
+   "outcome": "none",
+   "got": null,
+   "wanted": "What is a carrot plant?",
+   "field": "Plants & gardens",
+   "category": "Vegetable Plants",
+   "ids": []
+  },
+  {
+   "id": "q0656",
+   "kind": "typo",
+   "prompt": "What is NVIDAI?",
+   "outcome": "none",
+   "got": null,
+   "wanted": "What is NVIDIA?",
+   "field": "Tech & computing",
+   "category": "Online Platforms",
+   "ids": []
+  },
+  {
+   "id": "q0682",
+   "kind": "typo",
+   "prompt": "What is the history of a vector databbase?",
+   "outcome": "none",
+   "got": null,
+   "wanted": "What is the history of a vector database?",
+   "field": "Tech & computing",
+   "category": "Wikipedia",
+   "ids": []
+  },
+  {
+   "id": "q0686",
+   "kind": "typo",
+   "prompt": "What is the history of unsupeervised learning?",
+   "outcome": "none",
+   "got": null,
+   "wanted": "What is the history of unsupervised learning?",
+   "field": "Tech & computing",
+   "category": "Wikipedia",
+   "ids": []
+  },
+  {
+   "id": "q0701",
+   "kind": "typo",
+   "prompt": "What is an entrepreeur?",
+   "outcome": "none",
+   "got": null,
+   "wanted": "What is an entrepreneur?",
+   "field": "Tech & computing",
+   "category": "Wikipedia",
+   "ids": []
+  }
+ ]
+}

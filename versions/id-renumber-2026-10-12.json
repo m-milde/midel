@@ -1,0 +1,416 @@
+{
+ "date": "2026-10-12",
+ "reason": "pack-vs-pack duplicate ids (geography owns 7001-7040 and 8001-8042)",
+ "changes": [
+  {
+   "file": "food_facts.js",
+   "old_id": 7001,
+   "new_id": 13201
+  },
+  {
+   "file": "food_facts.js",
+   "old_id": 7002,
+   "new_id": 13202
+  },
+  {
+   "file": "food_facts.js",
+   "old_id": 7003,
+   "new_id": 13203
+  },
+  {
+   "file": "food_facts.js",
+   "old_id": 7004,
+   "new_id": 13204
+  },
+  {
+   "file": "food_facts.js",
+   "old_id": 7005,
+   "new_id": 13205
+  },
+  {
+   "file": "food_facts.js",
+   "old_id": 7006,
+   "new_id": 13206
+  },
+  {
+   "file": "food_facts.js",
+   "old_id": 7007,
+   "new_id": 13207
+  },
+  {
+   "file": "food_facts.js",
+   "old_id": 7008,
+   "new_id": 13208
+  },
+  {
+   "file": "food_facts.js",
+   "old_id": 7009,
+   "new_id": 13209
+  },
+  {
+   "file": "food_facts.js",
+   "old_id": 7010,
+   "new_id": 13210
+  },
+  {
+   "file": "food_facts.js",
+   "old_id": 7011,
+   "new_id": 13211
+  },
+  {
+   "file": "food_facts.js",
+   "old_id": 7012,
+   "new_id": 13212
+  },
+  {
+   "file": "food_facts.js",
+   "old_id": 7013,
+   "new_id": 13213
+  },
+  {
+   "file": "food_facts.js",
+   "old_id": 7014,
+   "new_id": 13214
+  },
+  {
+   "file": "food_facts.js",
+   "old_id": 7015,
+   "new_id": 13215
+  },
+  {
+   "file": "food_facts.js",
+   "old_id": 7016,
+   "new_id": 13216
+  },
+  {
+   "file": "food_facts.js",
+   "old_id": 7017,
+   "new_id": 13217
+  },
+  {
+   "file": "food_facts.js",
+   "old_id": 7018,
+   "new_id": 13218
+  },
+  {
+   "file": "food_facts.js",
+   "old_id": 7019,
+   "new_id": 13219
+  },
+  {
+   "file": "food_facts.js",
+   "old_id": 7020,
+   "new_id": 13220
+  },
+  {
+   "file": "food_facts.js",
+   "old_id": 7021,
+   "new_id": 13221
+  },
+  {
+   "file": "food_facts.js",
+   "old_id": 7022,
+   "new_id": 13222
+  },
+  {
+   "file": "food_facts.js",
+   "old_id": 7023,
+   "new_id": 13223
+  },
+  {
+   "file": "food_facts.js",
+   "old_id": 7024,
+   "new_id": 13224
+  },
+  {
+   "file": "food_facts.js",
+   "old_id": 7025,
+   "new_id": 13225
+  },
+  {
+   "file": "food_facts.js",
+   "old_id": 7026,
+   "new_id": 13226
+  },
+  {
+   "file": "food_facts.js",
+   "old_id": 7027,
+   "new_id": 13227
+  },
+  {
+   "file": "food_facts.js",
+   "old_id": 7028,
+   "new_id": 13228
+  },
+  {
+   "file": "food_facts.js",
+   "old_id": 7029,
+   "new_id": 13229
+  },
+  {
+   "file": "food_facts.js",
+   "old_id": 7030,
+   "new_id": 13230
+  },
+  {
+   "file": "food_facts.js",
+   "old_id": 7031,
+   "new_id": 13231
+  },
+  {
+   "file": "food_facts.js",
+   "old_id": 7032,
+   "new_id": 13232
+  },
+  {
+   "file": "food_facts.js",
+   "old_id": 7033,
+   "new_id": 13233
+  },
+  {
+   "file": "food_facts.js",
+   "old_id": 7034,
+   "new_id": 13234
+  },
+  {
+   "file": "food_facts.js",
+   "old_id": 7035,
+   "new_id": 13235
+  },
+  {
+   "file": "food_facts.js",
+   "old_id": 7036,
+   "new_id": 13236
+  },
+  {
+   "file": "food_facts.js",
+   "old_id": 7037,
+   "new_id": 13237
+  },
+  {
+   "file": "food_facts.js",
+   "old_id": 7038,
+   "new_id": 13238
+  },
+  {
+   "file": "food_facts.js",
+   "old_id": 7039,
+   "new_id": 13239
+  },
+  {
+   "file": "food_facts.js",
+   "old_id": 7040,
+   "new_id": 13240
+  },
+  {
+   "file": "sport_facts.js",
+   "old_id": 8001,
+   "new_id": 13241
+  },
+  {
+   "file": "sport_facts.js",
+   "old_id": 8002,
+   "new_id": 13242
+  },
+  {
+   "file": "sport_facts.js",
+   "old_id": 8003,
+   "new_id": 13243
+  },
+  {
+   "file": "sport_facts.js",
+   "old_id": 8004,
+   "new_id": 13244
+  },
+  {
+   "file": "sport_facts.js",
+   "old_id": 8005,
+   "new_id": 13245
+  },
+  {
+   "file": "sport_facts.js",
+   "old_id": 8006,
+   "new_id": 13246
+  },
+  {
+   "file": "sport_facts.js",
+   "old_id": 8007,
+   "new_id": 13247
+  },
+  {
+   "file": "sport_facts.js",
+   "old_id": 8008,
+   "new_id": 13248
+  },
+  {
+   "file": "sport_facts.js",
+   "old_id": 8009,
+   "new_id": 13249
+  },
+  {
+   "file": "sport_facts.js",
+   "old_id": 8010,
+   "new_id": 13250
+  },
+  {
+   "file": "sport_facts.js",
+   "old_id": 8011,
+   "new_id": 13251
+  },
+  {
+   "file": "sport_facts.js",
+   "old_id": 8012,
+   "new_id": 13252
+  },
+  {
+   "file": "sport_facts.js",
+   "old_id": 8013,
+   "new_id": 13253
+  },
+  {
+   "file": "sport_facts.js",
+   "old_id": 8014,
+   "new_id": 13254
+  },
+  {
+   "file": "sport_facts.js",
+   "old_id": 8015,
+   "new_id": 13255
+  },
+  {
+   "file": "sport_facts.js",
+   "old_id": 8016,
+   "new_id": 13256
+  },
+  {
+   "file": "sport_facts.js",
+   "old_id": 8017,
+   "new_id": 13257
+  },
+  {
+   "file": "sport_facts.js",
+   "old_id": 8018,
+   "new_id": 13258
+  },
+  {
+   "file": "sport_facts.js",
+   "old_id": 8019,
+   "new_id": 13259
+  },
+  {
+   "file": "sport_facts.js",
+   "old_id": 8020,
+   "new_id": 13260
+  },
+  {
+   "file": "sport_facts.js",
+   "old_id": 8021,
+   "new_id": 13261
+  },
+  {
+   "file": "sport_facts.js",
+   "old_id": 8022,
+   "new_id": 13262
+  },
+  {
+   "file": "sport_facts.js",
+   "old_id": 8023,
+   "new_id": 13263
+  },
+  {
+   "file": "sport_facts.js",
+   "old_id": 8024,
+   "new_id": 13264
+  },
+  {
+   "file": "sport_facts.js",
+   "old_id": 8025,
+   "new_id": 13265
+  },
+  {
+   "file": "sport_facts.js",
+   "old_id": 8026,
+   "new_id": 13266
+  },
+  {
+   "file": "sport_facts.js",
+   "old_id": 8027,
+   "new_id": 13267
+  },
+  {
+   "file": "sport_facts.js",
+   "old_id": 8028,
+   "new_id": 13268
+  },
+  {
+   "file": "sport_facts.js",
+   "old_id": 8029,
+   "new_id": 13269
+  },
+  {
+   "file": "sport_facts.js",
+   "old_id": 8030,
+   "new_id": 13270
+  },
+  {
+   "file": "sport_facts.js",
+   "old_id": 8031,
+   "new_id": 13271
+  },
+  {
+   "file": "sport_facts.js",
+   "old_id": 8032,
+   "new_id": 13272
+  },
+  {
+   "file": "sport_facts.js",
+   "old_id": 8033,
+   "new_id": 13273
+  },
+  {
+   "file": "sport_facts.js",
+   "old_id": 8034,
+   "new_id": 13274
+  },
+  {
+   "file": "sport_facts.js",
+   "old_id": 8035,
+   "new_id": 13275
+  },
+  {
+   "file": "sport_facts.js",
+   "old_id": 8036,
+   "new_id": 13276
+  },
+  {
+   "file": "sport_facts.js",
+   "old_id": 8037,
+   "new_id": 13277
+  },
+  {
+   "file": "sport_facts.js",
+   "old_id": 8038,
+   "new_id": 13278
+  },
+  {
+   "file": "sport_facts.js",
+   "old_id": 8039,
+   "new_id": 13279
+  },
+  {
+   "file": "sport_facts.js",
+   "old_id": 8040,
+   "new_id": 13280
+  },
+  {
+   "file": "sport_facts.js",
+   "old_id": 8041,
+   "new_id": 13281
+  },
+  {
+   "file": "sport_facts.js",
+   "old_id": 8042,
+   "new_id": 13282
+  }
+ ]
+}

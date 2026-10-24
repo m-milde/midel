@@ -1,0 +1,506 @@
+{
+    "dataset_name": "general_science_and_geography_100_facts",
+    "total_facts": 100,
+    "facts": [
+        {
+            "id": 1,
+            "category": "Geography & Earth Science",
+            "fact": "The Sahara Desert is the largest hot desert in the world, but Antarctica is technically the largest desert overall due to its extremely low precipitation."
+        },
+        {
+            "id": 2,
+            "category": "Geography & Earth Science",
+            "fact": "Mount Everest is the highest mountain above sea level, but Mauna Kea is the tallest mountain from base to peak."
+        },
+        {
+            "id": 3,
+            "category": "Geography & Earth Science",
+            "fact": "The Amazon River contains roughly 20% of the world's total river flow."
+        },
+        {
+            "id": 4,
+            "category": "Geography & Earth Science",
+            "fact": "Lake Baikal in Russia is the world's deepest freshwater lake and holds about 20% of the world's unfrozen surface fresh water."
+        },
+        {
+            "id": 5,
+            "category": "Geography & Earth Science",
+            "fact": "The Pacific Ocean is the largest and deepest ocean on Earth, covering more surface area than all landmasses combined."
+        },
+        {
+            "id": 6,
+            "category": "Geography & Earth Science",
+            "fact": "The Ring of Fire is a major basin in the Pacific Ocean characterized by high seismic activity, active volcanoes, and frequent earthquakes."
+        },
+        {
+            "id": 7,
+            "category": "Geography & Earth Science",
+            "fact": "Angel Falls in Venezuela is the world's highest uninterrupted waterfall, dropping 979 meters."
+        },
+        {
+            "id": 8,
+            "category": "Geography & Earth Science",
+            "fact": "The Dead Sea is the lowest point on Earth's land surface, bordered by Jordan, Israel, and Palestine."
+        },
+        {
+            "id": 9,
+            "category": "Geography & Earth Science",
+            "fact": "Greenland is the world's largest non-continental island."
+        },
+        {
+            "id": 10,
+            "category": "Geography & Earth Science",
+            "fact": "Australia is unique for being both the smallest continent and the largest country without a land border."
+        },
+        {
+            "id": 11,
+            "category": "Geography & Earth Science",
+            "fact": "The Atacama Desert in Chile is considered the driest non-polar desert on Earth."
+        },
+        {
+            "id": 12,
+            "category": "Geography & Earth Science",
+            "fact": "Tectonic plates float on the semi-fluid asthenosphere layer located in the Earth's upper mantle."
+        },
+        {
+            "id": 13,
+            "category": "Geography & Earth Science",
+            "fact": "The Prime Meridian passes through Greenwich, London, and serves as the baseline (0 degrees longitude) for global time zones and coordinates."
+        },
+        {
+            "id": 14,
+            "category": "Geography & Earth Science",
+            "fact": "Canada contains more lakes than all the rest of the world's countries combined."
+        },
+        {
+            "id": 15,
+            "category": "Geography & Earth Science",
+            "fact": "The Mariana Trench contains Challenger Deep, the deepest known point in Earth's oceans."
+        },
+        {
+            "id": 16,
+            "category": "Geography & Earth Science",
+            "fact": "Mount Kilimanjaro is the highest mountain in Africa and the tallest free-standing mountain in the world."
+        },
+        {
+            "id": 17,
+            "category": "Geography & Earth Science",
+            "fact": "The Nile River is traditionally considered the longest river in the world, though some satellite studies suggest the Amazon may rival it."
+        },
+        {
+            "id": 18,
+            "category": "Geography & Earth Science",
+            "fact": "Iceland is known as the 'Land of Fire and Ice' because of its coexistence of active volcanic systems and massive glaciers."
+        },
+        {
+            "id": 19,
+            "category": "Geography & Earth Science",
+            "fact": "The Great Barrier Reef is the world's largest coral reef system and is large enough to be visible from space."
+        },
+        {
+            "id": 20,
+            "category": "Geography & Earth Science",
+            "fact": "Pangea was a supercontinent that existed during the late Paleozoic and early Mesozoic eras before breaking apart via continental drift."
+        },
+        {
+            "id": 21,
+            "category": "Physics & Astronomy",
+            "fact": "Light travels through a vacuum at a constant speed of approximately 299,792 kilometers per second."
+        },
+        {
+            "id": 22,
+            "category": "Physics & Astronomy",
+            "fact": "The Sun accounts for about 99.86% of the total mass of the entire solar system."
+        },
+        {
+            "id": 23,
+            "category": "Physics & Astronomy",
+            "fact": "A light-year is a unit of distance, not time, representing the distance light travels in one Earth year (roughly 9.46 trillion kilometers)."
+        },
+        {
+            "id": 24,
+            "category": "Physics & Astronomy",
+            "fact": "Neutron stars are the densest objects in the universe; a single teaspoon of neutron star material would weigh about a billion tons."
+        },
+        {
+            "id": 25,
+            "category": "Physics & Astronomy",
+            "fact": "Absolute zero is the theoretical lowest possible temperature, defined as 0 Kelvin or -273.15 degrees Celsius."
+        },
+        {
+            "id": 26,
+            "category": "Physics & Astronomy",
+            "fact": "Sound cannot travel through a vacuum because mechanical waves require a medium (like air or water) to propagate."
+        },
+        {
+            "id": 27,
+            "category": "Physics & Astronomy",
+            "fact": "Gravity is the weakest of the four fundamental forces of nature, yet it dictates the large-scale structure of the universe."
+        },
+        {
+            "id": 28,
+            "category": "Physics & Astronomy",
+            "fact": "Jupiter is the largest planet in our solar system and hosts the Great Red Spot, a giant storm larger than Earth."
+        },
+        {
+            "id": 29,
+            "category": "Physics & Astronomy",
+            "fact": "Venus is the hottest planet in the solar system due to a runaway greenhouse effect, even though Mercury is closer to the Sun."
+        },
+        {
+            "id": 30,
+            "category": "Physics & Astronomy",
+            "fact": "The Milky Way galaxy contains an estimated 100 to 400 billion stars."
+        },
+        {
+            "id": 31,
+            "category": "Physics & Astronomy",
+            "fact": "Black holes are regions of spacetime where gravity is so strong that no particles or electromagnetic radiation (including light) can escape."
+        },
+        {
+            "id": 32,
+            "category": "Physics & Astronomy",
+            "fact": "Nuclear fusion is the core process that powers the Sun, fusing hydrogen atoms into helium and releasing immense energy."
+        },
+        {
+            "id": 33,
+            "category": "Physics & Astronomy",
+            "fact": "Time dilation is a consequence of Einstein's theory of relativity, where time passes more slowly for objects moving near the speed of light or near massive gravitational fields."
+        },
+        {
+            "id": 34,
+            "category": "Physics & Astronomy",
+            "fact": "Saturn's density is exceptionally low; if you could find a body of water large enough, the planet would float on it."
+        },
+        {
+            "id": 35,
+            "category": "Physics & Astronomy",
+            "fact": "The universe is approximately 13.8 billion years old and is currently expanding at an accelerating rate."
+        },
+        {
+            "id": 36,
+            "category": "Physics & Astronomy",
+            "fact": "A day on Venus is longer than its year; it takes longer to complete one axial rotation than one orbit around the Sun."
+        },
+        {
+            "id": 37,
+            "category": "Physics & Astronomy",
+            "fact": "Electromagnetic radiation spans from high-energy gamma rays to low-energy radio waves, with visible light occupying a very narrow band."
+        },
+        {
+            "id": 38,
+            "category": "Physics & Astronomy",
+            "fact": "The Andromeda Galaxy is the closest major spiral galaxy to the Milky Way and is on a gravitational collision course with it."
+        },
+        {
+            "id": 39,
+            "category": "Physics & Astronomy",
+            "fact": "Olympus Mons on Mars is the largest volcano in the solar system, standing nearly three times the height of Mount Everest."
+        },
+        {
+            "id": 40,
+            "category": "Physics & Astronomy",
+            "fact": "The First Law of Thermodynamics states that energy cannot be created or destroyed, only transformed from one form to another."
+        },
+        {
+            "id": 41,
+            "category": "Chemistry & Material Science",
+            "fact": "Water is one of the few substances whose solid form (ice) is less dense than its liquid form, which is why ice floats."
+        },
+        {
+            "id": 42,
+            "category": "Chemistry & Material Science",
+            "fact": "Carbon serves as the chemical backbone for all known organic life and forms varied allotropes like diamond, graphite, and graphene."
+        },
+        {
+            "id": 43,
+            "category": "Chemistry & Material Science",
+            "fact": "The periodic table organizes elements based on their atomic number, electron configurations, and recurring chemical properties."
+        },
+        {
+            "id": 44,
+            "category": "Chemistry & Material Science",
+            "fact": "Gold is a noble metal that does not tarnish, rust, or corrode when exposed to air, moisture, or most acids."
+        },
+        {
+            "id": 45,
+            "category": "Chemistry & Material Science",
+            "fact": "Hydrogen is the most abundant chemical element in the universe, making up roughly 75% of elemental mass."
+        },
+        {
+            "id": 46,
+            "category": "Chemistry & Material Science",
+            "fact": "Oxygen is the most abundant element by mass in Earth's crust."
+        },
+        {
+            "id": 47,
+            "category": "Chemistry & Material Science",
+            "fact": "Glass is classified as an amorphous solid because it lacks the long-range crystalline structure of typical solids."
+        },
+        {
+            "id": 48,
+            "category": "Chemistry & Material Science",
+            "fact": "Mercury is the only metallic element that remains liquid at standard temperature and pressure."
+        },
+        {
+            "id": 49,
+            "category": "Chemistry & Material Science",
+            "fact": "The pH scale measures the acidity or alkalinity of a solution logarithmically from 0 to 14."
+        },
+        {
+            "id": 50,
+            "category": "Chemistry & Material Science",
+            "fact": "Helium is a noble gas that is chemically inert and rarely reacts to form compounds under normal conditions."
+        },
+        {
+            "id": 51,
+            "category": "Chemistry & Material Science",
+            "fact": "Sodium (a volatile metal) and chlorine (a toxic gas) combine chemically to form sodium chloride (ordinary table salt)."
+        },
+        {
+            "id": 52,
+            "category": "Chemistry & Material Science",
+            "fact": "Nitrogen makes up approximately 78% of Earth's atmosphere by volume."
+        },
+        {
+            "id": 53,
+            "category": "Chemistry & Material Science",
+            "fact": "Diamond and graphite are both pure carbon, but their vastly different physical properties are caused by distinct atomic crystal lattices."
+        },
+        {
+            "id": 54,
+            "category": "Chemistry & Material Science",
+            "fact": "A catalyst is a substance that accelerates a chemical reaction without being consumed or altered in the process."
+        },
+        {
+            "id": 55,
+            "category": "Chemistry & Material Science",
+            "fact": "Osmosis is the net movement of water molecules across a semi-permeable membrane from a region of low solute concentration to high solute concentration."
+        },
+        {
+            "id": 56,
+            "category": "Chemistry & Material Science",
+            "fact": "Alloys are metallic mixtures composed of two or more elements, such as bronze (copper and tin) or steel (iron and carbon)."
+        },
+        {
+            "id": 57,
+            "category": "Chemistry & Material Science",
+            "fact": "Radioactive half-life is the time required for half of the atomic nuclei in a radioactive sample to undergo radioactive decay."
+        },
+        {
+            "id": 58,
+            "category": "Chemistry & Material Science",
+            "fact": "Fluorine is the most chemically reactive and electronegative element on the periodic table."
+        },
+        {
+            "id": 59,
+            "category": "Chemistry & Material Science",
+            "fact": "Sublimation is the phase transition where a substance passes directly from a solid to a gas without entering the liquid state (e.g., dry ice)."
+        },
+        {
+            "id": 60,
+            "category": "Chemistry & Material Science",
+            "fact": "Noble gases (Group 18) have completely filled valence electron shells, giving them exceptional chemical stability."
+        },
+        {
+            "id": 61,
+            "category": "Biology & Natural History",
+            "fact": "DNA (deoxyribonucleic acid) stores the genetic instructions used in the growth, development, functioning, and reproduction of all living organisms."
+        },
+        {
+            "id": 62,
+            "category": "Biology & Natural History",
+            "fact": "Mitochondria are cellular organelles known as the powerhouses of the cell because they generate ATP for energy."
+        },
+        {
+            "id": 63,
+            "category": "Biology & Natural History",
+            "fact": "Blue whales are the largest animals ever known to have lived on Earth, surpassing even the largest prehistoric dinosaurs."
+        },
+        {
+            "id": 64,
+            "category": "Biology & Natural History",
+            "fact": "Fungi are phylogenetically closer to animals than they are to plants."
+        },
+        {
+            "id": 65,
+            "category": "Biology & Natural History",
+            "fact": "Mycorrhizal networks allow trees and plants to communicate and share nutrients underground, often called the 'Wood Wide Web.'"
+        },
+        {
+            "id": 66,
+            "category": "Biology & Natural History",
+            "fact": "Sharks have existed in Earth's oceans for over 400 million years, predating both land trees and dinosaurs."
+        },
+        {
+            "id": 67,
+            "category": "Biology & Natural History",
+            "fact": "Photosynthesis is the biological process used by plants, algae, and cyanobacteria to convert light energy into chemical energy."
+        },
+        {
+            "id": 68,
+            "category": "Biology & Natural History",
+            "fact": "Honeybees communicate food locations to their hive mates using a specialized behavior known as the waggle dance."
+        },
+        {
+            "id": 69,
+            "category": "Biology & Natural History",
+            "fact": "Tardigrades (water bears) can survive extreme environments, including the vacuum of space, severe radiation, and extreme freezing."
+        },
+        {
+            "id": 70,
+            "category": "Biology & Natural History",
+            "fact": "The human brain contains roughly 86 billion neurons, forming trillions of synaptic connections."
+        },
+        {
+            "id": 71,
+            "category": "Biology & Natural History",
+            "fact": "Mammals are uniquely defined among animals by the presence of hair or fur and three specialized middle ear bones."
+        },
+        {
+            "id": 72,
+            "category": "Biology & Natural History",
+            "fact": "Meiosis is the specialized type of cell division that reduces chromosome number by half to produce gametes (sperm and egg cells)."
+        },
+        {
+            "id": 73,
+            "category": "Biology & Natural History",
+            "fact": "Octopuses have three hearts, nine brains (a centralized brain and localized neural clusters in each arm), and copper-based blue blood."
+        },
+        {
+            "id": 74,
+            "category": "Biology & Natural History",
+            "fact": "Evolution by natural selection was independently discovered and formulated by both Charles Darwin and Alfred Russel Wallace."
+        },
+        {
+            "id": 75,
+            "category": "Biology & Natural History",
+            "fact": "Monotremes (such as the platypus and echidna) are rare mammals that lay eggs instead of giving birth to live young."
+        },
+        {
+            "id": 76,
+            "category": "Biology & Natural History",
+            "fact": "Chlorophyll is the primary green pigment found in chloroplasts that absorbs light wavelengths for photosynthesis."
+        },
+        {
+            "id": 77,
+            "category": "Biology & Natural History",
+            "fact": "Enzymes are specialized biological proteins that catalyze biochemical reactions by lowering activation energy."
+        },
+        {
+            "id": 78,
+            "category": "Biology & Natural History",
+            "fact": "Cheetahs are the fastest land mammals, capable of short acceleration bursts reaching up to 120 kilometers per hour."
+        },
+        {
+            "id": 79,
+            "category": "Biology & Natural History",
+            "fact": "Viruses sit on the border of living and non-living entities, requiring a host cell's machinery to replicate."
+        },
+        {
+            "id": 80,
+            "category": "Biology & Natural History",
+            "fact": "Coral reefs are built by colonies of tiny marine invertebrates called polyps that secrete hard calcium carbonate skeletons."
+        },
+        {
+            "id": 81,
+            "category": "Ecosystems, Climate & Environment",
+            "fact": "Rainforests cover a small percentage of Earth's land surface yet harbor more than half of all terrestrial plant and animal species."
+        },
+        {
+            "id": 82,
+            "category": "Ecosystems, Climate & Environment",
+            "fact": "The carbon cycle tracks the continuous movement of carbon atoms between the atmosphere, oceans, soil, and living organisms."
+        },
+        {
+            "id": 83,
+            "category": "Ecosystems, Climate & Environment",
+            "fact": "Permafrost is ground that remains completely frozen at or below 0 degrees Celsius for two or more consecutive years."
+        },
+        {
+            "id": 84,
+            "category": "Ecosystems, Climate & Environment",
+            "fact": "The greenhouse effect is a natural atmospheric process where specific trace gases trap heat, keeping Earth warm enough to support life."
+        },
+        {
+            "id": 85,
+            "category": "Ecosystems, Climate & Environment",
+            "fact": "Mangroves protect coastlines from storm surges and coastal erosion while functioning as dense carbon sinks."
+        },
+        {
+            "id": 86,
+            "category": "Ecosystems, Climate & Environment",
+            "fact": "Phytoplankton are microscopic marine algae responsible for generating at least 50% of the oxygen in Earth's atmosphere."
+        },
+        {
+            "id": 87,
+            "category": "Ecosystems, Climate & Environment",
+            "fact": "The ozone layer in the stratosphere shields the biosphere by absorbing harmful ultraviolet (UV) radiation from the Sun."
+        },
+        {
+            "id": 88,
+            "category": "Ecosystems, Climate & Environment",
+            "fact": "El Nino is a periodic climate pattern characterized by the warming of surface waters in the central and eastern tropical Pacific Ocean."
+        },
+        {
+            "id": 89,
+            "category": "Ecosystems, Climate & Environment",
+            "fact": "Biodiversity refers to the variety of life across genetic, species, and ecosystem scales, ensuring ecological resilience."
+        },
+        {
+            "id": 90,
+            "category": "Ecosystems, Climate & Environment",
+            "fact": "Biomes are major global community types classified by dominant vegetation and climate, such as tundra, taiga, and savanna."
+        },
+        {
+            "id": 91,
+            "category": "Ecosystems, Climate & Environment",
+            "fact": "Acid rain is caused when sulfur dioxide and nitrogen oxides react with water droplets in the atmosphere to form strong acids."
+        },
+        {
+            "id": 92,
+            "category": "Ecosystems, Climate & Environment",
+            "fact": "The nitrogen cycle relies on specific bacteria to convert unreactive atmospheric nitrogen into nitrates and ammonia usable by plants."
+        },
+        {
+            "id": 93,
+            "category": "Ecosystems, Climate & Environment",
+            "fact": "Desertification is the process where arable or fertile land degrades into desert due to drought, deforestation, or poor agricultural practices."
+        },
+        {
+            "id": 94,
+            "category": "Ecosystems, Climate & Environment",
+            "fact": "Thermohaline circulation is a global ocean conveyor belt driven by differences in water temperature and salinity."
+        },
+        {
+            "id": 95,
+            "category": "Ecosystems, Climate & Environment",
+            "fact": "Wetlands function as natural sponges and filters, trapping pollutants, cycling nutrients, and mitigating flood risks."
+        },
+        {
+            "id": 96,
+            "category": "Ecosystems, Climate & Environment",
+            "fact": "Invasive species are non-native organisms that disrupt local ecosystems, outcompeting native flora and fauna."
+        },
+        {
+            "id": 97,
+            "category": "Ecosystems, Climate & Environment",
+            "fact": "Renewable energy sources (solar, wind, hydroelectric, geothermal) generate power without depleting fossil resources or driving rapid climate change."
+        },
+        {
+            "id": 98,
+            "category": "Ecosystems, Climate & Environment",
+            "fact": "Glaciers store approximately 69% of the world's fresh water supply and act as critical indicators of global temperature shifts."
+        },
+        {
+            "id": 99,
+            "category": "Ecosystems, Climate & Environment",
+            "fact": "The hydrologic cycle continuously moves water across the globe through evaporation, transpiration, condensation, precipitation, and runoff."
+        },
+        {
+            "id": 100,
+            "category": "Ecosystems, Climate & Environment",
+            "fact": "Ecological succession is the gradual process by which ecosystems change and develop over time, progressing from pioneer species to a stable climax community."
+        }
+    ]
+}

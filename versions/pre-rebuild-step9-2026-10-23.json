@@ -1,0 +1,18 @@
+{
+  "runbookStep": 9,
+  "date": "2026-10-23",
+  "settings": { "lessons": 500, "epochs": 15, "device": "mps", "corpus": "first 500 teachable fact-pack rows (restricted excluded)" },
+  "artifacts": [
+    "versions/stage3_brain.trial.S-2026-10-23.pt",
+    "versions/stage3_brain.trial.M-2026-10-23.pt",
+    "versions/stage3_brain.trial.L-2026-10-23.pt"
+  ],
+  "needleEvalOnTrialIds": {
+    "S": { "pass_pct": 12.0, "pass": 60, "tested": 500, "train_seconds": 271.5 },
+    "M": { "pass_pct": 8.6, "pass": 43, "tested": 500 },
+    "L": { "pass_pct": 17.4, "pass": 87, "tested": 500 }
+  },
+  "verdict": "No tier passes Section 7 on 500-lesson trial; expect full-corpus joint + more epochs. L led on this slice.",
+  "command": "npm run trainer:joint-trial -- --tier M --lessons 500 --epochs 15 --out versions/stage3_brain.trial.M-2026-10-23.pt",
+  "liveBrain": "unchanged (stage3_brain.js)"
+}

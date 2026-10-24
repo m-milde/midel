@@ -1,0 +1,835 @@
+# Copyright (c) 2026 M.Milde <m.milde@gmail.com>
+# Free use; no sale, rebrand, or profit from this software.
+# See LICENSE.
+
+{
+"dataset_name": "chemistry_elements",
+"facts": [
+{
+"id": 1,
+"category": "Chemistry",
+"fact": "Hydrogen is the lightest chemical element with atomic number 1, and it makes up most of the universe's mass.",
+"question": "What is hydrogen?",
+"answer": "Hydrogen is the lightest chemical element with atomic number 1, and it makes up most of the universe's mass."
+},
+{
+"id": 2,
+"category": "Chemistry",
+"fact": "Helium is the second element with atomic number 2, and it is a colorless, odorless noble gas.",
+"question": "What is helium?",
+"answer": "Helium is the second element with atomic number 2, and it is a colorless, odorless noble gas."
+},
+{
+"id": 3,
+"category": "Chemistry",
+"fact": "Lithium is the third element on the periodic table, and it is the lightest of all alkali metals.",
+"question": "What is lithium?",
+"answer": "Lithium is the third element on the periodic table, and it is the lightest of all alkali metals."
+},
+{
+"id": 4,
+"category": "Chemistry",
+"fact": "Beryllium is the fourth element with atomic number 4, featuring a high melting point and toxic dust.",
+"question": "What is beryllium?",
+"answer": "Beryllium is the fourth element with atomic number 4, featuring a high melting point and toxic dust."
+},
+{
+"id": 5,
+"category": "Chemistry",
+"fact": "Boron is the fifth element on the periodic table, and it is classified as a rare metalloid.",
+"question": "What is boron?",
+"answer": "Boron is the fifth element on the periodic table, and it is classified as a rare metalloid."
+},
+{
+"id": 6,
+"category": "Chemistry",
+"fact": "Carbon is the sixth chemical element, and it forms more compounds than any other element on Earth.",
+"question": "What is carbon?",
+"answer": "Carbon is the sixth chemical element, and it forms more compounds than any other element on Earth."
+},
+{
+"id": 7,
+"category": "Chemistry",
+"fact": "Nitrogen is the seventh element with atomic number 7, making up the majority of Earth's atmosphere.",
+"question": "What is nitrogen?",
+"answer": "Nitrogen is the seventh element with atomic number 7, making up the majority of Earth's atmosphere."
+},
+{
+"id": 8,
+"category": "Chemistry",
+"fact": "Oxygen is the eighth element on the periodic table, and it is essential for human respiration.",
+"question": "What is oxygen?",
+"answer": "Oxygen is the eighth element on the periodic table, and it is essential for human respiration."
+},
+{
+"id": 9,
+"category": "Chemistry",
+"fact": "Fluorine is the ninth chemical element, and it is the most reactive of all halogen elements.",
+"question": "What is fluorine?",
+"answer": "Fluorine is the ninth chemical element, and it is the most reactive of all halogen elements."
+},
+{
+"id": 10,
+"category": "Chemistry",
+"fact": "Neon is the tenth element on the periodic table, known for emitting a bright reddish-orange glow.",
+"question": "What is neon?",
+"answer": "Neon is the tenth element on the periodic table, known for emitting a bright reddish-orange glow."
+},
+{
+"id": 11,
+"category": "Chemistry",
+"fact": "Sodium is the eleventh element and a reactive alkali metal that reacts violently with water.",
+"question": "What is sodium?",
+"answer": "Sodium is the eleventh element and a reactive alkali metal that reacts violently with water."
+},
+{
+"id": 12,
+"category": "Chemistry",
+"fact": "Magnesium is the twelfth element on the periodic table, and it burns with a brilliant white flame.",
+"question": "What is magnesium?",
+"answer": "Magnesium is the twelfth element on the periodic table, and it burns with a brilliant white flame."
+},
+{
+"id": 13,
+"category": "Chemistry",
+"fact": "Aluminum is the thirteenth element and the most abundant metal found in Earth's rocky crust.",
+"question": "What is aluminum?",
+"answer": "Aluminum is the thirteenth element and the most abundant metal found in Earth's rocky crust."
+},
+{
+"id": 14,
+"category": "Chemistry",
+"fact": "Silicon is the fourteenth element on the periodic table, serving as a key semiconductor in electronics.",
+"question": "What is silicon?",
+"answer": "Silicon is the fourteenth element on the periodic table, serving as a key semiconductor in electronics."
+},
+{
+"id": 15,
+"category": "Chemistry",
+"fact": "Phosphorus is the fifteenth chemical element, and white phosphorus glows in the dark when oxidized.",
+"question": "What is phosphorus?",
+"answer": "Phosphorus is the fifteenth chemical element, and white phosphorus glows in the dark when oxidized."
+},
+{
+"id": 16,
+"category": "Chemistry",
+"fact": "Sulfur is the sixteenth element on the periodic table, appearing as a bright yellow nonmetallic solid.",
+"question": "What is sulfur?",
+"answer": "Sulfur is the sixteenth element on the periodic table, appearing as a bright yellow nonmetallic solid."
+},
+{
+"id": 17,
+"category": "Chemistry",
+"fact": "Chlorine is the seventeenth element and a yellow-green gas used widely as a powerful disinfectant.",
+"question": "What is chlorine?",
+"answer": "Chlorine is the seventeenth element and a yellow-green gas used widely as a powerful disinfectant."
+},
+{
+"id": 18,
+"category": "Chemistry",
+"fact": "Argon is the eighteenth element on the periodic table, and it is a noble gas used in bulbs.",
+"question": "What is argon?",
+"answer": "Argon is the eighteenth element on the periodic table, and it is a noble gas used in bulbs."
+},
+{
+"id": 19,
+"category": "Chemistry",
+"fact": "Potassium is the nineteenth element, functioning as an essential macronutrient for all living plant tissues.",
+"question": "What is potassium?",
+"answer": "Potassium is the nineteenth element, functioning as an essential macronutrient for all living plant tissues."
+},
+{
+"id": 20,
+"category": "Chemistry",
+"fact": "Calcium is the twentieth element on the periodic table, vital for building strong bones in animals.",
+"question": "What is calcium?",
+"answer": "Calcium is the twentieth element on the periodic table, vital for building strong bones in animals."
+},
+{
+"id": 21,
+"category": "Chemistry",
+"fact": "Scandium is the twenty-first element, and it is a rare transition metal used in aerospace alloys.",
+"question": "What is scandium?",
+"answer": "Scandium is the twenty-first element, and it is a rare transition metal used in aerospace alloys."
+},
+{
+"id": 22,
+"category": "Chemistry",
+"fact": "Titanium is the twenty-second element, valued for its high strength-to-weight ratio and corrosion resistance.",
+"question": "What is titanium?",
+"answer": "Titanium is the twenty-second element, valued for its high strength-to-weight ratio and corrosion resistance."
+},
+{
+"id": 23,
+"category": "Chemistry",
+"fact": "Vanadium is the twenty-third element on the periodic table, used primarily to strengthen steel alloys.",
+"question": "What is vanadium?",
+"answer": "Vanadium is the twenty-third element on the periodic table, used primarily to strengthen steel alloys."
+},
+{
+"id": 24,
+"category": "Chemistry",
+"fact": "Chromium is the twenty-fourth element, and it provides a shiny corrosion-resistant finish on plated metals.",
+"question": "What is chromium?",
+"answer": "Chromium is the twenty-fourth element, and it provides a shiny corrosion-resistant finish on plated metals."
+},
+{
+"id": 25,
+"category": "Chemistry",
+"fact": "Manganese is the twenty-fifth element, acting as an essential alloying agent in modern steel production.",
+"question": "What is manganese?",
+"answer": "Manganese is the twenty-fifth element, acting as an essential alloying agent in modern steel production."
+},
+{
+"id": 26,
+"category": "Chemistry",
+"fact": "Iron is the twenty-sixth element on the periodic table, forming the primary component of Earth's core.",
+"question": "What is iron?",
+"answer": "Iron is the twenty-sixth element on the periodic table, forming the primary component of Earth's core."
+},
+{
+"id": 27,
+"category": "Chemistry",
+"fact": "Cobalt is the twenty-seventh element, used to produce magnetic materials and vibrant blue ceramic pigments.",
+"question": "What is cobalt?",
+"answer": "Cobalt is the twenty-seventh element, used to produce magnetic materials and vibrant blue ceramic pigments."
+},
+{
+"id": 28,
+"category": "Chemistry",
+"fact": "Nickel is the twenty-eighth element on the periodic table, widely used in coins and stainless steel.",
+"question": "What is nickel?",
+"answer": "Nickel is the twenty-eighth element on the periodic table, widely used in coins and stainless steel."
+},
+{
+"id": 29,
+"category": "Chemistry",
+"fact": "Copper is the twenty-ninth element, known for its reddish color and exceptional electrical conductivity.",
+"question": "What is copper?",
+"answer": "Copper is the twenty-ninth element, known for its reddish color and exceptional electrical conductivity."
+},
+{
+"id": 30,
+"category": "Chemistry",
+"fact": "Zinc is the thirtieth element, frequently applied to steel surfaces to prevent rust through galvanization.",
+"question": "What is zinc?",
+"answer": "Zinc is the thirtieth element, frequently applied to steel surfaces to prevent rust through galvanization."
+},
+{
+"id": 31,
+"category": "Chemistry",
+"fact": "Gallium is the thirty-first element on the periodic table, famous for melting in the palm of a hand.",
+"question": "What is gallium?",
+"answer": "Gallium is the thirty-first element on the periodic table, famous for melting in the palm of a hand."
+},
+{
+"id": 32,
+"category": "Chemistry",
+"fact": "Germanium is the thirty-second element, functioning as an important semiconductor material in early electronics.",
+"question": "What is germanium?",
+"answer": "Germanium is the thirty-second element, functioning as an important semiconductor material in early electronics."
+},
+{
+"id": 33,
+"category": "Chemistry",
+"fact": "Arsenic is the thirty-third element on the periodic table, historically notorious for its potent toxicity.",
+"question": "What is arsenic?",
+"answer": "Arsenic is the thirty-third element on the periodic table, historically notorious for its potent toxicity."
+},
+{
+"id": 34,
+"category": "Chemistry",
+"fact": "Selenium is the thirty-fourth element, exhibiting photoconductive properties useful in photocopiers and electronic devices.",
+"question": "What is selenium?",
+"answer": "Selenium is the thirty-fourth element, exhibiting photoconductive properties useful in photocopiers and electronic devices."
+},
+{
+"id": 35,
+"category": "Chemistry",
+"fact": "Bromine is the thirty-fifth element, and it is the only nonmetallic element that remains liquid at room temperature.",
+"question": "What is bromine?",
+"answer": "Bromine is the thirty-fifth element, and it is the only nonmetallic element that remains liquid at room temperature."
+},
+{
+"id": 36,
+"category": "Chemistry",
+"fact": "Krypton is the thirty-sixth element on the periodic table, used in high-powered photographic flash lamps.",
+"question": "What is krypton?",
+"answer": "Krypton is the thirty-sixth element on the periodic table, used in high-powered photographic flash lamps."
+},
+{
+"id": 37,
+"category": "Chemistry",
+"fact": "Rubidium is the thirty-seventh element, a soft alkali metal that ignites spontaneously when exposed to air.",
+"question": "What is rubidium?",
+"answer": "Rubidium is the thirty-seventh element, a soft alkali metal that ignites spontaneously when exposed to air."
+},
+{
+"id": 38,
+"category": "Chemistry",
+"fact": "Strontium is the thirty-eighth element, producing brilliant red colors when burned in fireworks and flares.",
+"question": "What is strontium?",
+"answer": "Strontium is the thirty-eighth element, producing brilliant red colors when burned in fireworks and flares."
+},
+{
+"id": 39,
+"category": "Chemistry",
+"fact": "Yttrium is the thirty-ninth element on the periodic table, utilized in LEDs and phosphors for displays.",
+"question": "What is yttrium?",
+"answer": "Yttrium is the thirty-ninth element on the periodic table, utilized in LEDs and phosphors for displays."
+},
+{
+"id": 40,
+"category": "Chemistry",
+"fact": "Zirconium is the fortieth element, highly resistant to heat and corrosion, making it useful in reactors.",
+"question": "What is zirconium?",
+"answer": "Zirconium is the fortieth element, highly resistant to heat and corrosion, making it useful in reactors."
+},
+{
+"id": 41,
+"category": "Chemistry",
+"fact": "Niobium is the forty-first element, formerly known as columbium and used in superconducting magnets.",
+"question": "What is niobium?",
+"answer": "Niobium is the forty-first element, formerly known as columbium and used in superconducting magnets."
+},
+{
+"id": 42,
+"category": "Chemistry",
+"fact": "Molybdenum is the forty-second element, possessing a high melting point and used to strengthen steel.",
+"question": "What is molybdenum?",
+"answer": "Molybdenum is the forty-second element, possessing a high melting point and used to strengthen steel."
+},
+{
+"id": 43,
+"category": "Chemistry",
+"fact": "Technetium is the forty-third element, noted for being the lightest element with exclusively radioactive isotopes.",
+"question": "What is technetium?",
+"answer": "Technetium is the forty-third element, noted for being the lightest element with exclusively radioactive isotopes."
+},
+{
+"id": 44,
+"category": "Chemistry",
+"fact": "Ruthenium is the forty-fourth element, a rare transition metal often alloyed with platinum for electrical contacts.",
+"question": "What is ruthenium?",
+"answer": "Ruthenium is the forty-fourth element, a rare transition metal often alloyed with platinum for electrical contacts."
+},
+{
+"id": 45,
+"category": "Chemistry",
+"fact": "Rhodium is the forty-fifth element on the periodic table, prized for its extreme reflectivity and corrosion resistance.",
+"question": "What is rhodium?",
+"answer": "Rhodium is the forty-fifth element on the periodic table, prized for its extreme reflectivity and corrosion resistance."
+},
+{
+"id": 46,
+"category": "Chemistry",
+"fact": "Palladium is the forty-sixth element, widely used in catalytic converters to reduce harmful vehicle emissions.",
+"question": "What is palladium?",
+"answer": "Palladium is the forty-sixth element, widely used in catalytic converters to reduce harmful vehicle emissions."
+},
+{
+"id": 47,
+"category": "Chemistry",
+"fact": "Silver is the forty-seventh element, possessing the highest electrical conductivity of any metal on Earth.",
+"question": "What is silver?",
+"answer": "Silver is the forty-seventh element, possessing the highest electrical conductivity of any metal on Earth."
+},
+{
+"id": 48,
+"category": "Chemistry",
+"fact": "Cadmium is the forty-eighth element, a toxic bluish-white metal formerly used extensively in rechargeable batteries.",
+"question": "What is cadmium?",
+"answer": "Cadmium is the forty-eighth element, a toxic bluish-white metal formerly used extensively in rechargeable batteries."
+},
+{
+"id": 49,
+"category": "Chemistry",
+"fact": "Indium is the forty-ninth element, a soft metal used to create transparent conductive coatings for touchscreens.",
+"question": "What is indium?",
+"answer": "Indium is the forty-ninth element, a soft metal used to create transparent conductive coatings for touchscreens."
+},
+{
+"id": 50,
+"category": "Chemistry",
+"fact": "Tin is the fiftieth element on the periodic table, resisting corrosion and used to coat steel cans.",
+"question": "What is tin?",
+"answer": "Tin is the fiftieth element on the periodic table, resisting corrosion and used to coat steel cans."
+},
+{
+"id": 51,
+"category": "Chemistry",
+"fact": "Antimony is the fifty-first element, a brittle metalloid historically used in traditional medicines and cosmetics.",
+"question": "What is antimony?",
+"answer": "Antimony is the fifty-first element, a brittle metalloid historically used in traditional medicines and cosmetics."
+},
+{
+"id": 52,
+"category": "Chemistry",
+"fact": "Tellurium is the fifty-second element, a rare brittle metalloid that chemically resembles sulfur and selenium.",
+"question": "What is tellurium?",
+"answer": "Tellurium is the fifty-second element, a rare brittle metalloid that chemically resembles sulfur and selenium."
+},
+{
+"id": 53,
+"category": "Chemistry",
+"fact": "Iodine is the fifty-third element, forming a dark violet crystal that sublimes into a purple vapor.",
+"question": "What is iodine?",
+"answer": "Iodine is the fifty-third element, forming a dark violet crystal that sublimes into a purple vapor."
+},
+{
+"id": 54,
+"category": "Chemistry",
+"fact": "Xenon is the fifty-fourth element on the periodic table, a heavy noble gas used in specialized ion engines.",
+"question": "What is xenon?",
+"answer": "Xenon is the fifty-fourth element on the periodic table, a heavy noble gas used in specialized ion engines."
+},
+{
+"id": 55,
+"category": "Chemistry",
+"fact": "Cesium is the fifty-fifth element, an extremely reactive alkali metal used to define the atomic second.",
+"question": "What is cesium?",
+"answer": "Cesium is the fifty-fifth element, an extremely reactive alkali metal used to define the atomic second."
+},
+{
+"id": 56,
+"category": "Chemistry",
+"fact": "Barium is the fifty-sixth element, a reactive alkaline earth metal used heavily in oil drilling fluids.",
+"question": "What is barium?",
+"answer": "Barium is the fifty-sixth element, a reactive alkaline earth metal used heavily in oil drilling fluids."
+},
+{
+"id": 57,
+"category": "Chemistry",
+"fact": "Lanthanum is the fifty-seventh element, acting as the namesake for the lanthanide series of rare earth metals.",
+"question": "What is lanthanum?",
+"answer": "Lanthanum is the fifty-seventh element, acting as the namesake for the lanthanide series of rare earth metals."
+},
+{
+"id": 58,
+"category": "Chemistry",
+"fact": "Cerium is the fifty-eighth element, the most abundant of the rare earth metals found in Earth's crust.",
+"question": "What is cerium?",
+"answer": "Cerium is the fifty-eighth element, the most abundant of the rare earth metals found in Earth's crust."
+},
+{
+"id": 59,
+"category": "Chemistry",
+"fact": "Praseodymium is the fifty-ninth element, used in combination with other metals to create high-strength aircraft engines.",
+"question": "What is praseodymium?",
+"answer": "Praseodymium is the fifty-ninth element, used in combination with other metals to create high-strength aircraft engines."
+},
+{
+"id": 60,
+"category": "Chemistry",
+"fact": "Neodymium is the sixtieth element, utilized to manufacture extremely powerful permanent neodymium-iron-boron magnets.",
+"question": "What is neodymium?",
+"answer": "Neodymium is the sixtieth element, utilized to manufacture extremely powerful permanent neodymium-iron-boron magnets."
+},
+{
+"id": 61,
+"category": "Chemistry",
+"fact": "Promethium is the sixty-first element, completely radioactive and rarely found naturally in Earth's crust.",
+"question": "What is promethium?",
+"answer": "Promethium is the sixty-first element, completely radioactive and rarely found naturally in Earth's crust."
+},
+{
+"id": 62,
+"category": "Chemistry",
+"fact": "Samarium is the sixty-second element, utilized in permanent magnets and treatment for certain types of cancer.",
+"question": "What is samarium?",
+"answer": "Samarium is the sixty-second element, utilized in permanent magnets and treatment for certain types of cancer."
+},
+{
+"id": 63,
+"category": "Chemistry",
+"fact": "Europium is the sixty-third element, known for producing red phosphors in television and computer display screens.",
+"question": "What is europium?",
+"answer": "Europium is the sixty-third element, known for producing red phosphors in television and computer display screens."
+},
+{
+"id": 64,
+"category": "Chemistry",
+"fact": "Gadolinium is the sixty-fourth element, possessing unique magnetic properties used in medical magnetic resonance imaging.",
+"question": "What is gadolinium?",
+"answer": "Gadolinium is the sixty-fourth element, possessing unique magnetic properties used in medical magnetic resonance imaging."
+},
+{
+"id": 65,
+"category": "Chemistry",
+"fact": "Terbium is the sixty-fifth element, used in green phosphors and solid-state electronic device components.",
+"question": "What is terbium?",
+"answer": "Terbium is the sixty-fifth element, used in green phosphors and solid-state electronic device components."
+},
+{
+"id": 66,
+"category": "Chemistry",
+"fact": "Dysprosium is the sixty-sixth element, added to magnets to help them maintain high performance at temperatures.",
+"question": "What is dysprosium?",
+"answer": "Dysprosium is the sixty-sixth element, added to magnets to help them maintain high performance at temperatures."
+},
+{
+"id": 67,
+"category": "Chemistry",
+"fact": "Holmium is the sixty-seventh element, boasting the highest magnetic strength of any naturally occurring chemical element.",
+"question": "What is holmium?",
+"answer": "Holmium is the sixty-seventh element, boasting the highest magnetic strength of any naturally occurring chemical element."
+},
+{
+"id": 68,
+"category": "Chemistry",
+"fact": "Erbium is the sixty-eighth element, forming pink oxide compounds used to color glasses and fiber optics.",
+"question": "What is erbium?",
+"answer": "Erbium is the sixty-eighth element, forming pink oxide compounds used to color glasses and fiber optics."
+},
+{
+"id": 69,
+"category": "Chemistry",
+"fact": "Thulium is the sixty-ninth element, representing one of the rarest rare-earth metals used in portable X-ray devices.",
+"question": "What is thulium?",
+"answer": "Thulium is the sixty-ninth element, representing one of the rarest rare-earth metals used in portable X-ray devices."
+},
+{
+"id": 70,
+"category": "Chemistry",
+"fact": "Ytterbium is the seventieth element, utilized in certain specialized lasers and stress-sensing industrial strain gauges.",
+"question": "What is ytterbium?",
+"answer": "Ytterbium is the seventieth element, utilized in certain specialized lasers and stress-sensing industrial strain gauges."
+},
+{
+"id": 71,
+"category": "Chemistry",
+"fact": "Lutetium is the seventy-first element, serving as the final member of the lanthanide series of metals.",
+"question": "What is lutetium?",
+"answer": "Lutetium is the seventy-first element, serving as the final member of the lanthanide series of metals."
+},
+{
+"id": 72,
+"category": "Chemistry",
+"fact": "Hafnium is the seventy-second element, possessing a high neutron capture cross-section ideal for nuclear control rods.",
+"question": "What is hafnium?",
+"answer": "Hafnium is the seventy-second element, possessing a high neutron capture cross-section ideal for nuclear control rods."
+},
+{
+"id": 73,
+"category": "Chemistry",
+"fact": "Tantalum is the seventy-third element, highly resistant to chemical attack and used in miniature electronic capacitors.",
+"question": "What is tantalum?",
+"answer": "Tantalum is the seventy-third element, highly resistant to chemical attack and used in miniature electronic capacitors."
+},
+{
+"id": 74,
+"category": "Chemistry",
+"fact": "Tungsten is the seventy-fourth element, boasting the highest melting point of all pure metals in existence.",
+"question": "What is tungsten?",
+"answer": "Tungsten is the seventy-fourth element, boasting the highest melting point of all pure metals in existence."
+},
+{
+"id": 75,
+"category": "Chemistry",
+"fact": "Rhenium is the seventy-fifth element, featuring an extremely high melting point and used in high-temperature turbine blades.",
+"question": "What is rhenium?",
+"answer": "Rhenium is the seventy-fifth element, featuring an extremely high melting point and used in high-temperature turbine blades."
+},
+{
+"id": 76,
+"category": "Chemistry",
+"fact": "Osmium is the seventy-sixth element, recognized as the densest naturally occurring element on Earth.",
+"question": "What is osmium?",
+"answer": "Osmium is the seventy-sixth element, recognized as the densest naturally occurring element on Earth."
+},
+{
+"id": 77,
+"category": "Chemistry",
+"fact": "Iridium is the seventy-seventh element, known as the most corrosion-resistant metal known to modern science.",
+"question": "What is iridium?",
+"answer": "Iridium is the seventy-seventh element, known as the most corrosion-resistant metal known to modern science."
+},
+{
+"id": 78,
+"category": "Chemistry",
+"fact": "Platinum is the seventy-eighth element, a precious noble metal widely used in jewelry and industrial catalysts.",
+"question": "What is platinum?",
+"answer": "Platinum is the seventy-eighth element, a precious noble metal widely used in jewelry and industrial catalysts."
+},
+{
+"id": 79,
+"category": "Chemistry",
+"fact": "Gold is the seventy-ninth element, a precious metal prized throughout human history for its radiant yellow luster.",
+"question": "What is gold?",
+"answer": "Gold is the seventy-ninth element, a precious metal prized throughout human history for its radiant yellow luster."
+},
+{
+"id": 80,
+"category": "Chemistry",
+"fact": "Mercury is the eightieth element, uniquely existing as a silvery liquid at standard room temperature conditions.",
+"question": "What is mercury?",
+"answer": "Mercury is the eightieth element, uniquely existing as a silvery liquid at standard room temperature conditions."
+},
+{
+"id": 81,
+"category": "Chemistry",
+"fact": "Thallium is the eighty-first element, a soft heavy metal that is notoriously toxic to living organisms.",
+"question": "What is thallium?",
+"answer": "Thallium is the eighty-first element, a soft heavy metal that is notoriously toxic to living organisms."
+},
+{
+"id": 82,
+"category": "Chemistry",
+"fact": "Lead is the eighty-second element, a dense heavy metal historically utilized in plumbing and radiation shielding.",
+"question": "What is lead?",
+"answer": "Lead is the eighty-second element, a dense heavy metal historically utilized in plumbing and radiation shielding."
+},
+{
+"id": 83,
+"category": "Chemistry",
+"fact": "Bismuth is the eighty-third element, displaying a unique iridescent oxide surface layer when exposed to air.",
+"question": "What is bismuth?",
+"answer": "Bismuth is the eighty-third element, displaying a unique iridescent oxide surface layer when exposed to air."
+},
+{
+"id": 84,
+"category": "Chemistry",
+"fact": "Polonium is the eighty-fourth element, discovered by Marie Curie and known for intense radioactivity.",
+"question": "What is polonium?",
+"answer": "Polonium is the eighty-fourth element, discovered by Marie Curie and known for intense radioactivity."
+},
+{
+"id": 85,
+"category": "Chemistry",
+"fact": "Astatine is the eighty-fifth element, representing a rare and highly radioactive halogen element on the table.",
+"question": "What is astatine?",
+"answer": "Astatine is the eighty-fifth element, representing a rare and highly radioactive halogen element on the table."
+},
+{
+"id": 86,
+"category": "Chemistry",
+"fact": "Radon is the eighty-sixth element, a radioactive noble gas that can accumulate inside residential buildings.",
+"question": "What is radon?",
+"answer": "Radon is the eighty-sixth element, a radioactive noble gas that can accumulate inside residential buildings."
+},
+{
+"id": 87,
+"category": "Chemistry",
+"fact": "Francium is the eighty-seventh element, highly radioactive and unstable with the lowest electronegativity of all elements.",
+"question": "What is francium?",
+"answer": "Francium is the eighty-seventh element, highly radioactive and unstable with the lowest electronegativity of all elements."
+},
+{
+"id": 88,
+"category": "Chemistry",
+"fact": "Radium is the eighty-eighth element, a radioactive alkaline earth metal that glows faintly in the dark.",
+"question": "What is radium?",
+"answer": "Radium is the eighty-eighth element, a radioactive alkaline earth metal that glows faintly in the dark."
+},
+{
+"id": 89,
+"category": "Chemistry",
+"fact": "Actinium is the eighty-ninth element, serving as the heavy prototype for the actinide series of radioactive metals.",
+"question": "What is actinium?",
+"answer": "Actinium is the eighty-ninth element, serving as the heavy prototype for the actinide series of radioactive metals."
+},
+{
+"id": 90,
+"category": "Chemistry",
+"fact": "Thorium is the ninetieth element, a weakly radioactive actinide metal investigated as a nuclear fuel source.",
+"question": "What is thorium?",
+"answer": "Thorium is the ninetieth element, a weakly radioactive actinide metal investigated as a nuclear fuel source."
+},
+{
+"id": 91,
+"category": "Chemistry",
+"fact": "Protactinium is the ninety-first element, a rare and dense radioactive metal found naturally in uranium ores.",
+"question": "What is protactinium?",
+"answer": "Protactinium is the ninety-first element, a rare and dense radioactive metal found naturally in uranium ores."
+},
+{
+"id": 92,
+"category": "Chemistry",
+"fact": "Uranium is the ninety-second element, providing vital radioactive fuel for nuclear reactors and power generation.",
+"question": "What is uranium?",
+"answer": "Uranium is the ninety-second element, providing vital radioactive fuel for nuclear reactors and power generation."
+},
+{
+"id": 93,
+"category": "Chemistry",
+"fact": "Neptunium is the ninety-third element, first synthesized artificially as a byproduct in nuclear reactor operations.",
+"question": "What is neptunium?",
+"answer": "Neptunium is the ninety-third element, first synthesized artificially as a byproduct in nuclear reactor operations."
+},
+{
+"id": 94,
+"category": "Chemistry",
+"fact": "Plutonium is the ninety-fourth element, a transuranic radioactive metal used in space probes and nuclear weapons.",
+"question": "What is plutonium?",
+"answer": "Plutonium is the ninety-fourth element, a transuranic radioactive metal used in space probes and nuclear weapons."
+},
+{
+"id": 95,
+"category": "Chemistry",
+"fact": "Americium is the ninety-fifth element, commonly utilized in household smoke detectors as a radiation source.",
+"question": "What is americium?",
+"answer": "Americium is the ninety-fifth element, commonly utilized in household smoke detectors as a radiation source."
+},
+{
+"id": 96,
+"category": "Chemistry",
+"fact": "Curium is the ninety-sixth element, named in honor of scientists Pierre and Marie Curie.",
+"question": "What is curium?",
+"answer": "Curium is the ninety-sixth element, named in honor of scientists Pierre and Marie Curie."
+},
+{
+"id": 97,
+"category": "Chemistry",
+"fact": "Berkelium is the ninety-seventh element, an artificially produced radioactive metal named after Berkeley, California.",
+"question": "What is berkelium?",
+"answer": "Berkelium is the ninety-seventh element, an artificially produced radioactive metal named after Berkeley, California."
+},
+{
+"id": 98,
+"category": "Chemistry",
+"fact": "Californium is the ninety-eighth element, emitting intense neutron radiation used to start nuclear reactors.",
+"question": "What is californium?",
+"answer": "Californium is the ninety-eighth element, emitting intense neutron radiation used to start nuclear reactors."
+},
+{
+"id": 99,
+"category": "Chemistry",
+"fact": "Einsteinium is the ninety-ninth element, discovered in the debris of the first hydrogen bomb test.",
+"question": "What is einsteinium?",
+"answer": "Einsteinium is the ninety-ninth element, discovered in the debris of the first hydrogen bomb test."
+},
+{
+"id": 100,
+"category": "Chemistry",
+"fact": "Fermium is the one hundredth element, a synthetic radioactive metal named after physicist Enrico Fermi.",
+"question": "What is fermium?",
+"answer": "Fermium is the one hundredth element, a synthetic radioactive metal named after physicist Enrico Fermi."
+},
+{
+"id": 101,
+"category": "Chemistry",
+"fact": "Mendelevium is the one hundred first element, named in honor of periodic table creator Dmitri Mendeleev.",
+"question": "What is mendelevium?",
+"answer": "Mendelevium is the one hundred first element, named in honor of periodic table creator Dmitri Mendeleev."
+},
+{
+"id": 102,
+"category": "Chemistry",
+"fact": "Nobelium is the one hundred second element, named after dynamite inventor Alfred Nobel.",
+"question": "What is nobelium?",
+"answer": "Nobelium is the one hundred second element, named after dynamite inventor Alfred Nobel."
+},
+{
+"id": 103,
+"category": "Chemistry",
+"fact": "Lawrencium is the one hundred third element, named after cyclotron inventor Ernest Lawrence.",
+"question": "What is lawrencium?",
+"answer": "Lawrencium is the one hundred third element, named after cyclotron inventor Ernest Lawrence."
+},
+{
+"id": 104,
+"category": "Chemistry",
+"fact": "Rutherfordium is the one hundred fourth element, a synthetic radioactive transition metal.",
+"question": "What is rutherfordium?",
+"answer": "Rutherfordium is the one hundred fourth element, a synthetic radioactive transition metal."
+},
+{
+"id": 105,
+"category": "Chemistry",
+"fact": "Dubnium is the one hundred fifth element, named after the Russian research town of Dubna.",
+"question": "What is dubnium?",
+"answer": "Dubnium is the one hundred fifth element, named after the Russian research town of Dubna."
+},
+{
+"id": 106,
+"category": "Chemistry",
+"fact": "Seaborgium is the one hundred sixth element, named in honor of American chemist Glenn Seaborg.",
+"question": "What is seaborgium?",
+"answer": "Seaborgium is the one hundred sixth element, named in honor of American chemist Glenn Seaborg."
+},
+{
+"id": 107,
+"category": "Chemistry",
+"fact": "Bohrium is the one hundred seventh element, named after Danish physicist Niels Bohr.",
+"question": "What is bohrium?",
+"answer": "Bohrium is the one hundred seventh element, named after Danish physicist Niels Bohr."
+},
+{
+"id": 108,
+"category": "Chemistry",
+"fact": "Hassium is the one hundred eighth element, named after the German state of Hesse.",
+"question": "What is hassium?",
+"answer": "Hassium is the one hundred eighth element, named after the German state of Hesse."
+},
+{
+"id": 109,
+"category": "Chemistry",
+"fact": "Meitnerium is the one hundred ninth element, named in honor of physicist Lise Meitner.",
+"question": "What is meitnerium?",
+"answer": "Meitnerium is the one hundred ninth element, named in honor of physicist Lise Meitner."
+},
+{
+"id": 110,
+"category": "Chemistry",
+"fact": "Darmstadtium is the one hundred tenth element, synthesized at a research facility in Darmstadt, Germany.",
+"question": "What is darmstadtium?",
+"answer": "Darmstadtium is the one hundred tenth element, synthesized at a research facility in Darmstadt, Germany."
+},
+{
+"id": 111,
+"category": "Chemistry",
+"fact": "Roentgenium is the one hundred eleventh element, named after X-ray pioneer Wilhelm Roentgen.",
+"question": "What is roentgenium?",
+"answer": "Roentgenium is the one hundred eleventh element, named after X-ray pioneer Wilhelm Roentgen."
+},
+{
+"id": 112,
+"category": "Chemistry",
+"fact": "Copernicium is the one hundred twelfth element, named in honor of astronomer Nicolaus Copernicus.",
+"question": "What is copernicium?",
+"answer": "Copernicium is the one hundred twelfth element, named in honor of astronomer Nicolaus Copernicus."
+},
+{
+"id": 113,
+"category": "Chemistry",
+"fact": "Nihonium is the one hundred thirteenth element, named after the Japanese word for Japan.",
+"question": "What is nihonium?",
+"answer": "Nihonium is the one hundred thirteenth element, named after the Japanese word for Japan."
+},
+{
+"id": 114,
+"category": "Chemistry",
+"fact": "Flerovium is the one hundred fourteenth element, named after the Flerov Laboratory of Nuclear Reactions.",
+"question": "What is flerovium?",
+"answer": "Flerovium is the one hundred fourteenth element, named after the Flerov Laboratory of Nuclear Reactions."
+},
+{
+"id": 115,
+"category": "Chemistry",
+"fact": "Moscovium is the one hundred fifteenth element, named after the Moscow region of Russia.",
+"question": "What is moscovium?",
+"answer": "Moscovium is the one hundred fifteenth element, named after the Moscow region of Russia."
+},
+{
+"id": 116,
+"category": "Chemistry",
+"fact": "Livermorium is the one hundred sixteenth element, named after the Lawrence Livermore National Laboratory.",
+"question": "What is livermorium?",
+"answer": "Livermorium is the one hundred sixteenth element, named after the Lawrence Livermore National Laboratory."
+},
+{
+"id": 117,
+"category": "Chemistry",
+"fact": "Tennessine is the one hundred seventeenth element, named after the American state of Tennessee.",
+"question": "What is tennessine?",
+"answer": "Tennessine is the one hundred seventeenth element, named after the American state of Tennessee."
+},
+{
+"id": 118,
+"category": "Chemistry",
+"fact": "Oganesson is the one hundred eighteenth element, named in honor of Russian physicist Yuri Oganessian.",
+"question": "What is oganesson?",
+"answer": "Oganesson is the one hundred eighteenth element, named in honor of Russian physicist Yuri Oganessian."
+}
+]
+}

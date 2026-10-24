@@ -1,0 +1,617 @@
+{
+ "version": 1,
+ "created": "2026-10-23",
+ "seed": 20261023,
+ "note": "Paraphrase/refusal: eval-baseline.json. Network graded with npm run eval:model / eval:network-baseline.",
+ "counts": {
+  "complex": 61,
+  "structure": 3,
+  "related": 14
+ },
+ "complex": [
+  {
+   "id": 3833,
+   "question": "Who is Vasil Levski?",
+   "category": "Wikipedia",
+   "approxTokens": 181
+  },
+  {
+   "id": 13032,
+   "question": "What does the medieval source Skylitzes say happened to Bulgarian prisoners after Kleidion?",
+   "category": "Bulgarian History",
+   "approxTokens": 135
+  },
+  {
+   "id": 15027,
+   "question": "How to find north?",
+   "category": "Survival",
+   "approxTokens": 133
+  },
+  {
+   "id": 5176,
+   "question": "What does archaeology study?",
+   "category": "Wikipedia",
+   "approxTokens": 131
+  },
+  {
+   "id": 13031,
+   "question": "What happened at the Battle of Kleidion in 1014?",
+   "category": "Bulgarian History",
+   "approxTokens": 129
+  },
+  {
+   "id": 5245,
+   "question": "When did the Western Roman Empire fall?",
+   "category": "Wikipedia",
+   "approxTokens": 126
+  },
+  {
+   "id": 13060,
+   "question": "Who was Sofronius of Vratsa?",
+   "category": "Bulgarian History",
+   "approxTokens": 126
+  },
+  {
+   "id": 13054,
+   "question": "How long did Ottoman rule over most Bulgarian lands last?",
+   "category": "Bulgarian History",
+   "approxTokens": 124
+  },
+  {
+   "id": 13065,
+   "question": "When was the Bulgarian Exarchate established?",
+   "category": "Bulgarian History",
+   "approxTokens": 120
+  },
+  {
+   "id": 13064,
+   "question": "Why was an independent Bulgarian church important during the National Revival?",
+   "category": "Bulgarian History",
+   "approxTokens": 119
+  },
+  {
+   "id": 13067,
+   "question": "What did Vasil Levski organize?",
+   "category": "Bulgarian History",
+   "approxTokens": 117
+  },
+  {
+   "id": 9205,
+   "question": "what is forth dymention?",
+   "category": "Science",
+   "approxTokens": 115
+  },
+  {
+   "id": 13068,
+   "question": "What nickname is associated with Vasil Levski?",
+   "category": "Bulgarian History",
+   "approxTokens": 114
+  },
+  {
+   "id": 13034,
+   "question": "How long was Bulgaria under Byzantine rule after the fall of the First Empire?",
+   "category": "Bulgarian History",
+   "approxTokens": 113
+  },
+  {
+   "id": 13069,
+   "question": "What kind of Bulgaria did Vasil Levski envision?",
+   "category": "Bulgarian History",
+   "approxTokens": 113
+  },
+  {
+   "id": 13030,
+   "question": "Who continued Bulgarian resistance against Byzantium after the decline of the First Empire?",
+   "category": "Bulgarian History",
+   "approxTokens": 111
+  },
+  {
+   "id": 13053,
+   "question": "Why was the Battle of Nicopolis important for Bulgarian history?",
+   "category": "Bulgarian History",
+   "approxTokens": 111
+  },
+  {
+   "id": 13047,
+   "question": "What was the Tarnovo Literary School?",
+   "category": "Bulgarian History",
+   "approxTokens": 110
+  },
+  {
+   "id": 13051,
+   "question": "When did Tarnovo fall to the Ottoman forces?",
+   "category": "Bulgarian History",
+   "approxTokens": 110
+  },
+  {
+   "id": 13050,
+   "question": "How were the Bulgarian lands divided before the Ottoman conquest?",
+   "category": "Bulgarian History",
+   "approxTokens": 109
+  },
+  {
+   "id": 13057,
+   "question": "What was the Bulgarian National Revival?",
+   "category": "Bulgarian History",
+   "approxTokens": 109
+  },
+  {
+   "id": 13021,
+   "question": "What was the Ohrid Literary School?",
+   "category": "Bulgarian History",
+   "approxTokens": 108
+  },
+  {
+   "id": 13043,
+   "question": "What developed in Bulgaria during the height of the Second Bulgarian Empire?",
+   "category": "Bulgarian History",
+   "approxTokens": 108
+  },
+  {
+   "id": 13055,
+   "question": "Which Christian tradition remained central to Bulgarian society during Ottoman rule?",
+   "category": "Bulgarian History",
+   "approxTokens": 108
+  },
+  {
+   "id": 13061,
+   "question": "Where was the first modern Bulgarian school established?",
+   "category": "Bulgarian History",
+   "approxTokens": 108
+  },
+  {
+   "id": 13066,
+   "question": "Who was Georgi Rakovski?",
+   "category": "Bulgarian History",
+   "approxTokens": 108
+  },
+  {
+   "id": 13024,
+   "question": "Which Bulgarian ruler is associated with the Golden Age of Bulgarian culture?",
+   "category": "Bulgarian History",
+   "approxTokens": 107
+  },
+  {
+   "id": 13033,
+   "question": "What does the nickname Bulgaroktonos mean?",
+   "category": "Bulgarian History",
+   "approxTokens": 107
+  },
+  {
+   "id": 13059,
+   "question": "What did Paisius of Hilendar encourage Bulgarians to remember?",
+   "category": "Bulgarian History",
+   "approxTokens": 107
+  },
+  {
+   "id": 13025,
+   "question": "How large was Bulgaria during the reign of Simeon I?",
+   "category": "Bulgarian History",
+   "approxTokens": 106
+  },
+  {
+   "id": 13041,
+   "question": "What was the Battle of Klokotnitsa?",
+   "category": "Bulgarian History",
+   "approxTokens": 106
+  },
+  {
+   "id": 6601,
+   "question": "What is Midel?",
+   "category": "Midel",
+   "approxTokens": 105
+  },
+  {
+   "id": 13042,
+   "question": "When did Bulgaria become a major political power in southeastern Europe during the Second Empire?",
+   "category": "Bulgarian History",
+   "approxTokens": 105
+  },
+  {
+   "id": 13056,
+   "question": "What role did Bulgarian monasteries play during Ottoman rule?",
+   "category": "Bulgarian History",
+   "approxTokens": 105
+  },
+  {
+   "id": 13048,
+   "question": "Who was Patriarch Euthymius of Tarnovo?",
+   "category": "Bulgarian History",
+   "approxTokens": 104
+  },
+  {
+   "id": 13063,
+   "question": "What developed during the Bulgarian National Revival?",
+   "category": "Bulgarian History",
+   "approxTokens": 104
+  },
+  {
+   "id": 5292,
+   "question": "What are the continents of the world?",
+   "category": "Wikipedia",
+   "approxTokens": 103
+  },
+  {
+   "id": 13026,
+   "question": "Why is Simeon I important for Bulgarian culture?",
+   "category": "Bulgarian History",
+   "approxTokens": 103
+  },
+  {
+   "id": 13029,
+   "question": "When did the First Bulgarian Empire fall under Byzantine rule?",
+   "category": "Bulgarian History",
+   "approxTokens": 103
+  },
+  {
+   "id": 13028,
+   "question": "Which city became the capital of Bulgaria under Simeon I?",
+   "category": "Bulgarian History",
+   "approxTokens": 102
+  },
+  {
+   "id": 13036,
+   "question": "What was the Bulgarian state established after the 1185 uprising called?",
+   "category": "Bulgarian History",
+   "approxTokens": 102
+  },
+  {
+   "id": 13044,
+   "question": "Why is the Boyana Church important?",
+   "category": "Bulgarian History",
+   "approxTokens": 102
+  },
+  {
+   "id": 13045,
+   "question": "Why are the Boyana Church frescoes famous?",
+   "category": "Bulgarian History",
+   "approxTokens": 102
+  },
+  {
+   "id": 13049,
+   "question": "Why did the Second Bulgarian Empire become weaker?",
+   "category": "Bulgarian History",
+   "approxTokens": 102
+  },
+  {
+   "id": 13701,
+   "question": "What are the most important survival priorities?",
+   "category": "Survival",
+   "approxTokens": 102
+  },
+  {
+   "id": 5262,
+   "question": "What were NATO and the Warsaw Pact?",
+   "category": "Wikipedia",
+   "approxTokens": 101
+  },
+  {
+   "id": 5520,
+   "question": "What is the difference between rational and irrational numbers?",
+   "category": "Wikipedia",
+   "approxTokens": 101
+  },
+  {
+   "id": 7954,
+   "question": "what is sunset?",
+   "category": "Wikipedia",
+   "approxTokens": 101
+  },
+  {
+   "id": 13027,
+   "question": "What was the Battle of Anchialus in 917?",
+   "category": "Bulgarian History",
+   "approxTokens": 101
+  },
+  {
+   "id": 13037,
+   "question": "What was the capital of the Second Bulgarian Empire?",
+   "category": "Bulgarian History",
+   "approxTokens": 101
+  },
+  {
+   "id": 13052,
+   "question": "When did the Vidin Bulgarian state fall to the Ottomans?",
+   "category": "Bulgarian History",
+   "approxTokens": 101
+  },
+  {
+   "id": 13022,
+   "question": "How did Bulgaria help spread the Cyrillic alphabet?",
+   "category": "Bulgarian History",
+   "approxTokens": 100
+  },
+  {
+   "id": 13039,
+   "question": "Which Byzantine-era successor state did Kaloyan defeat at Adrianople in 1205?",
+   "category": "Bulgarian History",
+   "approxTokens": 99
+  },
+  {
+   "id": 13018,
+   "question": "Why were the disciples of Cyril and Methodius important to Bulgaria?",
+   "category": "Bulgarian History",
+   "approxTokens": 98
+  },
+  {
+   "id": 13035,
+   "question": "Who led the uprising that restored the Bulgarian state in 1185?",
+   "category": "Bulgarian History",
+   "approxTokens": 98
+  },
+  {
+   "id": 4480,
+   "question": "Why is a transformer important?",
+   "category": "Wikipedia",
+   "approxTokens": 97
+  },
+  {
+   "id": 5231,
+   "question": "What was the Declaration of the Rights of Man and of the Citizen?",
+   "category": "Wikipedia",
+   "approxTokens": 97
+  },
+  {
+   "id": 13020,
+   "question": "What was the Preslav Literary School?",
+   "category": "Bulgarian History",
+   "approxTokens": 97
+  },
+  {
+   "id": 13040,
+   "question": "Who was Ivan Asen II?",
+   "category": "Bulgarian History",
+   "approxTokens": 97
+  },
+  {
+   "id": 13058,
+   "question": "Who wrote the History of Slav-Bulgarians in 1762?",
+   "category": "Bulgarian History",
+   "approxTokens": 97
+  },
+  {
+   "id": 13062,
+   "question": "Why was the Gabrovo school important?",
+   "category": "Bulgarian History",
+   "approxTokens": 96
+  }
+ ],
+ "structure": [
+  {
+   "id": 6125,
+   "question": "How do you make an improvised saline solution?",
+   "mustContain": [
+    "0."
+   ],
+   "category": "Survival Skills & Field Methods"
+  },
+  {
+   "id": 13706,
+   "question": "How can I purify water?",
+   "mustContain": [
+    "0."
+   ],
+   "category": "Survival"
+  },
+  {
+   "id": 15028,
+   "question": "How to find south?",
+   "mustContain": [
+    "4."
+   ],
+   "category": "Survival"
+  }
+ ],
+ "related": [
+  {
+   "field": "Animals & nature",
+   "anchorId": 3539,
+   "prompt": "What is a predator?",
+   "relatedIds": [
+    3002,
+    3003,
+    3004,
+    3005,
+    3006,
+    3007,
+    3008,
+    3009
+   ]
+  },
+  {
+   "field": "Design & creative",
+   "anchorId": 11109,
+   "prompt": "What is Jakob's Law in UX design?",
+   "relatedIds": [
+    3031,
+    3032,
+    3033,
+    3034,
+    3035,
+    3036,
+    3037,
+    3038
+   ]
+  },
+  {
+   "field": "Tech & computing",
+   "anchorId": 9153,
+   "prompt": "What is Shopify?",
+   "relatedIds": [
+    3051,
+    3052,
+    3053,
+    3054,
+    3055,
+    3056,
+    3057,
+    3058
+   ]
+  },
+  {
+   "field": "Earth & space",
+   "anchorId": 3431,
+   "prompt": "What is a hurricane?",
+   "relatedIds": [
+    3076,
+    3077,
+    3078,
+    3079,
+    3080,
+    3081,
+    3082,
+    3083
+   ]
+  },
+  {
+   "field": "Food & drink",
+   "anchorId": 7102,
+   "prompt": "What is vinegar?",
+   "relatedIds": [
+    3106,
+    3107,
+    3108,
+    3109,
+    3110,
+    3111,
+    3112,
+    3113
+   ]
+  },
+  {
+   "field": "Maths & science",
+   "anchorId": 5026,
+   "prompt": "Why has the use of lead declined in modern plumbing?",
+   "relatedIds": [
+    3181,
+    3182,
+    3183,
+    3184,
+    3185,
+    3186,
+    3187,
+    3188
+   ]
+  },
+  {
+   "field": "Language & stories",
+   "anchorId": 3785,
+   "prompt": "What is an autobiography?",
+   "relatedIds": [
+    3241,
+    3242,
+    3243,
+    3244,
+    3245,
+    3246,
+    3247,
+    3248
+   ]
+  },
+  {
+   "field": "Body & health",
+   "anchorId": 8378,
+   "prompt": "What is the radius?",
+   "relatedIds": [
+    3823,
+    3867,
+    3869,
+    4054,
+    4114,
+    4409,
+    4467,
+    4468
+   ]
+  },
+  {
+   "field": "History & society",
+   "anchorId": 6542,
+   "prompt": "What is political legitimacy?",
+   "relatedIds": [
+    3824,
+    3833,
+    3842,
+    3843,
+    3845,
+    3851,
+    3852,
+    3853
+   ]
+  },
+  {
+   "field": "Business & brands",
+   "anchorId": 10584,
+   "prompt": "What triggers a margin call?",
+   "relatedIds": [
+    3834,
+    3844,
+    3885,
+    3895,
+    4041,
+    4046,
+    4058,
+    4073
+   ]
+  },
+  {
+   "field": "Sport & records",
+   "anchorId": 13271,
+   "prompt": "What is snowboarding?",
+   "relatedIds": [
+    3835,
+    3836,
+    3849,
+    3887,
+    3981,
+    3984,
+    4075,
+    4233
+   ]
+  },
+  {
+   "field": "Plants & gardens",
+   "anchorId": 7516,
+   "prompt": "What is a succulent plant?",
+   "relatedIds": [
+    3857,
+    3858,
+    3860,
+    3862,
+    4860,
+    5252,
+    5427,
+    6598
+   ]
+  },
+  {
+   "field": "Survival & outdoors",
+   "anchorId": 13746,
+   "prompt": "How long should I boil water?",
+   "relatedIds": [
+    3880,
+    3909,
+    3962,
+    4337,
+    4368,
+    4370,
+    4411,
+    4917
+   ]
+  },
+  {
+   "field": "Beauty & style",
+   "anchorId": 8567,
+   "prompt": "What is an occlusive ingredient?",
+   "relatedIds": [
+    4914,
+    5102,
+    5481,
+    5484,
+    5487,
+    5569,
+    5821,
+    5822
+   ]
+  }
+ ]
+}

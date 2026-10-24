@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (c) 2026 M.Milde m.milde@gmail.com — Free use; no sale, rebrand, or profit. See LICENSE. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="ink" x1="8" y1="4" x2="58" y2="60" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#d7e6ff"/>
+      <stop offset="0.45" stop-color="#7ea2ff"/>
+      <stop offset="1" stop-color="#6a4dff"/>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="60" height="60" rx="18" fill="#141822" stroke="url(#ink)" stroke-width="3"/>
+  <path d="M16 46 V20 L32 36 L48 20 V46" fill="none" stroke="url(#ink)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="32" cy="36" r="3.6" fill="#f4f7ff"/>
+</svg>

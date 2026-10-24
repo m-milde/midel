@@ -1,0 +1,289 @@
+# Copyright (c) 2026 M.Milde <m.milde@gmail.com>
+# Free use; no sale, rebrand, or profit from this software.
+# See LICENSE.
+
+{
+"dataset_name": "geography_capitals",
+"facts": [
+{
+"id": 1,
+"category": "Geography",
+"fact": "Kabul serves as the capital city of Afghanistan, located within a mountainous valley in the central part of the country.",
+"question": "What is the capital city of Afghanistan?",
+"answer": "Kabul serves as the capital city of Afghanistan, located within a mountainous valley in the central part of the country."
+},
+{
+"id": 2,
+"category": "Geography",
+"fact": "Tirana is the capital and largest city of Albania, situated near the center of the nation on the Ishëm River.",
+"question": "What is the capital and largest city of Albania?",
+"answer": "Tirana is the capital and largest city of Albania, situated near the center of the nation on the Ishëm River."
+},
+{
+"id": 3,
+"category": "Geography",
+"fact": "Algiers acts as the capital of Algeria, positioned directly along the Mediterranean coastline in North Africa.",
+"question": "What acts as the capital of Algeria?",
+"answer": "Algiers acts as the capital of Algeria, positioned directly along the Mediterranean coastline in North Africa."
+},
+{
+"id": 4,
+"category": "Geography",
+"fact": "Andorra la Vella is the high-altitude capital of Andorra, nestled deep within the Pyrenees mountain range.",
+"question": "What is the capital of Andorra?",
+"answer": "Andorra la Vella is the high-altitude capital of Andorra, nestled deep within the Pyrenees mountain range."
+},
+{
+"id": 5,
+"category": "Geography",
+"fact": "Luanda functions as the capital and primary port city of Angola, facing the Atlantic Ocean in Southern Africa.",
+"question": "What functions as the capital and primary port city of Angola?",
+"answer": "Luanda functions as the capital and primary port city of Angola, facing the Atlantic Ocean in Southern Africa."
+},
+{
+"id": 6,
+"category": "Geography",
+"fact": "Saint John's is the capital of Antigua and Barbuda, serving as the commercial center on the main island.",
+"question": "What is the capital of Antigua and Barbuda?",
+"answer": "Saint John's is the capital of Antigua and Barbuda, serving as the commercial center on the main island."
+},
+{
+"id": 7,
+"category": "Geography",
+"fact": "Buenos Aires is the sprawling coastal capital of Argentina, located along the Río de la Plata estuary.",
+"question": "What is the coastal capital of Argentina?",
+"answer": "Buenos Aires is the sprawling coastal capital of Argentina, located along the Río de la Plata estuary."
+},
+{
+"id": 8,
+"category": "Geography",
+"fact": "Yerevan is the historic capital of Armenia, positioned within the Ararat Valley near the Turkish border.",
+"question": "What is the historic capital of Armenia?",
+"answer": "Yerevan is the historic capital of Armenia, positioned within the Ararat Valley near the Turkish border."
+},
+{
+"id": 9,
+"category": "Geography",
+"fact": "Vienna operates as the capital of Austria, situated on the banks of the Danube River in Central Europe.",
+"question": "What city operates as the capital of Austria?",
+"answer": "Vienna operates as the capital of Austria, situated on the banks of the Danube River in Central Europe."
+},
+{
+"id": 10,
+"category": "Geography",
+"fact": "Baku is the capital of Azerbaijan, built as a major port city along the western shore of the Caspian Sea.",
+"question": "What is the capital of Azerbaijan?",
+"answer": "Baku is the capital of Azerbaijan, built as a major port city along the western shore of the Caspian Sea."
+},
+{
+"id": 11,
+"category": "Geography",
+"fact": "Nassau is the capital of The Bahamas, located on New Providence island in the western Atlantic Ocean.",
+"question": "What is the capital of The Bahamas?",
+"answer": "Nassau is the capital of The Bahamas, located on New Providence island in the western Atlantic Ocean."
+},
+{
+"id": 12,
+"category": "Geography",
+"fact": "Manama is the capital city of Bahrain, positioned on an island within the Persian Gulf.",
+"question": "What is the capital city of Bahrain?",
+"answer": "Manama is the capital city of Bahrain, positioned on an island within the Persian Gulf."
+},
+{
+"id": 13,
+"category": "Geography",
+"fact": "Dhaka is the densely populated capital of Bangladesh, sitting right beside the Buriganga River in South Asia.",
+"question": "What is the densely populated capital of Bangladesh?",
+"answer": "Dhaka is the densely populated capital of Bangladesh, sitting right beside the Buriganga River in South Asia."
+},
+{
+"id": 14,
+"category": "Geography",
+"fact": "Bridgetown is the vibrant capital of Barbados, featuring a deep-water harbor on the island's southwestern coast.",
+"question": "What is the capital of Barbados?",
+"answer": "Bridgetown is the vibrant capital of Barbados, featuring a deep-water harbor on the island's southwestern coast."
+},
+{
+"id": 15,
+"category": "Geography",
+"fact": "Minsk serves as the capital of Belarus, located along the Svislach and Nyamiha rivers in Eastern Europe.",
+"question": "What city serves as the capital of Belarus?",
+"answer": "Minsk serves as the capital of Belarus, located along the Svislach and Nyamiha rivers in Eastern Europe."
+},
+{
+"id": 16,
+"category": "Geography",
+"fact": "Brussels functions as the capital of Belgium, playing a major role as an administrative hub for Europe.",
+"question": "What city functions as the capital of Belgium?",
+"answer": "Brussels functions as the capital of Belgium, playing a major role as an administrative hub for Europe."
+},
+{
+"id": 17,
+"category": "Geography",
+"fact": "Belmopan is the inland capital of Belize, relocated from the coast following severe hurricane damage.",
+"question": "What is the inland capital of Belize?",
+"answer": "Belmopan is the inland capital of Belize, relocated from the coast following severe hurricane damage."
+},
+{
+"id": 18,
+"category": "Geography",
+"fact": "Porto-Novo is the designated constitutional capital of Benin, though Cotonou serves as the seat of government.",
+"question": "What is the constitutional capital of Benin?",
+"answer": "Porto-Novo is the designated constitutional capital of Benin, though Cotonou serves as the seat of government."
+},
+{
+"id": 19,
+"category": "Geography",
+"fact": "Thimphu is the capital of Bhutan, nestled high within a Himalayan valley in the western region of the country.",
+"question": "What is the capital of Bhutan?",
+"answer": "Thimphu is the capital of Bhutan, nestled high within a Himalayan valley in the western region of the country."
+},
+{
+"id": 20,
+"category": "Geography",
+"fact": "Sucre is the constitutional capital of Bolivia, while La Paz operates as the nation's administrative seat of government.",
+"question": "What is the constitutional capital of Bolivia?",
+"answer": "Sucre is the constitutional capital of Bolivia, while La Paz operates as the nation's administrative seat of government."
+},
+{
+"id": 21,
+"category": "Geography",
+"fact": "Sarajevo is the capital of Bosnia and Herzegovina, surrounded by the Dinaric Alps along the Miljacka River.",
+"question": "What is the capital of Bosnia and Herzegovina?",
+"answer": "Sarajevo is the capital of Bosnia and Herzegovina, surrounded by the Dinaric Alps along the Miljacka River."
+},
+{
+"id": 22,
+"category": "Geography",
+"fact": "Gaborone acts as the capital of Botswana, situated in the southeastern corner of the country near the South African border.",
+"question": "What acts as the capital of Botswana?",
+"answer": "Gaborone acts as the capital of Botswana, situated in the southeastern corner of the country near the South African border."
+},
+{
+"id": 23,
+"category": "Geography",
+"fact": "Brasília is the planned federal capital of Brazil, famous for its unique airplane-shaped urban layout and modern architecture.",
+"question": "What is the planned federal capital of Brazil?",
+"answer": "Brasília is the planned federal capital of Brazil, famous for its unique airplane-shaped urban layout and modern architecture."
+},
+{
+"id": 24,
+"category": "Geography",
+"fact": "Bandar Seri Begawan is the capital city of Brunei, located along the banks of the Brunei River on Borneo.",
+"question": "What is the capital city of Brunei?",
+"answer": "Bandar Seri Begawan is the capital city of Brunei, located along the banks of the Brunei River on Borneo."
+},
+{
+"id": 25,
+"category": "Geography",
+"fact": "Sofia is the capital of Bulgaria, positioned at the foot of Vitosha mountain in the western part of the country.",
+"question": "What is the capital of Bulgaria?",
+"answer": "Sofia is the capital of Bulgaria, positioned at the foot of Vitosha mountain in the western part of the country."
+},
+{
+"id": 26,
+"category": "Geography",
+"fact": "Ouagadougou is the vibrant capital city of Burkina Faso, serving as the cultural and administrative heart of the nation.",
+"question": "What is the capital city of Burkina Faso?",
+"answer": "Ouagadougou is the vibrant capital city of Burkina Faso, serving as the cultural and administrative heart of the nation."
+},
+{
+"id": 27,
+"category": "Geography",
+"fact": "Gitega is the political capital of Burundi, having replaced the larger city of Bujumbura as the seat of government.",
+"question": "What is the political capital of Burundi?",
+"answer": "Gitega is the political capital of Burundi, having replaced the larger city of Bujumbura as the seat of government."
+},
+{
+"id": 28,
+"category": "Geography",
+"fact": "Praia is the capital of Cabo Verde, located on Santiago island in the Atlantic Ocean.",
+"question": "What is the capital of Cabo Verde?",
+"answer": "Praia is the capital of Cabo Verde, located on Santiago island in the Atlantic Ocean."
+},
+{
+"id": 29,
+"category": "Geography",
+"fact": "Phnom Penh is the capital of Cambodia, situated at the confluence of the Tonle Sap and Mekong rivers.",
+"question": "What is the capital of Cambodia?",
+"answer": "Phnom Penh is the capital of Cambodia, situated at the confluence of the Tonle Sap and Mekong rivers."
+},
+{
+"id": 30,
+"category": "Geography",
+"fact": "Yaoundé serves as the capital of Cameroon, lying on rolling hills in the interior region of the country.",
+"question": "What city serves as the capital of Cameroon?",
+"answer": "Yaoundé serves as the capital of Cameroon, lying on rolling hills in the interior region of the country."
+},
+{
+"id": 31,
+"category": "Geography",
+"fact": "Ottawa is the federal capital of Canada, positioned along the Ottawa River in the province of Ontario.",
+"question": "What is the federal capital of Canada?",
+"answer": "Ottawa is the federal capital of Canada, positioned along the Ottawa River in the province of Ontario."
+},
+{
+"id": 32,
+"category": "Geography",
+"fact": "Bangui is the capital of the Central African Republic, stretching along the northern banks of the Oubangui River.",
+"question": "What is the capital of the Central African Republic?",
+"answer": "Bangui is the capital of the Central African Republic, stretching along the northern banks of the Oubangui River."
+},
+{
+"id": 33,
+"category": "Geography",
+"fact": "N'Djamena is the capital and largest city of Chad, situated on the Chari River opposite Cameroon.",
+"question": "What is the capital of Chad?",
+"answer": "N'Djamena is the capital and largest city of Chad, situated on the Chari River opposite Cameroon."
+},
+{
+"id": 34,
+"category": "Geography",
+"fact": "Santiago is the capital and largest city of Chile, nestled in a valley surrounded by the Andes mountain range.",
+"question": "What is the capital and largest city of Chile?",
+"answer": "Santiago is the capital and largest city of Chile, nestled in a valley surrounded by the Andes mountain range."
+},
+{
+"id": 35,
+"category": "Geography",
+"fact": "Beijing is the historic capital of China, renowned for massive landmarks like the Forbidden City and Tiananmen Square.",
+"question": "What is the capital of China?",
+"answer": "Beijing is the historic capital of China, renowned for massive landmarks like the Forbidden City and Tiananmen Square."
+},
+{
+"id": 36,
+"category": "Geography",
+"fact": "Bogotá is the high-altitude capital of Colombia, perched high within the Andes mountains on a sprawling savanna.",
+"question": "What is the capital of Colombia?",
+"answer": "Bogotá is the high-altitude capital of Colombia, perched high within the Andes mountains on a sprawling savanna."
+},
+{
+"id": 37,
+"category": "Geography",
+"fact": "Moroni is the capital and largest city of Comoros, situated on the volcanic western coast of Grande Comore island.",
+"question": "What is the capital of Comoros?",
+"answer": "Moroni is the capital and largest city of Comoros, situated on the volcanic western coast of Grande Comore island."
+},
+{
+"id": 38,
+"category": "Geography",
+"fact": "Kinshasa is the massive capital of the Democratic Republic of the Congo, facing Brazzaville across the Congo River.",
+"question": "What is the capital of the Democratic Republic of the Congo?",
+"answer": "Kinshasa is the massive capital of the Democratic Republic of the Congo, facing Brazzaville across the Congo River."
+},
+{
+"id": 39,
+"category": "Geography",
+"fact": "Brazzaville serves as the capital of the Republic of the Congo, positioned directly across from Kinshasa on the riverbanks.",
+"question": "What city serves as the capital of the Republic of the Congo?",
+"answer": "Brazzaville serves as the capital of the Republic of the Congo, positioned directly across from Kinshasa on the riverbanks."
+},
+{
+"id": 40,
+"category": "Geography",
+"fact": "San José is the vibrant capital of Costa Rica, located centrally in a fertile mountain valley surrounded by volcanoes.",
+"question": "What is the capital of Costa Rica?",
+"answer": "San José is the vibrant capital of Costa Rica, located centrally in a fertile mountain valley surrounded by volcanoes."
+}
+]
+}

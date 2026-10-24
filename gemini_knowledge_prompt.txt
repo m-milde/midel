@@ -1,0 +1,321 @@
+# Copyright (c) 2026 M.Milde <m.milde@gmail.com>
+# Free use; no sale, rebrand, or profit from this software.
+# See LICENSE.
+
+You are writing a knowledge pack for a small neural network that learns one lesson at a time. It can hold about 120 words of context. A long essay will be cut off and will not be learned.
+
+Write facts for this field only:
+FIELD: Biology
+
+Produce 40 facts. Reply with JSON only, no markdown fence and no commentary. Use this shape:
+
+{
+  "dataset_name": "biology",
+  "facts": [
+    {
+      "id": 1,
+      "category": "Biology",
+      "fact": "One or two plain sentences.",
+      "question": "A question a person would ask?",
+      "answer": "The same fact, written as the direct answer."
+    }
+  ]
+}
+
+Rules for every item:
+- The fact is 12 to 35 words. One main claim. A second claim is allowed only when joined with "but" or "though".
+- The question can be answered from that fact alone. Use what, why, where, when, who, or is/are.
+- The answer states the fact in a full sentence. Do not answer with only "yes" or "no".
+- Plain words. Write numbers as digits (20%, 979, 299792). Write temperatures as "degrees Celsius". Write "minus 273.15" instead of a leading hyphen.
+- No LaTeX, no citations, no URLs, no bullet lists, no quotes from books or articles.
+- Skip a fact if you are not sure of the number or the name. Do not invent a precise figure.
+- Do not repeat these lessons, which are already known: Sahara and Antarctica deserts, Mount Everest and Mauna Kea, Amazon river flow, Lake Baikal, Pacific Ocean, Ring of Fire, Angel Falls, Dead Sea, Nile, Atacama, Greenland ice, light-year, speed of light, Venus and Mercury temperatures, absolute zero, black holes, neutron stars, mitochondria, blue whale, phytoplankton, permafrost, gold, octopus.
+
+After the JSON, stop.
+
+
+{
+"dataset_name": "biology",
+"facts": [
+{
+"id": 1,
+"category": "Biology",
+"fact": "DNA is a double helix molecule that stores genetic instructions for the development and function of living organisms.",
+"question": "What is DNA?",
+"answer": "DNA is a double helix molecule that stores genetic instructions for the development and function of living organisms."
+},
+{
+"id": 2,
+"category": "Biology",
+"fact": "Photosynthesis is the process by which green plants convert sunlight into chemical energy using chlorophyll.",
+"question": "What is photosynthesis?",
+"answer": "Photosynthesis is the process by which green plants convert sunlight into chemical energy using chlorophyll."
+},
+{
+"id": 3,
+"category": "Biology",
+"fact": "Honeybees communicate the location of food sources to their hive mates by performing a specialized waggle dance.",
+"question": "How do honeybees communicate the location of food sources?",
+"answer": "Honeybees communicate the location of food sources to their hive mates by performing a specialized waggle dance."
+},
+{
+"id": 4,
+"category": "Biology",
+"fact": "Tardigrades are microscopic animals capable of surviving extreme environments like the vacuum of space and severe radiation.",
+"question": "What are tardigrades?",
+"answer": "Tardigrades are microscopic animals capable of surviving extreme environments like the vacuum of space and severe radiation."
+},
+{
+"id": 5,
+"category": "Biology",
+"fact": "Mammals are vertebrate animals distinguished by the presence of hair or fur and specialized milk-producing mammary glands.",
+"question": "What distinguishes mammals from other vertebrate animals?",
+"answer": "Mammals are vertebrate animals distinguished by the presence of hair or fur and specialized milk-producing mammary glands."
+},
+{
+"id": 6,
+"category": "Biology",
+"fact": "Meiosis is a type of cell division that reduces the chromosome number by half to produce gametes.",
+"question": "What is meiosis?",
+"answer": "Meiosis is a type of cell division that reduces the chromosome number by half to produce gametes."
+},
+{
+"id": 7,
+"category": "Biology",
+"fact": "Charles Darwin and Alfred Russel Wallace independently formulated the theory of evolution by natural selection.",
+"question": "Who formulated the theory of evolution by natural selection?",
+"answer": "Charles Darwin and Alfred Russel Wallace independently formulated the theory of evolution by natural selection."
+},
+{
+"id": 8,
+"category": "Biology",
+"fact": "Monotremes are unique mammals that lay eggs instead of giving birth to live young like other mammals.",
+"question": "What are monotremes?",
+"answer": "Monotremes are unique mammals that lay eggs instead of giving birth to live young like other mammals."
+},
+{
+"id": 9,
+"category": "Biology",
+"fact": "Chlorophyll is the primary green pigment found in plant chloroplasts that absorbs light wavelengths for energy production.",
+"question": "What is chlorophyll?",
+"answer": "Chlorophyll is the primary green pigment found in plant chloroplasts that absorbs light wavelengths for energy production."
+},
+{
+"id": 10,
+"category": "Biology",
+"fact": "Enzymes are specialized biological proteins that catalyze biochemical reactions by lowering the activation energy required.",
+"question": "What are enzymes?",
+"answer": "Enzymes are specialized biological proteins that catalyze biochemical reactions by lowering the activation energy required."
+},
+{
+"id": 11,
+"category": "Biology",
+"fact": "Cheetahs are the fastest land mammals on Earth, capable of short acceleration bursts reaching speeds of 120 kilometers per hour.",
+"question": "How fast can cheetahs run?",
+"answer": "Cheetahs are the fastest land mammals on Earth, capable of short acceleration bursts reaching speeds of 120 kilometers per hour."
+},
+{
+"id": 12,
+"category": "Biology",
+"fact": "Viruses sit on the border of living entities because they require a host cell machinery to replicate themselves.",
+"question": "Why do viruses sit on the border of living entities?",
+"answer": "Viruses sit on the border of living entities because they require a host cell machinery to replicate themselves."
+},
+{
+"id": 13,
+"category": "Biology",
+"fact": "Coral reefs are built by colonies of tiny marine invertebrates called polyps that secrete hard calcium carbonate skeletons.",
+"question": "What builds coral reefs?",
+"answer": "Coral reefs are built by colonies of tiny marine invertebrates called polyps that secrete hard calcium carbonate skeletons."
+},
+{
+"id": 14,
+"category": "Biology",
+"fact": "Fungi are a kingdom of living organisms that are phylogenetically closer to animals than they are to plants.",
+"question": "Are fungi closer to plants or animals?",
+"answer": "Fungi are a kingdom of living organisms that are phylogenetically closer to animals than they are to plants."
+},
+{
+"id": 15,
+"category": "Biology",
+"fact": "Mycorrhizal networks allow trees and plants to communicate and share nutrients underground through extended fungal thread systems.",
+"question": "What do mycorrhizal networks allow trees and plants to do?",
+"answer": "Mycorrhizal networks allow trees and plants to communicate and share nutrients underground through extended fungal thread systems."
+},
+{
+"id": 16,
+"category": "Biology",
+"fact": "Sharks have existed in Earth oceans for over 400 million years, predating both land trees and dinosaurs.",
+"question": "How long have sharks existed in Earth oceans?",
+"answer": "Sharks have existed in Earth oceans for over 400 million years, predating both land trees and dinosaurs."
+},
+{
+"id": 17,
+"category": "Biology",
+"fact": "The human brain contains roughly 86 billion neurons that form trillions of synaptic connections for cognitive functions.",
+"question": "How many neurons does the human brain contain?",
+"answer": "The human brain contains roughly 86 billion neurons that form trillions of synaptic connections for cognitive functions."
+},
+{
+"id": 18,
+"category": "Biology",
+"fact": "Rainforests cover a small percentage of Earth land surface yet harbor more than half of all terrestrial species.",
+"question": "What proportion of terrestrial species do rainforests harbor?",
+"answer": "Rainforests cover a small percentage of Earth land surface yet harbor more than half of all terrestrial species."
+},
+{
+"id": 19,
+"category": "Biology",
+"fact": "Mangroves protect coastal regions from storm surges while functioning as dense carbon sinks to store greenhouse gases.",
+"question": "What do mangroves protect coastal regions from?",
+"answer": "Mangroves protect coastal regions from storm surges while functioning as dense carbon sinks to store greenhouse gases."
+},
+{
+"id": 20,
+"category": "Biology",
+"fact": "Biodiversity refers to the incredible variety of life across genetic, species, and ecosystem scales, ensuring ecological resilience.",
+"question": "What does biodiversity refer to?",
+"answer": "Biodiversity refers to the incredible variety of life across genetic, species, and ecosystem scales, ensuring ecological resilience."
+},
+{
+"id": 21,
+"category": "Biology",
+"fact": "Biomes are major global community types classified by dominant vegetation and climate patterns such as tundra and savanna.",
+"question": "How are biomes classified?",
+"answer": "Biomes are major global community types classified by dominant vegetation and climate patterns such as tundra and savanna."
+},
+{
+"id": 22,
+"category": "Biology",
+"fact": "Invasive species are non-native organisms that disrupt local ecosystems by outcompeting native flora and fauna for resources.",
+"question": "What are invasive species?",
+"answer": "Invasive species are non-native organisms that disrupt local ecosystems by outcompeting native flora and fauna for resources."
+},
+{
+"id": 23,
+"category": "Biology",
+"fact": "Ecological succession is the gradual process by which ecosystems change and develop over time toward a stable climax community.",
+"question": "What is ecological succession?",
+"answer": "Ecological succession is the gradual process by which ecosystems change and develop over time toward a stable climax community."
+},
+{
+"id": 24,
+"category": "Biology",
+"fact": "Osmosis is the net movement of water molecules across a semi-permeable membrane from low solute to high solute concentrations.",
+"question": "What is osmosis?",
+"answer": "Osmosis is the net movement of water molecules across a semi-permeable membrane from low solute to high solute concentrations."
+},
+{
+"id": 25,
+"category": "Biology",
+"fact": "Ribosomes are cellular structures responsible for synthesizing proteins by translating messenger RNA sequences into amino acid chains.",
+"question": "What are ribosomes responsible for?",
+"answer": "Ribosomes are cellular structures responsible for synthesizing proteins by translating messenger RNA sequences into amino acid chains."
+},
+{
+"id": 26,
+"category": "Biology",
+"fact": "Cellular respiration is a metabolic process where cells convert biochemical energy from nutrients into adenosine triphosphate molecules.",
+"question": "What is cellular respiration?",
+"answer": "Cellular respiration is a metabolic process where cells convert biochemical energy from nutrients into adenosine triphosphate molecules."
+},
+{
+"id": 27,
+"category": "Biology",
+"fact": "The cell membrane is a biological barrier that protects cell interiors and regulates the entry and exit of substances.",
+"question": "What is the cell membrane?",
+"answer": "The cell membrane is a biological barrier that protects cell interiors and regulates the entry and exit of substances."
+},
+{
+"id": 28,
+"category": "Biology",
+"fact": "Plant cell walls are rigid outer layers composed mainly of cellulose that provide structural support and mechanical strength.",
+"question": "What are plant cell walls composed of?",
+"answer": "Plant cell walls are rigid outer layers composed mainly of cellulose that provide structural support and mechanical strength."
+},
+{
+"id": 29,
+"category": "Biology",
+"fact": "Genetic mutations are permanent alterations in the nucleotide sequence of an organism genome that drive evolutionary change.",
+"question": "What are genetic mutations?",
+"answer": "Genetic mutations are permanent alterations in the nucleotide sequence of an organism genome that drive evolutionary change."
+},
+{
+"id": 30,
+"category": "Biology",
+"fact": "Natural selection is the differential survival and reproduction of individuals due to differences in inherited phenotypic traits.",
+"question": "What is natural selection?",
+"answer": "Natural selection is the differential survival and reproduction of individuals due to differences in inherited phenotypic traits."
+},
+{
+"id": 31,
+"category": "Biology",
+"fact": "The central dogma of molecular biology describes the two-step flow of genetic information from DNA to RNA to protein.",
+"question": "What does the central dogma of molecular biology describe?",
+"answer": "The central dogma of molecular biology describes the two-step flow of genetic information from DNA to RNA to protein."
+},
+{
+"id": 32,
+"category": "Biology",
+"fact": "Endemic species are native organisms restricted to a specific geographic location and found nowhere else on the planet.",
+"question": "What are endemic species?",
+"answer": "Endemic species are native organisms restricted to a specific geographic location and found nowhere else on the planet."
+},
+{
+"id": 33,
+"category": "Biology",
+"fact": "Herbivores are animals anatomically and physiologically adapted to eating plant material as their primary dietary energy source.",
+"question": "What are herbivores?",
+"answer": "Herbivores are animals anatomically and physiologically adapted to eating plant material as their primary dietary energy source."
+},
+{
+"id": 34,
+"category": "Biology",
+"fact": "Carnivores are animals that get their energy and nutrients from a diet consisting mainly of animal tissue or meat.",
+"question": "What are carnivores?",
+"answer": "Carnivores are animals that get their energy and nutrients from a diet consisting mainly of animal tissue or meat."
+},
+{
+"id": 35,
+"category": "Biology",
+"fact": "Omnivores are species that derive energy and nutrients from a plant and animal diet as part of their ecological niche.",
+"question": "What are omnivores?",
+"answer": "Omnivores are species that derive energy and nutrients from a plant and animal diet as part of their ecological niche."
+},
+{
+"id": 36,
+"category": "Biology",
+"fact": "Symbiosis describes close and long-term biological interactions between two different biological species living in close physical proximity.",
+"question": "What does symbiosis describe?",
+"answer": "Symbiosis describes close and long-term biological interactions between two different biological species living in close physical proximity."
+},
+{
+"id": 37,
+"category": "Biology",
+"fact": "Mutualism is a type of ecological interaction where both participating species derive mutually beneficial outcomes from the relationship.",
+"question": "What is mutualism?",
+"answer": "Mutualism is a type of ecological interaction where both participating species derive mutually beneficial outcomes from the relationship."
+},
+{
+"id": 38,
+"category": "Biology",
+"fact": "Parasitism is a non-mutual relationship between species where one organism benefits at the expense of the other host.",
+"question": "What is parasitism?",
+"answer": "Parasitism is a non-mutual relationship between species where one organism benefits at the expense of the other host."
+},
+{
+"id": 39,
+"category": "Biology",
+"fact": "Commensalism is a class of relationships where one organism benefits while the other organism is neither helped nor harmed.",
+"question": "What is commensalism?",
+"answer": "Commensalism is a class of relationships where one organism benefits while the other organism is neither helped nor harmed."
+},
+{
+"id": 40,
+"category": "Biology",
+"fact": "Homeostasis is the ability of an organism to maintain internal physiological stability despite external environmental changes or fluctuations.",
+"question": "What is homeostasis?",
+"answer": "Homeostasis is the ability of an organism to maintain internal physiological stability despite external environmental changes or fluctuations."
+}
+]
+}

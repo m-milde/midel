@@ -1,0 +1,289 @@
+# Copyright (c) 2026 M.Milde <m.milde@gmail.com>
+# Free use; no sale, rebrand, or profit from this software.
+# See LICENSE.
+
+{
+"dataset_name": "geography_complete",
+"facts": [
+{
+"id": 1,
+"category": "Geography",
+"fact": "Asia is the largest continent on Earth by land area, though Africa is the second largest.",
+"question": "What is Asia?",
+"answer": "Asia is the largest continent on Earth by land area, though Africa is the second largest."
+},
+{
+"id": 2,
+"category": "Geography",
+"fact": "Africa is the second-largest continent on Earth, though it features the highest number of sovereign countries.",
+"question": "What is Africa?",
+"answer": "Africa is the second-largest continent on Earth, though it features the highest number of sovereign countries."
+},
+{
+"id": 3,
+"category": "Geography",
+"fact": "North America is the third-largest continent by area, and it is located entirely within the Northern Hemisphere.",
+"question": "What is North America?",
+"answer": "North America is the third-largest continent by area, and it is located entirely within the Northern Hemisphere."
+},
+{
+"id": 4,
+"category": "Geography",
+"fact": "South America is the fourth-largest continent, and it contains the world's largest tropical rainforest basin.",
+"question": "What is South America?",
+"answer": "South America is the fourth-largest continent, and it contains the world's largest tropical rainforest basin."
+},
+{
+"id": 5,
+"category": "Geography",
+"fact": "Antarctica is the southernmost continent on Earth, though it has no permanent human population.",
+"question": "What is Antarctica?",
+"answer": "Antarctica is the southernmost continent on Earth, though it has no permanent human population."
+},
+{
+"id": 6,
+"category": "Geography",
+"fact": "Europe is the sixth-largest continent by land area, though it is densely populated with many nations.",
+"question": "What is Europe?",
+"answer": "Europe is the sixth-largest continent by land area, though it is densely populated with many nations."
+},
+{
+"id": 7,
+"category": "Geography",
+"fact": "Australia is the smallest continent and a sovereign country, often referred to globally as Oceania.",
+"question": "What is Australia?",
+"answer": "Australia is the smallest continent and a sovereign country, often referred to globally as Oceania."
+},
+{
+"id": 8,
+"category": "Geography",
+"fact": "Afghanistan is a landlocked country in South and Central Asia, though it has a rugged mountainous terrain.",
+"question": "What is Afghanistan?",
+"answer": "Afghanistan is a landlocked country in South and Central Asia, though it has a rugged mountainous terrain."
+},
+{
+"id": 9,
+"category": "Geography",
+"fact": "Albania is a country in Southeastern Europe, and it features a coastline along the Adriatic Sea.",
+"question": "What is Albania?",
+"answer": "Albania is a country in Southeastern Europe, and it features a coastline along the Adriatic Sea."
+},
+{
+"id": 10,
+"category": "Geography",
+"fact": "Algeria is a North African country with a Mediterranean coastline, though most of its land is desert.",
+"question": "What is Algeria?",
+"answer": "Algeria is a North African country with a Mediterranean coastline, though most of its land is desert."
+},
+{
+"id": 11,
+"category": "Geography",
+"fact": "Andorra is a tiny sovereign microstate situated in the Pyrenees mountains between France and Spain.",
+"question": "What is Andorra?",
+"answer": "Andorra is a tiny sovereign microstate situated in the Pyrenees mountains between France and Spain."
+},
+{
+"id": 12,
+"category": "Geography",
+"fact": "Angola is a country on the western coast of Southern Africa, and it is rich in petroleum resources.",
+"question": "What is Angola?",
+"answer": "Angola is a country on the western coast of Southern Africa, and it is rich in petroleum resources."
+},
+{
+"id": 13,
+"category": "Geography",
+"fact": "Antigua and Barbuda is an island nation situated in the eastern Caribbean Sea, and it relies heavily on tourism.",
+"question": "What is Antigua and Barbuda?",
+"answer": "Antigua and Barbuda is an island nation situated in the eastern Caribbean Sea, and it relies heavily on tourism."
+},
+{
+"id": 14,
+"category": "Geography",
+"fact": "Argentina is a large South American country, and its capital city is Buenos Aires.",
+"question": "What is Argentina?",
+"answer": "Argentina is a large South American country, and its capital city is Buenos Aires."
+},
+{
+"id": 15,
+"category": "Geography",
+"fact": "Armenia is a landlocked mountainous country in the Caucasus region, though it has historical ties to Europe.",
+"question": "What is Armenia?",
+"answer": "Armenia is a landlocked mountainous country in the Caucasus region, though it has historical ties to Europe."
+},
+{
+"id": 16,
+"category": "Geography",
+"fact": "Austria is a landlocked Central European country, and it is famous for its alpine mountain landscapes.",
+"question": "What is Austria?",
+"answer": "Austria is a landlocked Central European country, and it is famous for its alpine mountain landscapes."
+},
+{
+"id": 17,
+"category": "Geography",
+"fact": "Azerbaijan is a transcontinental country bounded by the Caspian Sea, though it is primarily located in Western Asia.",
+"question": "What is Azerbaijan?",
+"answer": "Azerbaijan is a transcontinental country bounded by the Caspian Sea, though it is primarily located in Western Asia."
+},
+{
+"id": 18,
+"category": "Geography",
+"fact": "The Bahamas is an archipelago nation in the Atlantic Ocean, and it consists of hundreds of islands.",
+"question": "What is The Bahamas?",
+"answer": "The Bahamas is an archipelago nation in the Atlantic Ocean, and it consists of hundreds of islands."
+},
+{
+"id": 19,
+"category": "Geography",
+"fact": "Bahrain is a small island nation in the Persian Gulf, and it is connected to Saudi Arabia by a causeway.",
+"question": "What is Bahrain?",
+"answer": "Bahrain is a small island nation in the Persian Gulf, and it is connected to Saudi Arabia by a causeway."
+},
+{
+"id": 20,
+"category": "Geography",
+"fact": "Bangladesh is a densely populated South Asian country, and it is traversed by multiple major river deltas.",
+"question": "What is Bangladesh?",
+"answer": "Bangladesh is a densely populated South Asian country, and it is traversed by multiple major river deltas."
+},
+{
+"id": 21,
+"category": "Geography",
+"fact": "Barbados is an island country in the Lesser Antilles, and it is known for its beautiful coral sand beaches.",
+"question": "What is Barbados?",
+"answer": "Barbados is an island country in the Lesser Antilles, and it is known for its beautiful coral sand beaches."
+},
+{
+"id": 22,
+"category": "Geography",
+"fact": "Belarus is a landlocked country in Eastern Europe, and it shares its western border with Poland.",
+"question": "What is Belarus?",
+"answer": "Belarus is a landlocked country in Eastern Europe, and it shares its western border with Poland."
+},
+{
+"id": 23,
+"category": "Geography",
+"fact": "Belgium is a Western European nation, and its capital city hosts the headquarters of the European Union.",
+"question": "What is Belgium?",
+"answer": "Belgium is a Western European nation, and its capital city hosts the headquarters of the European Union."
+},
+{
+"id": 24,
+"category": "Geography",
+"fact": "Belize is a nation on the eastern coast of Central America, and it features a large barrier reef.",
+"question": "What is Belize?",
+"answer": "Belize is a nation on the eastern coast of Central America, and it features a large barrier reef."
+},
+{
+"id": 25,
+"category": "Geography",
+"fact": "Benin is a French-speaking West African nation, and it borders the Gulf of Guinea to the south.",
+"question": "What is Benin?",
+"answer": "Benin is a French-speaking West African nation, and it borders the Gulf of Guinea to the south."
+},
+{
+"id": 26,
+"category": "Geography",
+"fact": "Bhutan is a landlocked Himalayan kingdom in South Asia, though it measures its success by national happiness.",
+"question": "What is Bhutan?",
+"answer": "Bhutan is a landlocked Himalayan kingdom in South Asia, though it measures its success by national happiness."
+},
+{
+"id": 27,
+"category": "Geography",
+"fact": "Bolivia is a landlocked country in South America, and it features high altitude terrain in the Andes.",
+"question": "What is Bolivia?",
+"answer": "Bolivia is a landlocked country in South America, and it features high altitude terrain in the Andes."
+},
+{
+"id": 28,
+"category": "Geography",
+"fact": "Bosnia and Herzegovina is a Southeastern European nation, and it has a very short coastline on the Adriatic Sea.",
+"question": "What is Bosnia and Herzegovina?",
+"answer": "Bosnia and Herzegovina is a Southeastern European nation, and it has a very short coastline on the Adriatic Sea."
+},
+{
+"id": 29,
+"category": "Geography",
+"fact": "Botswana is a landlocked country in Southern Africa, and it contains a large portion of the Kalahari Desert.",
+"question": "What is Botswana?",
+"answer": "Botswana is a landlocked country in Southern Africa, and it contains a large portion of the Kalahari Desert."
+},
+{
+"id": 30,
+"category": "Geography",
+"fact": "Brazil is the largest country in South America, and Portuguese is its official national language.",
+"question": "What is Brazil?",
+"answer": "Brazil is the largest country in South America, and Portuguese is its official national language."
+},
+{
+"id": 31,
+"category": "Geography",
+"fact": "Brunei is a tiny sovereign nation on the island of Borneo, though it possesses immense petroleum wealth.",
+"question": "What is Brunei?",
+"answer": "Brunei is a tiny sovereign nation on the island of Borneo, though it possesses immense petroleum wealth."
+},
+{
+"id": 32,
+"category": "Geography",
+"fact": "Bulgaria is a country in Southeast Europe, and it is known for its rich cultural history and Black Sea coast.",
+"question": "What is Bulgaria?",
+"answer": "Bulgaria is a country in Southeast Europe, and it is known for its rich cultural history and Black Sea coast."
+},
+{
+"id": 33,
+"category": "Geography",
+"fact": "Burkina Faso is a landlocked country in West Africa, and its economy relies heavily on subsistence agriculture.",
+"question": "What is Burkina Faso?",
+"answer": "Burkina Faso is a landlocked country in West Africa, and its economy relies heavily on subsistence agriculture."
+},
+{
+"id": 34,
+"category": "Geography",
+"fact": "Burundi is a small landlocked nation in East Africa, and it is located near the African Great Lakes region.",
+"question": "What is Burundi?",
+"answer": "Burundi is a small landlocked nation in East Africa, and it is located near the African Great Lakes region."
+},
+{
+"id": 35,
+"category": "Geography",
+"fact": "Cabo Verde is an island country in the central Atlantic Ocean, and it consists of ten volcanic islands.",
+"question": "What is Cabo Verde?",
+"answer": "Cabo Verde is an island country in the central Atlantic Ocean, and it consists of ten volcanic islands."
+},
+{
+"id": 36,
+"category": "Geography",
+"fact": "Cambodia is a Southeast Asian nation, and it is famous for containing the ancient Angkor Wat temple complex.",
+"question": "What is Cambodia?",
+"answer": "Cambodia is a Southeast Asian nation, and it is famous for containing the ancient Angkor Wat temple complex."
+},
+{
+"id": 37,
+"category": "Geography",
+"fact": "Cameroon is a Central African nation, though it is often called Africa in miniature due to its diverse geography.",
+"question": "What is Cameroon?",
+"answer": "Cameroon is a Central African nation, though it is often called Africa in miniature due to its diverse geography."
+},
+{
+"id": 38,
+"category": "Geography",
+"fact": "Canada is the second-largest country in the world by land area, and it spans North America from coast to coast.",
+"question": "What is Canada?",
+"answer": "Canada is the second-largest country in the world by land area, and it spans North America from coast to coast."
+},
+{
+"id": 39,
+"category": "Geography",
+"fact": "Central African Republic is a landlocked nation, and it is located right in the geographic center of the continent.",
+"question": "What is Central African Republic?",
+"answer": "Central African Republic is a landlocked nation, and it is located right in the geographic center of the continent."
+},
+{
+"id": 40,
+"category": "Geography",
+"fact": "Chad is a landlocked country in North-Central Africa, and it shares its name with a large shallow lake.",
+"question": "What is Chad?",
+"answer": "Chad is a landlocked country in North-Central Africa, and it shares its name with a large shallow lake."
+}
+]
+}

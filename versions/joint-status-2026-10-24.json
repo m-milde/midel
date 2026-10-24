@@ -1,0 +1,37 @@
+{
+  "status": "rejected",
+  "pass_pct": 3.38,
+  "bar_pct": 80.0,
+  "weights": "/Users/m.milde/Work/opencode_figma-cli/nn-tutorial/versions/stage3_brain.joint.M-2026-10-24.pt",
+  "eval": "/Users/m.milde/Work/opencode_figma-cli/nn-tutorial/versions/stage3_brain.joint.M-2026-10-24.eval.json",
+  "meta": {
+    "kind": "joint-full",
+    "tier": "M",
+    "cfg": {
+      "name": "M",
+      "n_layers": 8,
+      "d_model": 256,
+      "n_heads": 8,
+      "max_seq_len": 256,
+      "ff_mult": 4,
+      "vocab_size": 12288,
+      "tied_embeddings": true
+    },
+    "corpus_counts": {
+      "fact_pack": 10025,
+      "science_core": 100,
+      "short": 17975
+    },
+    "training_packs": 48279,
+    "epochs_planned": 30,
+    "epoch_done": 60,
+    "manifest": "versions/corpus-manifest-2026-10-23.json",
+    "tokenizer": "versions/midel-tokenizer-v2.json",
+    "include_core": true,
+    "include_short": true,
+    "eval_sample": 800,
+    "createdAt": "2026-10-23T22:15:33.653147+00:00",
+    "train_seconds": 22942.7,
+    "last_loss": 0.287
+  }
+}

@@ -1,0 +1,289 @@
+# Copyright (c) 2026 M.Milde <m.milde@gmail.com>
+# Free use; no sale, rebrand, or profit from this software.
+# See LICENSE.
+
+{
+"dataset_name": "mathematics",
+"facts": [
+{
+"id": 1,
+"category": "Mathematics",
+"fact": "Pi is a mathematical constant representing the ratio of a circle circumference to its diameter, approximately equal to 3.14.",
+"question": "What is pi?",
+"answer": "Pi is a mathematical constant representing the ratio of a circle circumference to its diameter, approximately equal to 3.14."
+},
+{
+"id": 2,
+"category": "Mathematics",
+"fact": "Prime numbers are natural numbers greater than 1 that have no positive divisors other than 1 and themselves.",
+"question": "What are prime numbers?",
+"answer": "Prime numbers are natural numbers greater than 1 that have no positive divisors other than 1 and themselves."
+},
+{
+"id": 3,
+"category": "Mathematics",
+"fact": "The Pythagorean theorem states that in a right triangle, the square of the hypotenuse length equals the sum of the squares of the other two sides lengths.",
+"question": "What does the Pythagorean theorem state?",
+"answer": "The Pythagorean theorem states that in a right triangle, the square of the hypotenuse length equals the sum of the squares of the other two sides lengths."
+},
+{
+"id": 4,
+"category": "Mathematics",
+"fact": "Zero is an integer that represents a quantity of none, serving as both a placeholder and the additive identity in arithmetic.",
+"question": "What is zero?",
+"answer": "Zero is an integer that represents a quantity of none, serving as both a placeholder and the additive identity in arithmetic."
+},
+{
+"id": 5,
+"category": "Mathematics",
+"fact": "The sum of the interior angles in any flat triangle is always equal to 180 degrees.",
+"question": "What is the sum of the interior angles in any flat triangle?",
+"answer": "The sum of the interior angles in any flat triangle is always equal to 180 degrees."
+},
+{
+"id": 6,
+"category": "Mathematics",
+"fact": "Fractions represent a part of a whole or any number of equal parts, consisting of a numerator and a denominator.",
+"question": "What do fractions represent?",
+"answer": "Fractions represent a part of a whole or any number of equal parts, consisting of a numerator and a denominator."
+},
+{
+"id": 7,
+"category": "Mathematics",
+"fact": "Fibonacci numbers form a sequence where each number is the sum of the two preceding ones, starting from 0 and 1.",
+"question": "What are Fibonacci numbers?",
+"answer": "Fibonacci numbers form a sequence where each number is the sum of the two preceding ones, starting from 0 and 1."
+},
+{
+"id": 8,
+"category": "Mathematics",
+"fact": "An acute angle is an angle that measures strictly less than 90 degrees.",
+"question": "What is an acute angle?",
+"answer": "An acute angle is an angle that measures strictly less than 90 degrees."
+},
+{
+"id": 9,
+"category": "Mathematics",
+"fact": "An obtuse angle is an angle that measures greater than 90 degrees but less than 180 degrees.",
+"question": "What is an obtuse angle?",
+"answer": "An obtuse angle is an angle that measures greater than 90 degrees but less than 180 degrees."
+},
+{
+"id": 10,
+"category": "Mathematics",
+"fact": "A polygon is a closed two-dimensional geometric figure bounded by a finite number of straight line segments.",
+"question": "What is a polygon?",
+"answer": "A polygon is a closed two-dimensional geometric figure bounded by a finite number of straight line segments."
+},
+{
+"id": 11,
+"category": "Mathematics",
+"fact": "The square root of a number is a value that, when multiplied by itself, gives the original number.",
+"question": "What is the square root of a number?",
+"answer": "The square root of a number is a value that, when multiplied by itself, gives the original number."
+},
+{
+"id": 12,
+"category": "Mathematics",
+"fact": "Euclidean geometry is a mathematical system attributed to the ancient Greek mathematician Euclid, focusing on plane and solid geometry.",
+"question": "What is Euclidean geometry?",
+"answer": "Euclidean geometry is a mathematical system attributed to the ancient Greek mathematician Euclid, focusing on plane and solid geometry."
+},
+{
+"id": 13,
+"category": "Mathematics",
+"fact": "Prime factorization is the process of breaking down a composite number into a product of prime numbers.",
+"question": "What is prime factorization?",
+"answer": "Prime factorization is the process of breaking down a composite number into a product of prime numbers."
+},
+{
+"id": 14,
+"category": "Mathematics",
+"fact": "The least common multiple of two integers is the smallest positive integer that is divisible by both numbers.",
+"question": "What is the least common multiple of two integers?",
+"answer": "The least common multiple of two integers is the smallest positive integer that is divisible by both numbers."
+},
+{
+"id": 15,
+"category": "Mathematics",
+"fact": "The greatest common divisor of two integers is the largest positive integer that divides each of the numbers without remainder.",
+"question": "What is the greatest common divisor of two integers?",
+"answer": "The greatest common divisor of two integers is the largest positive integer that divides each of the numbers without remainder."
+},
+{
+"id": 16,
+"category": "Mathematics",
+"fact": "A palindrome number reads the same forwards and backwards, such as 121 or 454.",
+"question": "What is a palindrome number?",
+"answer": "A palindrome number reads the same forwards and backwards, such as 121 or 454."
+},
+{
+"id": 17,
+"category": "Mathematics",
+"fact": "Logarithms are the inverse operations to exponentiation, determining what power a base must be raised to produce a given number.",
+"question": "What are logarithms?",
+"answer": "Logarithms are the inverse operations to exponentiation, determining what power a base must be raised to produce a given number."
+},
+{
+"id": 18,
+"category": "Mathematics",
+"fact": "Matrix mathematics involves rectangular arrays of numbers that can be added, subtracted, and multiplied under specific rules.",
+"question": "What does matrix mathematics involve?",
+"answer": "Matrix mathematics involves rectangular arrays of numbers that can be added, subtracted, and multiplied under specific rules."
+},
+{
+"id": 19,
+"category": "Mathematics",
+"fact": "Probability theory is the branch of mathematics concerned with analyzing random phenomena and calculating the likelihood of events.",
+"question": "What is probability theory?",
+"answer": "Probability theory is the branch of mathematics concerned with analyzing random phenomena and calculating the likelihood of events."
+},
+{
+"id": 20,
+"category": "Mathematics",
+"fact": "Statistics involves collecting, analyzing, interpreting, and presenting empirical data to uncover meaningful trends or patterns.",
+"question": "What does statistics involve?",
+"answer": "Statistics involves collecting, analyzing, interpreting, and presenting empirical data to uncover meaningful trends or patterns."
+},
+{
+"id": 21,
+"category": "Mathematics",
+"fact": "Calculus is a branch of mathematics focused on limits, functions, derivatives, integrals, and infinite series.",
+"question": "What is calculus?",
+"answer": "Calculus is a branch of mathematics focused on limits, functions, derivatives, integrals, and infinite series."
+},
+{
+"id": 22,
+"category": "Mathematics",
+"fact": "Rational numbers are numbers that can be expressed as the quotient or fraction of two integers.",
+"question": "What are rational numbers?",
+"answer": "Rational numbers are numbers that can be expressed as the quotient or fraction of two integers."
+},
+{
+"id": 23,
+"category": "Mathematics",
+"fact": "Irrational numbers are real numbers that cannot be expressed as a simple fraction of two integers.",
+"question": "What are irrational numbers?",
+"answer": "Irrational numbers are real numbers that cannot be expressed as a simple fraction of two integers."
+},
+{
+"id": 24,
+"category": "Mathematics",
+"fact": "Real numbers include all rational and irrational numbers, covering the entire continuous number line.",
+"question": "What do real numbers include?",
+"answer": "Real numbers include all rational and irrational numbers, covering the entire continuous number line."
+},
+{
+"id": 25,
+"category": "Mathematics",
+"fact": "Imaginary numbers are complex numbers that can be written as a real number multiplied by the imaginary unit.",
+"question": "What are imaginary numbers?",
+"answer": "Imaginary numbers are complex numbers that can be written as a real number multiplied by the imaginary unit."
+},
+{
+"id": 26,
+"category": "Mathematics",
+"fact": "Topology is a field of mathematics studying properties preserved through continuous deformations like stretching or bending.",
+"question": "What is topology?",
+"answer": "Topology is a field of mathematics studying properties preserved through continuous deformations like stretching or bending."
+},
+{
+"id": 27,
+"category": "Mathematics",
+"fact": "Set theory is the mathematical branch that studies collections of objects, which are called sets or group elements.",
+"question": "What is set theory?",
+"answer": "Set theory is the mathematical branch that studies collections of objects, which are called sets or group elements."
+},
+{
+"id": 28,
+"category": "Mathematics",
+"fact": "An algorithm is a self-contained step-by-step set of operations to solve a specific mathematical or computational problem.",
+"question": "What is an algorithm?",
+"answer": "An algorithm is a self-contained step-by-step set of operations to solve a specific mathematical or computational problem."
+},
+{
+"id": 29,
+"category": "Mathematics",
+"fact": "Graph theory studies relationships between objects using vertices and edges to model pairwise relations.",
+"question": "What does graph theory study?",
+"answer": "Graph theory studies relationships between objects using vertices and edges to model pairwise relations."
+},
+{
+"id": 30,
+"category": "Mathematics",
+"fact": "Trigonometry is a branch of mathematics that studies relationships involving lengths and angles of triangles.",
+"question": "What is trigonometry?",
+"answer": "Trigonometry is a branch of mathematics that studies relationships involving lengths and angles of triangles."
+},
+{
+"id": 31,
+"category": "Mathematics",
+"fact": "The golden ratio is an irrational mathematical constant approximately equal to 1.618, often found in nature and art.",
+"question": "What is the golden ratio?",
+"answer": "The golden ratio is an irrational mathematical constant approximately equal to 1.618, often found in nature and art."
+},
+{
+"id": 32,
+"category": "Mathematics",
+"fact": "A function is a relation between a set of inputs and a set of permissible outputs with certain properties.",
+"question": "What is a function?",
+"answer": "A function is a relation between a set of inputs and a set of permissible outputs with certain properties."
+},
+{
+"id": 33,
+"category": "Mathematics",
+"fact": "Arithmetic is the oldest and most elementary branch of mathematics, dealing with the study of numbers and basic operations.",
+"question": "What is arithmetic?",
+"answer": "Arithmetic is the oldest and most elementary branch of mathematics, dealing with the study of numbers and basic operations."
+},
+{
+"id": 34,
+"category": "Mathematics",
+"fact": "Algebra is a branch of mathematics substituting letters for numbers to find unknown values and solve equations.",
+"question": "What is algebra?",
+"answer": "Algebra is a branch of mathematics substituting letters for numbers to find unknown values and solve equations."
+},
+{
+"id": 35,
+"category": "Mathematics",
+"fact": "Geometry is a branch of mathematics concerned with properties of space related to distance, shape, size, and relative position.",
+"question": "What is geometry?",
+"answer": "Geometry is a branch of mathematics concerned with properties of space related to distance, shape, size, and relative position."
+},
+{
+"id": 36,
+"category": "Mathematics",
+"fact": "Combinatorics is an area of mathematics primarily concerned with counting, both as a means and an end in obtaining results.",
+"question": "What is combinatorics?",
+"answer": "Combinatorics is an area of mathematics primarily concerned with counting, both as a means and an end in obtaining results."
+},
+{
+"id": 37,
+"category": "Mathematics",
+"fact": "Number theory is a branch of pure mathematics dedicated primarily to the study of integers and integer-valued functions.",
+"question": "What is number theory?",
+"answer": "Number theory is a branch of pure mathematics dedicated primarily to the study of integers and integer-valued functions."
+},
+{
+"id": 38,
+"category": "Mathematics",
+"fact": "Vector spaces are mathematical structures formed by collections of vectors that can be added together and multiplied by scalars.",
+"question": "What are vector spaces?",
+"answer": "Vector spaces are mathematical structures formed by collections of vectors that can be added together and multiplied by scalars."
+},
+{
+"id": 39,
+"category": "Mathematics",
+"fact": "Differential equations are mathematical equations that relate functions with their derivatives to model changing rates in systems.",
+"question": "What are differential equations?",
+"answer": "Differential equations are mathematical equations that relate functions with their derivatives to model changing rates in systems."
+},
+{
+"id": 40,
+"category": "Mathematics",
+"fact": "Fractal geometry studies complex geometric shapes that exhibit self-similarity across different scales and magnifications.",
+"question": "What does fractal geometry study?",
+"answer": "Fractal geometry studies complex geometric shapes that exhibit self-similarity across different scales and magnifications."
+}
+]
+}

@@ -1,0 +1,25 @@
+{
+  "runbook": "DEEP_NETWORK_REBUILD_PLAN.md §6",
+  "completedSteps": [0, 1, 2],
+  "stoppedBefore": "step 4 corpus freeze",
+  "date": "2026-10-23",
+  "step0": {
+    "trainersRunning": false,
+    "stage3_brain_js_terminator": "};"
+  },
+  "step1_backupDir": "versions/2026-10-23-pre-rebuild/",
+  "step1_files": [
+    "stage3_brain.js",
+    "stage3_learned.json",
+    "pack_manifest.js",
+    "facts-packs.zip (36 files: 35 *_facts.js + taught_facts.js)"
+  ],
+  "step2_check_full": "OK with 1 warning (lesson #5900 no question)",
+  "step2_baselines": {
+    "oldNetworkEvalLog": "versions/eval-old-network-baseline-2026-10-23.log",
+    "oldNetworkNeedle": "62/929 installed (6.7%), gates pass, Angel Falls 979 probe ok",
+    "libraryBaselineJson": "versions/eval-baseline-results-2026-10-23.json",
+    "libraryBaselineLog": "versions/eval-baseline-run-2026-10-23-pre-rebuild.log",
+    "libraryCompareReference": "versions/eval-baseline-results-2026-10-21-after-typo-fix.json (+0 pp vs 21 Oct)"
+  }
+}

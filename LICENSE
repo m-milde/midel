@@ -1,0 +1,62 @@
+Midel Neural Lab — Free Use License v1.0
+
+Copyright (c) 2026 M.Milde <m.milde@gmail.com>
+All rights reserved.
+
+This license applies to the Midel neural lab in this folder (`nn-tutorial`):
+source code, lesson packs, documentation, and generated deploy archives produced
+from this tree, unless a file explicitly states otherwise.
+
+Third-party runtime dependencies (for example NumPy in `.venv`) remain under
+their own licenses.
+
+---------------------------------------------------------------------------
+1. GRANT OF USE
+---------------------------------------------------------------------------
+
+Permission is granted, free of charge, to obtain and use this software and
+associated documentation for personal, educational, or internal purposes, subject
+to the restrictions below.
+
+---------------------------------------------------------------------------
+2. RESTRICTIONS — YOU MAY NOT
+---------------------------------------------------------------------------
+
+Without prior written permission from M.Milde <m.milde@gmail.com>, you may NOT:
+
+  (a) Sell, rent, lease, sublicense, or otherwise commercialize this software
+      or any substantial copy or portion of it;
+
+  (b) Use this software, or any derivative of it, as the primary paid product
+      or service you charge for;
+
+  (c) Rebrand, repackage, or redistribute it under your own name, logo, or
+      trademark, or remove or alter copyright or license notices;
+
+  (d) Publish a fork or mirror that presents this work as your own or omits
+      attribution to M.Milde;
+
+  (e) Redistribute source or binary copies except unmodified sharing with this
+      LICENSE and copyright notices intact, pointing to the official source.
+
+---------------------------------------------------------------------------
+3. PERMITTED SHARING
+---------------------------------------------------------------------------
+
+You MAY share unmodified copies with this LICENSE intact, without charging for
+the software itself, and without misrepresenting authorship.
+
+---------------------------------------------------------------------------
+4. NO WARRANTY
+---------------------------------------------------------------------------
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND. IN NO EVENT
+SHALL THE COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM ARISING FROM USE OF THE
+SOFTWARE.
+
+---------------------------------------------------------------------------
+5. CONTACT
+---------------------------------------------------------------------------
+
+Licensing exceptions or written permission:
+  M.Milde <m.milde@gmail.com>

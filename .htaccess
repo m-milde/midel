@@ -1,0 +1,77 @@
+# Copyright (c) 2026 M.Milde <m.milde@gmail.com>
+# Free use; no sale, rebrand, or profit from this software.
+# See LICENSE.
+
+# Midel static deploy hardening (Apache). Safe to delete if the host is not Apache.
+
+# No directory browsing
+Options -Indexes
+
+# Serve text assets with correct MIME types
+AddType text/css .css
+AddType application/javascript .js
+AddType application/json .json
+
+# Never execute scripts in this folder (static site only)
+<IfModule mod_php.c>
+  php_flag engine off
+</IfModule>
+RemoveHandler .php .phtml .php3 .php4 .php5 .php7 .pht
+RemoveType .php .phtml .php3 .php4 .php5 .php7 .pht
+
+# Block access to dotfiles and editor droppings
+<FilesMatch "^\.">
+  Require all denied
+</FilesMatch>
+
+# Security headers
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "DENY"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+  # Lesson files must refresh after each deploy upload (stale manifest = missing packs on FTP)
+  <FilesMatch "^short_added\.(meta\.)?js$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+  <FilesMatch "^(pack_manifest|science_library)\.js$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+  <FilesMatch "_facts\.js$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+  <FilesMatch "^taught_facts\.js$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+</IfModule>
+
+# ── Keep other websites from using your lesson and network files (hotlink protection) ──
+# Other sites cannot load your .js / .json files into THEIR pages; your own pages and direct visits work.
+# This does NOT stop a visitor from saving a file: it stops embedding and casual reuse.
+# The whole block is skipped if the host has no mod_rewrite, so it cannot break the site.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # 1) Referer check: a request that names ANOTHER site as its origin is refused (403).
+  #    An empty referer (typed address, bookmarks, privacy tools) is allowed on purpose.
+  RewriteCond %{HTTP_REFERER} !^$
+  RewriteCond %{HTTP_HOST}@@%{HTTP_REFERER} !^([^@]*)@@https?://\1(:[0-9]+)?(/|$) [NC]
+  RewriteRule \.(js|json)$ - [F,L]
+
+  # 2) Modern browsers say outright when a script or data request comes from another site.
+  RewriteCond %{HTTP:Sec-Fetch-Site} ^cross-site$ [NC]
+  RewriteCond %{HTTP:Sec-Fetch-Dest} ^(script|empty|worker|sharedworker|serviceworker)$ [NC]
+  RewriteRule \.(js|json)$ - [F,L]
+</IfModule>
+
+# Ask search engines and web archives not to index or store the lesson and network files.
+<IfModule mod_headers.c>
+  <FilesMatch "\.(js|json)$">
+    Header set X-Robots-Tag "noindex, noarchive, nosnippet"
+  </FilesMatch>
+</IfModule>
+
+# Do not serve .htaccess itself
+<Files ".htaccess">
+  Require all denied
+</Files>

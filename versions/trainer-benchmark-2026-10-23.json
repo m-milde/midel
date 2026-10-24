@@ -1,0 +1,46 @@
+{
+  "runbookStep": 8,
+  "createdAt": "2026-10-23T20:31:40.628935+00:00",
+  "stepsRequested": 100,
+  "batchSize": 4,
+  "tier": "M",
+  "benchmarks": [
+    {
+      "backend": "numpy",
+      "trainer": "train_stage3.py (legacy Stage3)",
+      "architecture": "4x128 heads=4 max_len=128",
+      "params": 1745408,
+      "steps": 100,
+      "batch_size": 1,
+      "seconds_total": 1.006,
+      "seconds_per_step": 0.0101,
+      "mean_loss": 20.2658,
+      "note": "Legacy stack only; tier M is not implemented in NumPy."
+    },
+    {
+      "backend": "pytorch",
+      "trainer": "midel_torch.py (rebuild)",
+      "tier": "M",
+      "architecture": "8x256 heads=8 ff=1024 max_len=256 tied=True",
+      "vocab_size": 12288,
+      "params": 9529856,
+      "params_estimate": 9502720,
+      "device": "mps",
+      "steps": 100,
+      "batch_size": 4,
+      "seq_len_approx": "variable padded (\u2264128 tokens from corpus)",
+      "seconds_total": 6.112,
+      "seconds_per_step": 0.0611,
+      "mean_loss": 27.2146
+    }
+  ],
+  "jointTimeEstimate": {
+    "assumed_lessons": 10026,
+    "variants_per_lesson": 5,
+    "epochs": 60,
+    "training_steps_estimate": 3007800,
+    "hours_estimate": 12.76,
+    "days_estimate": 0.53,
+    "note": "Assumes one pack_qa sequence per step (batch_size normalized). PyTorch MPS, tier M."
+  }
+}

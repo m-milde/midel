@@ -1,0 +1,3621 @@
+<!--
+Copyright (c) 2026 M.Milde <m.milde@gmail.com>
+Free use; no sale, rebrand, or profit from this software.
+See LICENSE.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Midel</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<style>
+/* ── Reset & Core Theme ─────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:        #0d1117;
+  --bg-card:   #161b22;
+  --bg-input:  #0d1117;
+  --border:    #30363d;
+  --text:      #e6edf3;
+  --text-dim:  #8b949e;
+  --blue:      #58a6ff;
+  --cyan:      #39c5bb;
+  --green:     #3fb950;
+  --red:       #f85149;
+  --orange:    #d29922;
+  --purple:    #bc8cff;
+  --radius:    12px;
+  --shadow:    0 4px 20px rgba(0,0,0,.45);
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+/* ── Header & DB Status Bar ──────────────────────────────────────── */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-card);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.header-brand h1 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.badge-standalone {
+  font-size: .75rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: rgba(57,197,187,.15);
+  color: var(--cyan);
+  border: 1px solid rgba(57,197,187,.3);
+  letter-spacing: .03em;
+}
+.db-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: .8rem;
+  background: rgba(255,255,255,.03);
+  padding: 5px 12px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+}
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 8px var(--green);
+}
+.status-dot.saving {
+  background: var(--orange);
+  box-shadow: 0 0 8px var(--orange);
+}
+.header-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+
+/* ── Buttons ────────────────────────────────────────────────────── */
+button {
+  font-family: inherit;
+  font-size: .82rem;
+  font-weight: 600;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 12px;
+  cursor: pointer;
+  background: var(--bg-card);
+  color: var(--text);
+  transition: all .15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+button:hover { border-color: var(--text-dim); background: #1c2129; }
+button:active { transform: scale(.97); }
+
+.btn-primary {
+  background: #0c2d6b; border-color: #1f6feb; color: var(--blue);
+}
+.btn-primary:hover { background: #0f3a8a; }
+
+.btn-accent {
+  background: #271a47; border-color: #8957e5; color: var(--purple);
+}
+.btn-accent:hover { background: #34225e; }
+
+.btn-success {
+  background: #0d2818; border-color: #196c2e; color: var(--green);
+}
+.btn-success:hover { background: #122d1f; }
+
+.btn-sm { padding: 4px 10px; font-size: .78rem; }
+.btn-preset { padding: 4px 9px; font-size: .76rem; border-radius: 6px; }
+
+/* ── Layout Grid ────────────────────────────────────────────────── */
+main {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 16px;
+  padding: 16px 24px 24px;
+  max-width: 1480px;
+  margin: 0 auto;
+}
+@media (max-width: 1040px) {
+  main { grid-template-columns: 1fr; }
+}
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+}
+
+.card h2 {
+  font-size: .85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--text-dim);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ── Prompt & Predictions ───────────────────────────────────────── */
+.input-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.input-row input {
+  flex: 1;
+  padding: 10px 14px;
+  font-family: inherit;
+  font-size: .95rem;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  outline: none;
+  transition: border-color .15s;
+}
+.input-row input:focus { border-color: var(--blue); }
+.input-row input::placeholder { color: var(--text-dim); }
+
+.quick-prompts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+  max-height: 120px;
+  overflow-y: auto;
+  padding: 4px 0;
+}
+.quick-chip {
+  font-size: .74rem;
+  padding: 3px 9px;
+  border-radius: 12px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: all .15s;
+  white-space: nowrap;
+}
+.quick-chip:hover {
+  background: rgba(88,166,255,.12);
+  color: var(--blue);
+  border-color: var(--blue);
+}
+
+/* ── Result Box ─────────────────────────────────────────────────── */
+.result-box {
+  background: rgba(255,255,255,.02);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.prediction-highlight {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255,255,255,.05);
+}
+.prediction-word-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+.prediction-badge {
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.45;
+  color: var(--green);
+  text-shadow: 0 0 16px rgba(63,185,80,.4);
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+.prediction-confidence {
+  font-size: .85rem;
+  color: var(--text-dim);
+}
+
+.generation-stream {
+  margin-top: 10px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: rgba(88,166,255,.05);
+  border: 1px dashed rgba(88,166,255,.3);
+  font-size: .95rem;
+  color: var(--text);
+  line-height: 1.4;
+}
+.generation-stream strong { color: var(--cyan); }
+
+/* Probability Bars */
+.prob-list {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.prob-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: .82rem;
+}
+.prob-word {
+  width: auto;
+  max-width: 46%;
+  font-weight: 600;
+  text-align: left;
+  line-height: 1.3;
+  overflow-wrap: break-word;
+}
+.prob-bar-bg {
+  flex: 1;
+  height: 14px;
+  background: #21262d;
+  border-radius: 7px;
+  overflow: hidden;
+}
+.prob-bar-fill {
+  height: 100%;
+  border-radius: 7px;
+  background: linear-gradient(90deg, #1f6feb, #39c5bb);
+  transition: width .25s ease;
+}
+.prob-pct {
+  width: 48px;
+  text-align: right;
+  color: var(--text-dim);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Attention Heatmap ──────────────────────────────────────────── */
+#heatmap-card { align-self: start; }
+.canvas-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 520px;
+  margin-top: 4px;
+}
+#heatmap-canvas {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  background: radial-gradient(circle at 50% 18%, #132033 0%, #0d1117 55%);
+}
+
+.heatmap-info {
+  margin-top: 10px;
+  padding: 8px 12px;
+  background: rgba(255,255,255,.02);
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  font-size: .8rem;
+  color: var(--text-dim);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+.heatmap-info strong { color: var(--cyan); }
+
+#knowledge-card h2.collapse-toggle { cursor: pointer; user-select: none; }
+#knowledge-card h2.collapse-toggle:hover { color: var(--text); }
+#knowledge-chevron {
+  display: inline-flex;
+  width: 22px;
+  height: 22px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  font-size: .8rem;
+}
+#knowledge-card.collapsed #knowledge-body { display: none; }
+#knowledge-count { color: var(--cyan); font-weight: 500; letter-spacing: 0; text-transform: none; }
+
+/* ── Knowledge Studio ───────────────────────────────────────────── */
+.preset-row {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.preset-label {
+  font-size: .75rem;
+  color: var(--text-dim);
+  margin-right: 4px;
+}
+
+.facts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  max-height: 200px;
+  overflow-y: auto;
+  margin-bottom: 12px;
+}
+.fact-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 12px;
+  background: rgba(255,255,255,.02);
+  border: 1px solid rgba(255,255,255,.05);
+  border-radius: 7px;
+  font-size: .83rem;
+}
+.fact-item .text { color: var(--text); flex: 1; }
+.fact-item button.del {
+  background: transparent;
+  border: none;
+  color: var(--text-dim);
+  padding: 2px 6px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.fact-item button.del:hover { color: var(--red); }
+
+/* Training bar */
+.train-progress-wrap {
+  height: 6px;
+  background: #21262d;
+  border-radius: 3px;
+  overflow: hidden;
+  margin: 6px 0 10px;
+  display: none;
+}
+.train-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--blue), var(--cyan));
+  transition: width .1s ease;
+}
+
+/* ── Loss Chart ─────────────────────────────────────────────────── */
+#loss-canvas {
+  width: 100%;
+  height: 100px;
+  border-radius: 6px;
+  background: #0d1117;
+}
+.stats-strip {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+  font-size: .78rem;
+  color: var(--text-dim);
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.stats-strip span strong { color: var(--blue); }
+
+/* ── Toast ──────────────────────────────────────────────────────── */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: .88rem;
+  box-shadow: 0 4px 24px rgba(0,0,0,.6);
+  transition: transform .3s ease, opacity .3s ease;
+  opacity: 0;
+  z-index: 100;
+  pointer-events: none;
+}
+.toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+input[type="file"] { display: none; }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+</style>
+<style>
+body {
+  background: #131314;
+  color: #e8eaed;
+  overflow: hidden;
+}
+#glow-field {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+body.chatting #glow-field { opacity: .28; }
+
+.rail {
+  position: fixed;
+  z-index: 30;
+  left: 0; top: 0; bottom: 0;
+  width: 72px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 14px 0 16px;
+}
+.rail-mark {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 0;
+  margin-bottom: 10px;
+  background: conic-gradient(from 200deg, #8ab4ff, #6d5efc, #4c8dff, #8ab4ff);
+  color: #0e1116;
+  font-weight: 700;
+}
+.rail button, .icon-btn, .send-btn, .top-btn {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  border: 0;
+  background: transparent;
+  color: #e8eaed;
+  font-size: 1.15rem;
+  display: grid;
+  place-items: center;
+  padding: 0;
+}
+.rail button.rail-mark {
+  background: transparent;
+  width: 40px;
+  height: 40px;
+  overflow: visible;
+}
+.rail-mark .mark { width: 44px; height: 44px; display: block; object-fit: contain; }
+.rail button:hover, .icon-btn:hover, .top-btn:hover { background: rgba(255,255,255,.08); }
+.rail button.rail-mark:hover { filter: brightness(1.08); }
+.rail button.on { background: rgba(138, 180, 255, .16); color: #a8c7ff; }
+.rail-spacer { flex: 1; }
+.rail-status { margin-bottom: 8px; }
+
+header.topbar {
+  position: fixed;
+  z-index: 30;
+  top: 12px; right: 16px;
+  left: auto;
+  width: auto;
+  border: 0;
+  border-bottom: 0;
+  background: transparent;
+  padding: 0;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 8px;
+  align-items: center;
+}
+main.stage {
+  display: flex;
+  grid-template-columns: none;
+  max-width: none;
+  margin: 0;
+}
+.top-btn.pill {
+  width: auto;
+  border-radius: 999px;
+  padding: 0 14px;
+  height: 36px;
+  background: #1e1f20;
+  border: 1px solid rgba(255,255,255,.08);
+  font-size: .82rem;
+  font-weight: 500;
+  gap: 8px;
+}
+.settings {
+  position: relative;
+}
+.settings-pop {
+  display: none;
+  position: absolute;
+  right: 0; top: 44px;
+  width: 230px;
+  padding: 8px;
+  border-radius: 16px;
+  background: #1e1f20;
+  border: 1px solid rgba(255,255,255,.08);
+  box-shadow: 0 16px 50px rgba(0,0,0,.45);
+}
+.settings.open .settings-pop { display: flex; flex-direction: column; gap: 4px; }
+.settings-pop button, .settings-pop label {
+  width: 100%;
+  justify-content: flex-start;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  padding: 8px 10px;
+}
+.db-pill {
+  border: 0;
+  background: transparent;
+  padding: 0 8px 8px;
+  font-size: .75rem;
+}
+
+.stage {
+  position: relative;
+  z-index: 1;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 28px 28px 96px;
+  gap: 22px;
+}
+.stage.chatting { justify-content: flex-start; padding-top: 36px; }
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+}
+.hero-logo {
+  position: absolute;
+  top: 28px;
+  left: calc(50% + 34px);
+  transform: translateX(-50%);
+  width: min(160px, 72vw);
+  height: auto;
+  display: block;
+}
+.hero h1 {
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 450;
+  letter-spacing: -.03em;
+  text-align: center;
+}
+.stage.chatting .hero, .stage.chatting .hero-logo, .stage.chatting .quick-prompts { display: none; }
+.quick-prompts {
+  max-height: none;
+  justify-content: center;
+  margin: 0;
+  width: min(720px, 100%);
+}
+.quick-chip {
+  background: rgba(12, 14, 20, .45);
+  color: #e8eaed;
+  border-color: rgba(255,255,255,.16);
+  border-radius: 999px;
+  padding: 8px 12px;
+}
+.thread {
+  display: none;
+  width: min(760px, 100%);
+  flex-direction: column;
+  gap: 26px;
+}
+.stage.chatting .thread {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 28px 4px 12px;
+}
+.turn { display: flex; flex-direction: column; gap: 8px; }
+.you {
+  align-self: flex-end;
+  max-width: 78%;
+  background: #282a2c;
+  border-radius: 18px 18px 6px 18px;
+  padding: 10px 16px;
+}
+.model { font-size: 1.05rem; line-height: 1.6; max-width: 640px; }
+.answer-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 640px;
+}
+.answer-card {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 14px;
+  padding: 12px 14px;
+}
+.answer-source {
+  color: #8ab4ff;
+  font-size: .75rem;
+  margin-bottom: 6px;
+}
+.answer-card .model { max-width: none; }
+.why { color: #9aa0a6; font-size: .8rem; max-width: 640px; }
+.fuller {
+  max-width: 640px;
+  font-size: 1rem;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  color: #e8eaed;
+}
+.fuller.pending { color: #9aa0a6; }
+.more a {
+  color: #8ab4ff;
+  font-size: .82rem;
+  text-decoration: none;
+}
+.more a:hover { text-decoration: underline; }
+
+.composer {
+  position: relative;
+  width: min(720px, 100%);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #1e1f20;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 999px;
+  padding: 6px 6px 6px 8px;
+  box-shadow: 0 10px 40px rgba(0,0,0,.35), 0 0 0 1px rgba(120,160,255,.05);
+}
+.composer input {
+  flex: 1;
+  background: transparent;
+  border: 0;
+  color: #e8eaed;
+  font-size: 1rem;
+  padding: 10px 8px;
+  outline: none;
+}
+.prompt-suggest {
+  display: none;
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  bottom: calc(100% + 8px);
+  background: #1e1f20;
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 12px 32px rgba(0,0,0,.4);
+  z-index: 4;
+}
+.prompt-suggest.on { display: block; }
+.prompt-suggest button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  color: #e8eaed;
+  font-size: .92rem;
+  padding: 10px 14px;
+  cursor: pointer;
+}
+.prompt-suggest button.on,
+.prompt-suggest button:hover { background: rgba(138,180,255,.14); }
+.composer input::placeholder { color: #9aa0a6; }
+.composer .model-chip, #knowledge-count.model-chip {
+  color: #c4c7c5;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  font-size: .78rem;
+  padding: 0 8px;
+  white-space: nowrap;
+}
+.send-btn {
+  background: #e8eaed;
+  color: #131314;
+  font-weight: 700;
+}
+.send-btn:hover { background: #fff; }
+.live-sink {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.scrim {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.35);
+  z-index: 15;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s ease;
+}
+.scrim.on { opacity: 1; pointer-events: auto; }
+
+.drawer {
+  position: fixed;
+  z-index: 25;
+  top: 0; bottom: 0;
+  width: min(440px, 92vw);
+  background: rgba(19, 19, 20, .94);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(255,255,255,.08);
+  padding: 18px 18px 28px;
+  overflow: auto;
+  transition: transform .28s ease;
+}
+.drawer.left { left: 72px; transform: translateX(calc(-100% - 80px)); }
+.drawer.right { right: 0; transform: translateX(110%); border-left: 1px solid rgba(255,255,255,.08); padding-top: 64px; }
+.drawer.open { transform: none; }
+body.diagram-open header.topbar { right: 492px; }
+body.diagram-open .stage { padding-right: 492px; }
+#heatmap-card.drawer {
+  display: block;
+  width: 480px;
+  height: 100vh;
+  height: 100dvh;
+  max-height: 100dvh;
+  padding: 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  overscroll-behavior: contain;
+  background: #101114;
+  scrollbar-gutter: stable;
+}
+#heatmap-card.drawer::-webkit-scrollbar { width: 10px; }
+#heatmap-card.drawer::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,.28);
+  border-radius: 99px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+body.diagram-open #heatmap-card { transform: none; }
+.inspector-head {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  padding: 22px 22px 16px;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  background: #101114;
+}
+.inspector-head h2 { margin: 0; font-size: 1.05rem; }
+.inspector-scroll {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  height: auto;
+  overflow: visible;
+  padding: 16px 16px 48px;
+}
+#trace-route {
+  margin: 0;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: rgba(138,180,255,.08);
+  color: #d3d7de;
+  font-size: .84rem;
+  line-height: 1.5;
+}
+.live-card {
+  flex: 0 0 auto;
+  background: #17181b;
+  border: 1px solid rgba(255,255,255,.07);
+  border-radius: 16px;
+  padding: 16px 16px 18px;
+}
+.live-card h3 {
+  font-size: .68rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #9aa0a6;
+  font-weight: 600;
+  margin: 0 0 12px;
+}
+.focus-line {
+  margin: -4px 0 12px;
+  color: #e8eaed;
+  font-size: .92rem;
+  line-height: 1.4;
+  min-height: 1.4em;
+}
+.path { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+.path-step {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: 10px;
+  opacity: .28;
+  transform: translateY(6px);
+  transition: opacity .28s ease, transform .28s ease;
+}
+.path-step.on { opacity: 1; transform: none; }
+.path-dot {
+  width: 10px; height: 10px;
+  margin-top: 5px;
+  border-radius: 50%;
+  background: #8ab4ff;
+  box-shadow: 0 0 10px rgba(138,180,255,.8);
+}
+.path-step strong { display: block; font-size: .86rem; color: #e8eaed; }
+.path-step span { display: block; font-size: .8rem; color: #9aa0a6; line-height: 1.4; margin-top: 2px; }
+.hit-row { margin-bottom: 14px; }
+.hit-row:last-child { margin-bottom: 0; }
+.hit-top { display: flex; justify-content: space-between; gap: 10px; font-size: .78rem; color: #c4c7c5; }
+.hit-top b { color: #e8eaed; font-weight: 600; }
+.hit-row.chosen .hit-top b { color: #8ab4ff; }
+.hit-bar { height: 7px; border-radius: 99px; background: rgba(255,255,255,.06); margin-top: 6px; overflow: hidden; }
+.hit-bar i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #1f6feb, #39c5bb); transition: width .45s ease; }
+.hit-note { font-size: .78rem; color: #9aa0a6; margin-top: 6px; line-height: 1.4; }
+.layer-picks, .arch { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+.layer-picks button, .arch button {
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: .75rem;
+  background: rgba(255,255,255,.04);
+}
+.layer-picks button.on, .arch button.on {
+  background: rgba(138,180,255,.16);
+  border-color: rgba(138,180,255,.45);
+  color: #c5d8ff;
+}
+.head-row { display: grid; grid-template-columns: 58px 1fr auto; gap: 10px; align-items: center; font-size: .8rem; margin-bottom: 10px; color: #9aa0a6; }
+.head-row b { color: #e8eaed; }
+.head-track { height: 8px; border-radius: 99px; background: rgba(255,255,255,.06); overflow: hidden; }
+.head-track i { display: block; height: 100%; background: #bc8cff; }
+#flow-canvas, #heatmap-canvas {
+  width: 100%;
+  display: block;
+  border-radius: 12px;
+  background: #10141c;
+}
+#flow-canvas { height: 220px; }
+#heatmap-canvas { height: 280px; margin-top: 12px; }
+#trace-probs .prob-word { max-width: 42%; }
+.arch-note { font-size: .8rem; color: #9aa0a6; line-height: 1.5; }
+#heatmap-card .heatmap-info { margin-top: 12px; }
+@media (max-width: 1180px) {
+  body.diagram-open header.topbar { right: 16px; }
+  body.diagram-open .stage { padding-right: 96px; }
+  #heatmap-card.drawer { width: min(480px, 92vw); }
+  body.diagram-open #heatmap-card { padding-top: 0; }
+  .inspector-head { padding-top: 64px; }
+}
+
+.drawer h2 { text-transform: none; letter-spacing: 0; color: #e8eaed; font-size: 1rem; }
+.drawer .input-row input, .preset-row { margin-top: 8px; }
+.canvas-wrap { height: 560px; }
+.facts-list { max-height: 280px; }
+#knowledge-card.collapsed #knowledge-body { display: block; }
+</style>
+</head>
+<body>
+
+<canvas id="glow-field" aria-hidden="true"></canvas>
+<script>
+/* glow-field v1. Snapshot of this look: versions/neural_lab-glow-v1.html */
+(function () {
+  const canvas = document.getElementById("glow-field");
+  const ctx = canvas.getContext("2d");
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const field = document.createElement("canvas");
+  const fw = 180, fh = 112;
+  field.width = fw;
+  field.height = fh;
+  const fctx = field.getContext("2d", { willReadFrequently: true });
+  const image = fctx.createImageData(fw, fh);
+  const data = image.data;
+  const wells = [
+    { x: 0.50, y: 0.46, r: 0.15, ax: 1.35, ay: 0.78, drift: 0.32, seed: 1.1, cr: 36, cg: 72, cb: 198 },
+    { x: 0.38, y: 0.40, r: 0.08, ax: 1.1, ay: 0.88, drift: 0.46, seed: 2.6, cr: 52, cg: 68, cb: 188 },
+    { x: 0.64, y: 0.54, r: 0.07, ax: 1.05, ay: 0.92, drift: 0.38, seed: 4.2, cr: 22, cg: 48, cb: 160 },
+    { x: 0.16, y: 0.18, r: 0.07, ax: 1.0, ay: 1.0, drift: 0.36, seed: 5.1, cr: 88, cg: 42, cb: 156 },
+    { x: 0.84, y: 0.80, r: 0.07, ax: 1.05, ay: 0.9, drift: 0.34, seed: 8.8, cr: 18, cg: 52, cb: 150 }
+  ];
+
+  function hash(ix, iy) {
+    let n = Math.imul(ix, 374761393) + Math.imul(iy, 668265263);
+    n = Math.imul(n ^ (n >>> 13), 1274126177);
+    return ((n ^ (n >>> 16)) >>> 0) / 4294967295;
+  }
+  function noise(x, y) {
+    const x0 = Math.floor(x), y0 = Math.floor(y);
+    const fx = x - x0, fy = y - y0;
+    const ux = fx * fx * (3 - 2 * fx);
+    const uy = fy * fy * (3 - 2 * fy);
+    const a = hash(x0, y0), b = hash(x0 + 1, y0);
+    const c = hash(x0, y0 + 1), d = hash(x0 + 1, y0 + 1);
+    return a + (b - a) * ux + (c - a) * uy + (a - b - c + d) * ux * uy;
+  }
+  function fbm(x, y) {
+    return noise(x, y) * 0.62
+      + noise(x * 2.07 + 3.1, y * 2.07) * 0.28
+      + noise(x * 4.13 + 7.4, y * 4.13) * 0.1;
+  }
+  const rnd = (function (seed) {
+    return function () {
+      seed = (seed + 0x6d2b79f5) | 0;
+      let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  })(11);
+  const neurons = [];
+  const clusters = [
+    [0.18, 0.20], [0.40, 0.13], [0.66, 0.16], [0.86, 0.24],
+    [0.16, 0.48], [0.86, 0.52],
+    [0.16, 0.84], [0.50, 0.88], [0.84, 0.78]
+  ];
+  for (let i = 0; i < clusters.length; i++) {
+    for (let k = 0; k < 5; k++) {
+      neurons.push({
+        x: Math.min(0.96, Math.max(0.04, clusters[i][0] + (rnd() - 0.5) * 0.12)),
+        y: Math.min(0.94, Math.max(0.08, clusters[i][1] + (rnd() - 0.5) * 0.09)),
+        heat: 0,
+        potential: 0,
+        refractory: 0,
+        cluster: i,
+        out: []
+      });
+    }
+  }
+  function pairTaken(a, b) {
+    const from = neurons[a].out;
+    for (let k = 0; k < from.length; k++) if (from[k].j === b) return true;
+    const back = neurons[b].out;
+    for (let k = 0; k < back.length; k++) if (back[k].j === a) return true;
+    return false;
+  }
+  function crossesCopy(a, b) {
+    const mx = (a.x + b.x) * 0.5, my = (a.y + b.y) * 0.5;
+    return mx > 0.22 && mx < 0.78 && my > 0.30 && my < 0.72;
+  }
+  for (let i = 0; i < neurons.length; i++) {
+    const near = [];
+    for (let j = 0; j < neurons.length; j++) {
+      if (i === j || neurons[j].cluster !== neurons[i].cluster) continue;
+      const dx = neurons[j].x - neurons[i].x;
+      const dy = neurons[j].y - neurons[i].y;
+      const d = dx * dx + dy * dy;
+      if (d < 0.028) near.push({ j, d });
+    }
+    near.sort((a, b) => a.d - b.d);
+    for (let k = 0; k < near.length && neurons[i].out.length < 3; k++) {
+      if (pairTaken(i, near[k].j)) continue;
+      neurons[i].out.push({
+        j: near[k].j,
+        w: 0.55 + rnd() * 0.8,
+        points: axon(neurons[i], neurons[near[k].j])
+      });
+    }
+  }
+  for (let c = 0; c < clusters.length; c++) {
+    for (let h = 0; h < 2; h++) {
+      const hub = c * 5 + h;
+      const hops = [];
+      for (let j = 0; j < neurons.length; j++) {
+        if (neurons[j].cluster === c) continue;
+        const dx = neurons[j].x - neurons[hub].x;
+        const dy = neurons[j].y - neurons[hub].y;
+        const d = Math.hypot(dx, dy);
+        if (d < 0.14 || d > 0.46) continue;
+        if (crossesCopy(neurons[hub], neurons[j])) continue;
+        hops.push({ j, d });
+      }
+      hops.sort((a, b) => a.d - b.d);
+      const hop = hops[h] || hops[0];
+      if (hop && !pairTaken(hub, hop.j)) {
+        neurons[hub].out.push({
+          j: hop.j,
+          w: 0.78 + rnd() * 0.65,
+          points: axon(neurons[hub], neurons[hop.j])
+        });
+      }
+    }
+  }
+  const arcs = [];
+  const threshold = 1.08;
+  let nextSpark = 1.2;
+  function axon(from, to) {
+    const dx = to.x - from.x, dy = to.y - from.y;
+    const len = Math.hypot(dx, dy) || 1;
+    const nx = -dy / len, ny = dx / len;
+    const bend = (rnd() - 0.5) * 0.04;
+    const pts = [];
+    for (let s = 0; s <= 12; s++) {
+      const p = s / 12;
+      const lift = Math.sin(p * Math.PI) * bend;
+      pts.push([from.x + dx * p + nx * lift, from.y + dy * p + ny * lift]);
+    }
+    return pts;
+  }
+  function emit(index, t) {
+    const node = neurons[index];
+    for (let k = 0; k < node.out.length; k++) {
+      const syn = node.out[k];
+      const release = 0.58 + Math.min(0.36, syn.w * 0.28);
+      if (Math.random() > release) continue;
+      const dist = Math.hypot(neurons[syn.j].x - node.x, neurons[syn.j].y - node.y);
+      arcs.push({
+        points: syn.points,
+        to: syn.j,
+        w: syn.w * (0.84 + Math.random() * 0.32),
+        born: t,
+        hue: 196 + Math.random() * 52,
+        travel: 0.26 + dist * 1.55 + Math.random() * 0.12,
+        fade: 0.7,
+        delivered: false
+      });
+    }
+  }
+  function spike(index, t) {
+    const node = neurons[index];
+    if (t < node.refractory) return;
+    node.heat = 1;
+    node.potential = 0;
+    node.refractory = t + 0.85;
+    emit(index, t);
+  }
+  function deliver(index, weight, t) {
+    const node = neurons[index];
+    if (t < node.refractory) return;
+    node.potential += weight;
+    if (node.potential >= threshold) spike(index, t);
+  }
+  function storm(t, dt) {
+    const W = window.innerWidth, H = window.innerHeight;
+    for (let i = 0; i < neurons.length; i++) {
+      const node = neurons[i];
+      node.heat *= Math.exp(-dt * 0.72);
+      node.potential *= Math.exp(-dt * 0.42);
+    }
+    for (let i = arcs.length - 1; i >= 0; i--) {
+      const arc = arcs[i];
+      const age = t - arc.born;
+      if (!arc.delivered && age >= arc.travel) {
+        arc.delivered = true;
+        deliver(arc.to, arc.w, t);
+      }
+      if (age > arc.travel + arc.fade) arcs.splice(i, 1);
+    }
+    const traveling = arcs.reduce((n, arc) => n + (arc.delivered ? 0 : 1), 0);
+    if (t > nextSpark && traveling < 8) {
+      const groups = [];
+      for (let c = 0; c < clusters.length; c++) {
+        const members = [];
+        for (let i = 0; i < neurons.length; i++) {
+          const node = neurons[i];
+          if (node.cluster !== c || !node.out.length || t < node.refractory) continue;
+          let crowded = false;
+          for (let k = 0; k < neurons.length; k++) {
+            if (neurons[k].heat < 0.2) continue;
+            const dx = neurons[k].x - node.x, dy = neurons[k].y - node.y;
+            if (dx * dx + dy * dy < 0.04) { crowded = true; break; }
+          }
+          if (!crowded) members.push(i);
+        }
+        if (members.length) groups.push(members);
+      }
+      const bursts = Math.random() < 0.6 ? 2 : 1;
+      for (let b = 0; b < bursts && groups.length; b++) {
+        const pick = (Math.random() * groups.length) | 0;
+        const members = groups.splice(pick, 1)[0];
+        spike(members[(Math.random() * members.length) | 0], t);
+      }
+      nextSpark = t + 1.35 + Math.random() * 1.7;
+    }
+    ctx.save();
+    ctx.globalCompositeOperation = "screen";
+    for (let i = 0; i < neurons.length; i++) {
+      const node = neurons[i];
+      const glowAmt = Math.max(node.heat, Math.min(0.34, node.potential * 0.24));
+      if (glowAmt < 0.04) continue;
+      const x = node.x * W, y = node.y * H;
+      const reach = 16 + glowAmt * 58;
+      const glow = ctx.createRadialGradient(x, y, 0, x, y, reach);
+      glow.addColorStop(0, "rgba(214,228,255," + (0.22 * glowAmt) + ")");
+      glow.addColorStop(0.45, "rgba(64,104,220," + (0.1 * glowAmt) + ")");
+      glow.addColorStop(1, "rgba(0,0,0,0)");
+      ctx.fillStyle = glow;
+      ctx.beginPath();
+      ctx.arc(x, y, reach, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.lineJoin = "round";
+    ctx.lineCap = "round";
+    for (let i = 0; i < arcs.length; i++) {
+      const arc = arcs[i];
+      const age = t - arc.born;
+      const travelU = Math.min(1, age / arc.travel);
+      const fade = age <= arc.travel ? 1 : Math.exp(-(age - arc.travel) / 0.42);
+      if (fade < 0.04) continue;
+      const last = Math.max(1, Math.round(travelU * (arc.points.length - 1)));
+      const span = arc.points.length - 1;
+      function tone(behind) {
+        const hue = arc.hue + travelU * 46 + behind * 42;
+        const light = Math.max(36, 90 - behind * 78);
+        const sat = 58 + behind * 18;
+        const alpha = fade * Math.max(0.05, 0.5 - behind * 0.72);
+        return "hsla(" + hue.toFixed(1) + "," + sat.toFixed(0) + "%," + light.toFixed(0) + "%," + alpha.toFixed(3) + ")";
+      }
+      ctx.shadowColor = "hsla(" + (arc.hue + travelU * 46).toFixed(1) + ",70%,72%,0.85)";
+      for (let s = 1; s <= last; s++) {
+        const along = s / span;
+        const behind = Math.max(0, travelU - along);
+        const behindPrev = Math.max(0, travelU - (s - 1) / span);
+        const wave = Math.sin(t * 7 + s * 0.9) * behind * 2.2;
+        const ax = arc.points[s][0] - arc.points[s - 1][0];
+        const ay = arc.points[s][1] - arc.points[s - 1][1];
+        const alen = Math.hypot(ax, ay) || 1;
+        const ox = (-ay / alen) * wave, oy = (ax / alen) * wave;
+        const x0 = arc.points[s - 1][0] * W, y0 = arc.points[s - 1][1] * H;
+        const x1 = arc.points[s][0] * W + ox, y1 = arc.points[s][1] * H + oy;
+        if (Math.hypot(x1 - x0, y1 - y0) < 0.4) continue;
+        const grad = ctx.createLinearGradient(x0, y0, x1, y1);
+        grad.addColorStop(0, tone(behindPrev));
+        grad.addColorStop(1, tone(behind));
+        ctx.shadowBlur = behind < 0.12 ? 10 : 0;
+        ctx.beginPath();
+        ctx.moveTo(x0, y0);
+        ctx.lineTo(x1, y1);
+        ctx.strokeStyle = grad;
+        ctx.lineWidth = 0.65 + Math.max(0, 1.3 - behind * 2.4);
+        ctx.stroke();
+      }
+      const head = arc.points[last];
+      const hx = head[0] * W, hy = head[1] * H;
+      ctx.shadowBlur = 0;
+      ctx.fillStyle = tone(0).replace(/,[0-9.]+\)/, "," + (0.9 * fade).toFixed(3) + ")");
+      ctx.beginPath();
+      ctx.arc(hx, hy, 2.2, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.shadowBlur = 0;
+    ctx.restore();
+  }
+  function resize() {
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    canvas.width = Math.round(window.innerWidth * dpr);
+    canvas.height = Math.round(window.innerHeight * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  function paint(t) {
+    for (let y = 0; y < fh; y++) {
+      const v = y / fh;
+      for (let x = 0; x < fw; x++) {
+        const u = x / fw;
+        const uu = u + (fbm(u * 2.1 + t * 0.13, v * 2.1 + 1.3) - 0.5) * 0.26;
+        const vv = v + (fbm(u * 2.1 + 4.8, v * 2.1 - t * 0.11) - 0.5) * 0.26;
+        let rr = 0, gg = 0, bb = 0, energy = 0;
+        for (let i = 0; i < wells.length; i++) {
+          const well = wells[i];
+          const cx = well.x + Math.sin(t * well.drift + well.seed) * 0.055;
+          const cy = well.y + Math.cos(t * well.drift * 0.77 + well.seed * 1.4) * 0.045;
+          const dx = (uu - cx) * fw / well.ax;
+          const dy = (vv - cy) * fh / well.ay;
+          const rad = well.r * fw;
+          const e = Math.exp(-(dx * dx + dy * dy) / (rad * rad * 0.42));
+          rr += e * well.cr;
+          gg += e * well.cg;
+          bb += e * well.cb;
+          energy += e;
+        }
+        const vein = fbm(uu * 2.6 + t * 0.16, vv * 2.6 + 2.4);
+        const silk = fbm(uu * 5.2 - t * 0.12, vv * 4.6 + t * 0.09);
+        const shade = 0.15 + (vein - 0.32) * 1.55 + (silk - 0.5) * 0.7;
+        const shaped = Math.pow(Math.max(0, energy * shade), 1.7);
+        const light = Math.min(0.78, shaped * 2.4);
+        const inv = energy > 0.001 ? 1 / energy : 0;
+        const p = (y * fw + x) * 4;
+        data[p] = Math.min(255, rr * inv);
+        data[p + 1] = Math.min(255, gg * inv);
+        data[p + 2] = Math.min(255, bb * inv);
+        data[p + 3] = Math.min(108, light * 160);
+      }
+    }
+    fctx.putImageData(image, 0, 0);
+    const W = window.innerWidth, H = window.innerHeight;
+    ctx.clearRect(0, 0, W, H);
+    ctx.save();
+    ctx.filter = "blur(12px)";
+    ctx.globalCompositeOperation = "screen";
+    ctx.drawImage(field, -24, -24, W + 48, H + 48);
+    ctx.restore();
+  }
+  resize();
+  window.addEventListener("resize", () => { resize(); if (reduce) paint(0); });
+  if (reduce) { paint(0); return; }
+  let raf = 0, live = true, prev = 0;
+  function frame(now) {
+    if (!live) return;
+    const t = now * 0.001;
+    const dt = prev ? Math.min(0.05, t - prev) : 0.016;
+    prev = t;
+    paint(t);
+    storm(t, dt);
+    raf = requestAnimationFrame(frame);
+  }
+  document.addEventListener("visibilitychange", () => {
+    live = !document.hidden;
+    cancelAnimationFrame(raf);
+    if (live) raf = requestAnimationFrame(frame);
+  });
+  raf = requestAnimationFrame(frame);
+})();
+</script>
+<div class="scrim" id="scrim" onclick="closeDrawers()"></div>
+
+<aside class="rail">
+  <button class="rail-mark" onclick="newChat()" title="Midel — new chat" aria-label="Midel, new chat">
+    <img class="mark" src="midel-mark.png" alt="">
+  </button>
+  <button id="rail-teach" onclick="toggleKnowledge()" title="Teaching">✎</button>
+  <button id="rail-diagram" onclick="toggleDiagram()" title="Live diagrams">◈</button>
+  <div class="rail-spacer"></div>
+  <div class="db-pill rail-status" title="Database">
+    <div class="status-dot" id="db-status-dot"></div>
+  </div>
+</aside>
+
+<header class="topbar">
+  <div class="settings" id="settings">
+    <button class="top-btn pill" onclick="toggleSettings()">Settings</button>
+    <div class="settings-pop">
+      <span id="db-status-text">Database: Initializing...</span>
+      <button onclick="saveToDatabase()">Save</button>
+      <button onclick="exportBrainFile()">Export</button>
+      <label>
+        Import
+        <input type="file" id="file-import" accept=".json" onchange="importBrainFile(event)">
+      </label>
+      <button onclick="resetDatabase()">Reset short lessons</button>
+    </div>
+  </div>
+</header>
+
+<main class="stage" id="stage">
+  <img class="hero-logo" src="midel-logo.png" alt="Midel">
+  <div class="hero" id="hero">
+    <h1>Where should we start?</h1>
+  </div>
+  <div class="thread" id="thread"></div>
+  <div class="quick-prompts" id="quick-prompts"></div>
+  <div class="composer">
+    <button type="button" class="icon-btn" onclick="toggleKnowledge()" title="Teach a fact">＋</button>
+    <input type="text" id="prompt-input" placeholder="Ask Midel" autocomplete="off" spellcheck="true" autocorrect="on" autocapitalize="off">
+    <div id="prompt-suggest" class="prompt-suggest"></div>
+    <span class="model-chip" id="knowledge-count"></span>
+    <button type="button" class="send-btn" onclick="runPrompt(0)" title="Ask">↑</button>
+  </div>
+  <div class="live-sink" id="result-box">
+    <span id="pred-label">Answer</span>
+    <span id="pred-word">—</span>
+    <div id="pred-conf"></div>
+    <div id="prob-list"></div>
+    <div id="gen-stream" style="display:none"><strong id="gen-text"></strong></div>
+    <div id="deep-stream" style="display:none"><strong id="deep-text"></strong></div>
+    <div id="scoreboard"></div>
+  </div>
+</main>
+
+<aside class="drawer left card" id="knowledge-card">
+  <h2>
+    <span>Teaching <span id="knowledge-chevron"></span></span>
+    <button class="btn-success btn-sm" id="btn-train" onclick="trainNetwork()">Train short lessons</button>
+  </h2>
+  <div id="knowledge-body">
+    <div class="preset-row">
+      <button class="btn-preset" onclick="loadPreset('master')">Master</button>
+      <button class="btn-preset" onclick="loadPreset('verification')">Yes / No</button>
+      <button class="btn-preset" onclick="loadPreset('sky')">Sky</button>
+      <button class="btn-preset" onclick="loadPreset('animals')">Animals</button>
+      <button class="btn-preset" onclick="loadPreset('science')">Science</button>
+      <button class="btn-preset" onclick="loadPreset('colors')">Colors</button>
+      <button class="btn-preset" onclick="loadPreset('capitals')">Capitals</button>
+      <button class="btn-preset" onclick="loadPreset('opposites')">Opposites</button>
+    </div>
+    <div class="input-row">
+      <input type="text" id="teach-input" placeholder="Add a fact, or a question and its answer">
+      <button class="btn-primary" onclick="addFact()">Add</button>
+    </div>
+    <div class="train-progress-wrap" id="train-progress-wrap">
+      <div class="train-progress-bar" id="train-progress-bar"></div>
+    </div>
+    <p id="library-note"></p>
+    <div class="facts-list" id="learned-list"></div>
+    <div class="facts-list" id="facts-list"></div>
+    <canvas id="loss-canvas"></canvas>
+    <div class="stats-strip">
+      <span>Facts: <strong id="stat-facts">0</strong></span>
+      <span>Vocab: <strong id="stat-vocab">0</strong></span>
+      <span>Weights: <strong id="stat-weights">0</strong></span>
+      <span>Loss: <strong id="stat-loss">—</strong></span>
+    </div>
+  </div>
+</aside>
+
+<aside class="drawer right" id="heatmap-card">
+  <header class="inspector-head">
+    <h2>How this answer was made</h2>
+  </header>
+  <div class="inspector-scroll">
+    <p id="trace-route">Ask a question. The diagrams update from that pass.</p>
+
+    <section class="live-card">
+      <h3>Path</h3>
+      <ol class="path" id="trace-path"></ol>
+    </section>
+
+    <section class="live-card">
+      <h3>Lessons considered</h3>
+      <div id="trace-lessons"></div>
+    </section>
+
+    <section class="live-card">
+      <h3>Attention <span id="attn-source"></span></h3>
+      <p class="focus-line" id="attn-focus">Waiting for a question</p>
+      <div class="layer-picks" id="trace-layers"></div>
+      <canvas id="flow-canvas"></canvas>
+      <canvas id="heatmap-canvas"></canvas>
+      <div class="heatmap-info">
+        <span id="hover-info">A word can only look at words already read. Brighter means more of its attention.</span>
+        <span id="vocab-stat">Tokens: —</span>
+      </div>
+    </section>
+
+    <section class="live-card">
+      <h3>Heads on the last word</h3>
+      <div id="trace-heads"></div>
+    </section>
+
+    <section class="live-card">
+      <h3>Next word the network preferred</h3>
+      <div class="prob-list" id="trace-probs"></div>
+    </section>
+
+    <section class="live-card">
+      <h3>What is running</h3>
+      <div class="arch" id="trace-arch"></div>
+      <p class="arch-note" id="trace-shape"></p>
+    </section>
+  </div>
+</aside>
+
+<div class="toast" id="toast"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     JAVASCRIPT NEURAL NETWORK & DATABASE ENGINE
+     ═══════════════════════════════════════════════════════════════════ -->
+<script src="biology_facts.js"></script>
+<script src="math_facts.js"></script>
+<script src="gemstone_facts.js"></script>
+<script src="chemistry_facts.js"></script>
+<script src="geography_facts.js"></script>
+<script src="skills_facts.js"></script>
+<script src="science_library.js"></script>
+<script src="stage3_brain.js?v=1189"></script>
+<script src="deep_model.js"></script>
+<script>
+/* ── Tokenizer ──────────────────────────────────────────────────── */
+function tokenize(text) {
+  if (!text) return [];
+  const s = text.toLowerCase().replace(/(\d),(?=\d)/g, "$1");
+  return s.match(/\d+(?:\.\d+)?%?|[a-z]+|[?.!,]/g) || [];
+}
+
+/* ── Matrix & Vector Math in Pure JS ────────────────────────────── */
+function mulberry32(seed) {
+  let s = seed >>> 0;
+  return function() {
+    s = (s + 0x6D2B79F5) >>> 0;
+    let t = Math.imul(s ^ (s >>> 15), 1 | s);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+function randn(rows, cols, scale = 0.1, rng = Math.random) {
+  const out = [];
+  for (let i = 0; i < rows; i++) {
+    const row = new Float32Array(cols);
+    for (let j = 0; j < cols; j++) {
+      const u = Math.max(1e-15, rng());
+      const v = rng();
+      row[j] = Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v) * scale;
+    }
+    out.push(row);
+  }
+  return out;
+}
+
+function zeros(rows, cols) {
+  return Array.from({length: rows}, () => new Float32Array(cols));
+}
+
+function clip(v, m = 1.0) {
+  return Math.max(-m, Math.min(m, v));
+}
+
+function softmax(arr) {
+  const max = Math.max(...arr);
+  let sum = 0;
+  const exp = new Float32Array(arr.length);
+  for (let i = 0; i < arr.length; i++) {
+    exp[i] = Math.exp(arr[i] - max);
+    sum += exp[i];
+  }
+  for (let i = 0; i < arr.length; i++) exp[i] /= (sum + 1e-12);
+  return exp;
+}
+
+function matmul(A, B) {
+  const rA = A.length, cA = A[0].length, cB = B[0].length;
+  const out = Array.from({length: rA}, () => new Float32Array(cB));
+  for (let i = 0; i < rA; i++) {
+    for (let k = 0; k < cA; k++) {
+      const a = A[i][k];
+      if (a === 0) continue;
+      for (let j = 0; j < cB; j++) {
+        out[i][j] += a * B[k][j];
+      }
+    }
+  }
+  return out;
+}
+
+function transpose(A) {
+  const r = A.length, c = A[0].length;
+  const out = Array.from({length: c}, () => new Float32Array(r));
+  for (let i = 0; i < r; i++) {
+    for (let j = 0; j < c; j++) out[j][i] = A[i][j];
+  }
+  return out;
+}
+
+/* ── Causal Transformer Class (Client-Side) ───────────────────────── */
+class BrowserTransformer {
+  constructor(d_model = 32, max_seq_len = 64, lr = 0.005) {
+    this.d_model = d_model;
+    this.max_seq_len = max_seq_len;
+    this.lr = lr;
+    this.w2i = {};
+    this.i2w = [];
+    this.params = null;
+    this.lossHistory = [];
+    this.knowledge = [];
+    this.isTrained = false;
+    this.seed = 7;
+  }
+
+  buildVocab(texts) {
+    const set = new Set();
+    for (const t of texts) {
+      for (const tok of tokenize(t)) set.add(tok);
+    }
+    this.i2w = Array.from(set).sort();
+    this.w2i = Object.fromEntries(this.i2w.map((w, i) => [w, i]));
+    this.initParams();
+  }
+
+  initParams() {
+    const V = Math.max(2, this.i2w.length);
+    const D = this.d_model;
+    const T = this.max_seq_len;
+    const rng = mulberry32(this.seed || 7);
+    this.params = {
+      E: randn(V, D, 0.1, rng),
+      P: randn(T, D, 0.1, rng),
+      Wq: randn(D, D, 0.1, rng),
+      Wk: randn(D, D, 0.1, rng),
+      Wv: randn(D, D, 0.1, rng),
+      Wo: randn(D, D, 0.1, rng),
+      W1: randn(D, 2 * D, 0.1, rng),
+      b1: new Float32Array(2 * D),
+      W2: randn(2 * D, D, 0.1, rng),
+      b2: new Float32Array(D),
+      Whead: randn(D, V, 0.1, rng)
+    };
+    this.lossHistory = [];
+  }
+
+  countParameters() {
+    if (!this.params) return 0;
+    let total = 0;
+    for (const k in this.params) {
+      const v = this.params[k];
+      if (typeof v[0] === 'number') total += v.length;
+      else total += v.length * v[0].length;
+    }
+    return total;
+  }
+
+  forward(token_ids) {
+    const T = token_ids.length;
+    const D = this.d_model;
+    const X = Array.from({length: T}, (_, t) => {
+      const row = new Float32Array(D);
+      const e = this.params.E[token_ids[t]];
+      const p = this.params.P[t];
+      for (let j = 0; j < D; j++) row[j] = e[j] + p[j];
+      return row;
+    });
+
+    const Q = matmul(X, this.params.Wq);
+    const K = matmul(X, this.params.Wk);
+    const V_mat = matmul(X, this.params.Wv);
+
+    const scale = Math.sqrt(D);
+    const scores = matmul(Q, transpose(K));
+    const A = [];
+    for (let i = 0; i < T; i++) {
+      const row = new Float32Array(T);
+      for (let j = 0; j < T; j++) {
+        row[j] = j > i ? -1e9 : scores[i][j] / scale;
+      }
+      A.push(softmax(row));
+    }
+
+    const C = matmul(A, V_mat);
+    const C_Wo = matmul(C, this.params.Wo);
+    const H = Array.from({length: T}, (_, i) => {
+      const r = new Float32Array(D);
+      for (let j = 0; j < D; j++) r[j] = C_Wo[i][j] + X[i][j];
+      return r;
+    });
+
+    const H_W1 = matmul(H, this.params.W1);
+    const F1 = Array.from({length: T}, (_, i) => {
+      const r = new Float32Array(2 * D);
+      for (let j = 0; j < 2 * D; j++) r[j] = Math.max(0, H_W1[i][j] + this.params.b1[j]);
+      return r;
+    });
+
+    const F1_W2 = matmul(F1, this.params.W2);
+    const Z = Array.from({length: T}, (_, i) => {
+      const r = new Float32Array(D);
+      for (let j = 0; j < D; j++) r[j] = F1_W2[i][j] + this.params.b2[j] + H[i][j];
+      return r;
+    });
+
+    const logits = matmul(Z, this.params.Whead);
+    const probs = logits.map(row => softmax(row));
+
+    return { probs, A, X, Q, K, V_mat, C, H, F1, F2: F1_W2, Z };
+  }
+
+  train(epochs = 150, onProgress = null) {
+    if (!this.knowledge || this.knowledge.length === 0) return;
+    this.buildVocab(this.knowledge);
+
+    const V = this.i2w.length;
+    const D = this.d_model;
+    const lr = this.lr, beta1 = 0.9, beta2 = 0.999, eps = 1e-8;
+
+    const m = {}, v_opt = {};
+    for (const k in this.params) {
+      if (typeof this.params[k][0] === "number") {
+        m[k] = new Float32Array(this.params[k].length);
+        v_opt[k] = new Float32Array(this.params[k].length);
+      } else {
+        m[k] = zeros(this.params[k].length, this.params[k][0].length);
+        v_opt[k] = zeros(this.params[k].length, this.params[k][0].length);
+      }
+    }
+
+    let step = 0;
+    this.lossHistory = [];
+
+    for (let epoch = 0; epoch < epochs; epoch++) {
+      let totalLoss = 0;
+      let validCount = 0;
+
+      for (const s of this.knowledge) {
+        const tokens = tokenize(s).map(w => this.w2i[w]).filter(x => x !== undefined);
+        if (tokens.length < 2) continue;
+
+        const T = Math.min(tokens.length - 1, this.max_seq_len - 1);
+        const x_tok = tokens.slice(0, T);
+        const y_tok = tokens.slice(1, T + 1);
+
+        const { probs, A, X, Q, K, V_mat, C, H, F1, Z } = this.forward(x_tok);
+
+        let sentLoss = 0;
+        for (let t = 0; t < T; t++) {
+          sentLoss -= Math.log(probs[t][y_tok[t]] + 1e-10);
+        }
+        totalLoss += sentLoss / T;
+        validCount++;
+
+        // Backward
+        const dlogits = probs.map((row, i) => {
+          const r = new Float32Array(row);
+          r[y_tok[i]] -= 1.0;
+          for (let j = 0; j < V; j++) r[j] /= T;
+          return r;
+        });
+
+        const dWhead = matmul(transpose(Z), dlogits);
+        const dZ = matmul(dlogits, transpose(this.params.Whead));
+
+        const dF2 = dZ;
+        const dH = Array.from({length: T}, (_, i) => new Float32Array(dZ[i]));
+        const dW2 = matmul(transpose(F1), dF2);
+        const db2 = new Float32Array(D);
+        for (let i = 0; i < T; i++) for (let j = 0; j < D; j++) db2[j] += dF2[i][j];
+
+        const dF1_raw = matmul(dF2, transpose(this.params.W2));
+        const dF1 = Array.from({length: T}, (_, i) => {
+          const r = new Float32Array(2 * D);
+          for (let j = 0; j < 2 * D; j++) r[j] = F1[i][j] > 0 ? dF1_raw[i][j] : 0;
+          return r;
+        });
+        const dW1 = matmul(transpose(H), dF1);
+        const db1 = new Float32Array(2 * D);
+        for (let i = 0; i < T; i++) for (let j = 0; j < 2 * D; j++) db1[j] += dF1[i][j];
+
+        const dH_mlp = matmul(dF1, transpose(this.params.W1));
+        for (let i = 0; i < T; i++) for (let j = 0; j < D; j++) dH[i][j] += dH_mlp[i][j];
+
+        const dC = matmul(dH, transpose(this.params.Wo));
+        const dWo = matmul(transpose(C), dH);
+        const dX = Array.from({length: T}, (_, i) => new Float32Array(dH[i]));
+
+        const dV_mat = matmul(transpose(A), dC);
+        const dA = matmul(dC, transpose(V_mat));
+
+        const scale = Math.sqrt(D);
+        const dscores = Array.from({length: T}, (_, i) => {
+          const row = new Float32Array(T);
+          let sum_dA_A = 0;
+          for (let j = 0; j < T; j++) sum_dA_A += dA[i][j] * A[i][j];
+          for (let j = 0; j < T; j++) {
+            if (j <= i) row[j] = (A[i][j] * (dA[i][j] - sum_dA_A)) / scale;
+          }
+          return row;
+        });
+
+        const dQ = matmul(dscores, K);
+        const dK = matmul(transpose(dscores), Q);
+
+        const dX_Q = matmul(dQ, transpose(this.params.Wq));
+        const dX_K = matmul(dK, transpose(this.params.Wk));
+        const dX_V = matmul(dV_mat, transpose(this.params.Wv));
+        for (let i = 0; i < T; i++) {
+          for (let j = 0; j < D; j++) dX[i][j] += dX_Q[i][j] + dX_K[i][j] + dX_V[i][j];
+        }
+
+        const dWq = matmul(transpose(X), dQ);
+        const dWk = matmul(transpose(X), dK);
+        const dWv = matmul(transpose(X), dV_mat);
+
+        step++;
+        const grads = { Whead: dWhead, W2: dW2, b2: db2, W1: dW1, b1: db1, Wo: dWo, Wq: dWq, Wk: dWk, Wv: dWv };
+        for (const k in grads) {
+          const g = grads[k], p = this.params[k], mk = m[k], vk = v_opt[k];
+          if (typeof g[0] === "number") {
+            for (let j = 0; j < g.length; j++) {
+              const val = clip(g[j], 1.0);
+              mk[j] = beta1 * mk[j] + (1 - beta1) * val;
+              vk[j] = beta2 * vk[j] + (1 - beta2) * val * val;
+              const mhat = mk[j] / (1 - Math.pow(beta1, step));
+              const vhat = vk[j] / (1 - Math.pow(beta2, step));
+              p[j] -= lr * mhat / (Math.sqrt(vhat) + eps);
+            }
+          } else {
+            for (let r = 0; r < g.length; r++) {
+              for (let c = 0; c < g[0].length; c++) {
+                const val = clip(g[r][c], 1.0);
+                mk[r][c] = beta1 * mk[r][c] + (1 - beta1) * val;
+                vk[r][c] = beta2 * vk[r][c] + (1 - beta2) * val * val;
+                const mhat = mk[r][c] / (1 - Math.pow(beta1, step));
+                const vhat = vk[r][c] / (1 - Math.pow(beta2, step));
+                p[r][c] -= lr * mhat / (Math.sqrt(vhat) + eps);
+              }
+            }
+          }
+        }
+
+        for (let t = 0; t < T; t++) {
+          const idx = x_tok[t];
+          for (let j = 0; j < D; j++) {
+            this.params.E[idx][j] -= lr * clip(dX[t][j], 1.0);
+            this.params.P[t][j] -= lr * clip(dX[t][j], 1.0);
+          }
+        }
+      }
+
+      const avgLoss = validCount > 0 ? totalLoss / validCount : 0;
+      if (epoch % 5 === 0 || epoch === epochs - 1) {
+        this.lossHistory.push(avgLoss);
+      }
+      if (onProgress && epoch % 10 === 0) {
+        onProgress((epoch + 1) / epochs, avgLoss);
+      }
+    }
+
+    this.isTrained = true;
+    if (onProgress) onProgress(1.0, this.lossHistory[this.lossHistory.length - 1]);
+  }
+
+  predictNext(prompt, topK = 6) {
+    if (!this.params || !this.isTrained) return null;
+    const rawTokens = tokenize(prompt);
+    const known = rawTokens.filter(w => this.w2i[w] !== undefined);
+    if (known.length === 0) return null;
+
+    const token_ids = known.slice(-this.max_seq_len).map(w => this.w2i[w]);
+    const { probs, A } = this.forward(token_ids);
+
+    const lastProbs = probs[probs.length - 1];
+    const top = Array.from({length: this.i2w.length}, (_, i) => ({
+      word: this.i2w[i],
+      prob: lastProbs[i]
+    }))
+    .filter(x => x.prob > 0.0005)
+    .sort((a, b) => b.prob - a.prob)
+    .slice(0, topK);
+
+    return {
+      tokens: known.slice(-this.max_seq_len),
+      predictions: top,
+      topWord: top.length > 0 ? top[0].word : null,
+      attention: A
+    };
+  }
+
+  // Read a retrieved lesson up to the point the question already covers,
+  // then let the network predict the following words.
+  continueFact(fact, prompt) {
+    const f = tokenize(fact);
+    const q = new Set(tokenize(prompt));
+    const glue = new Set(["the", "a", "an", "of", "to", "is", "are"]);
+    const qi = f.indexOf("?");
+    let stemTokens;
+    let remain;
+    if (qi >= 0 && qi < f.length - 1) {
+      stemTokens = f.slice(0, qi + 1);
+      remain = f.length - qi - 1;
+    } else {
+      let n = 0;
+      for (let i = 0; i < f.length; i++) {
+        if (q.has(f[i]) || glue.has(f[i])) n = i + 1;
+        else break;
+      }
+      if (n === 0 || n >= f.length) return null;
+      stemTokens = f.slice(0, n);
+      remain = f.length - n;
+    }
+    remain = Math.min(remain, 6);
+    let stem = stemTokens.join(" ");
+    const words = [];
+    let conf = 1;
+    for (let i = 0; i < remain; i++) {
+      const next = this.predictNext(stem, this.i2w.length);
+      if (!next || !next.predictions.length) break;
+      const chosen = next.predictions[0];
+      if (!chosen || "?.!".includes(chosen.word)) break;
+      words.push(chosen.word);
+      conf *= Math.max(chosen.prob, 1e-6);
+      stem += " " + chosen.word;
+    }
+    if (!words.length) return null;
+    return { text: words.join(" "), prob: Math.pow(conf, 1 / words.length) };
+  }
+
+  // Any yes/no question: find the statement about the same subject and say yes or no with that statement.
+  speak(prompt) {
+    const q = tokenize(prompt).filter(t => t !== "?");
+    const polar = new Set(["is", "are", "do", "does", "did", "can", "could", "has", "have"]);
+    if (!q.length || !polar.has(q[0]) || !this.knowledge) return null;
+    const skip = new Set(["is", "are", "do", "does", "did", "can", "could", "has", "have", "the", "a", "an", "of", "to", "what", "when", "where", "who", "which"]);
+    const qContent = q.slice(1).filter(w => !skip.has(w));
+    const subject = qContent[0];
+    if (!subject) return null;
+
+    let best = null;
+    let bestScore = 0;
+    for (const fact of this.knowledge) {
+      const raw = tokenize(fact);
+      if (raw.includes("?")) continue;
+      const t = raw.filter(w => w !== "." && w !== "," && w !== "!");
+      if (!t.includes(subject)) continue;
+      const overlap = qContent.filter(w => t.includes(w)).length;
+      const score = overlap + 0.25;
+      if (score > bestScore) {
+        bestScore = score;
+        best = t;
+      }
+    }
+    if (!best) return null;
+
+    const agrees = qContent.every(w => best.includes(w)) && !best.includes("not");
+    let clause = best.join(" ");
+    if (q.includes("the") && best[0] !== "the") clause = "the " + clause;
+    return (agrees ? "yes, " : "no, ") + clause + ".";
+  }
+
+  // Search the whole knowledge base with the network's own word vectors,
+  // then read the part of the closest lesson that the question did not already say.
+  recall(prompt) {
+    if (!this.params || !this.knowledge || this.knowledge.length === 0) return null;
+    const glue = new Set(["what", "when", "where", "who", "which", "is", "are", "do", "does", "did", "the", "a", "an", "of", "to", "?", "color"]);
+    const qTokens = tokenize(prompt);
+    const qSet = new Set(qTokens);
+    const qContent = qTokens.filter(w => !glue.has(w));
+    if (qContent.length === 0) return null;
+
+    const embed = (text) => {
+      const ids = tokenize(text).filter(w => this.w2i[w] !== undefined && !glue.has(w));
+      const use = ids.length ? ids : tokenize(text).filter(w => this.w2i[w] !== undefined);
+      if (!use.length || !this.params.E) return null;
+      const D = this.d_model;
+      const v = new Float32Array(D);
+      for (const id of use) {
+        const row = this.params.E[id];
+        if (!row) continue;
+        for (let j = 0; j < D; j++) v[j] += row[j];
+      }
+      let n = 0;
+      for (let j = 0; j < D; j++) n += v[j] * v[j];
+      n = Math.sqrt(n) + 1e-8;
+      for (let j = 0; j < D; j++) v[j] /= n;
+      return v;
+    };
+    const qVec = embed(prompt);
+    if (!qVec) return null;
+
+    const answerOf = (fact) => {
+      const f = tokenize(fact);
+      const qi = f.lastIndexOf("?");
+      if (qi >= 0 && qi < f.length - 1) return f.slice(qi + 1).join(" ");
+      const keep = new Set(["the", "a", "an", "of", "to"]);
+      let end = -1;
+      for (let i = f.length - 1; i >= 0; i--) {
+        if (!qSet.has(f[i])) { end = i; break; }
+      }
+      if (end < 0) return null;
+      let start = end;
+      for (let i = end; i >= 0; i--) {
+        if (!qSet.has(f[i]) || keep.has(f[i])) start = i;
+        else break;
+      }
+      while (start <= end && qSet.has(f[start])) start++;
+      if (start > end) return null;
+      return f.slice(start, end + 1).join(" ");
+    };
+
+    const kind = qTokens[0];
+    const asks = kind === "what" || kind === "is" || kind === "do" || kind === "where" || qTokens[qTokens.length - 1] === "?";
+    const hits = [];
+    for (const fact of this.knowledge) {
+      const answer = answerOf(fact);
+      if (!answer) continue;
+      const fTokens = tokenize(fact);
+      const covered = qContent.filter(w => fTokens.includes(w)).length / qContent.length;
+      if (covered < 0.5) continue;
+      const fVec = embed(fact);
+      if (!fVec) continue;
+      let cos = 0;
+      for (let j = 0; j < qVec.length; j++) cos += qVec[j] * fVec[j];
+      let score = 0.35 * cos + 0.65 * covered;
+      let prefix = 0;
+      const limit = Math.min(qTokens.length, fTokens.length);
+      for (let i = 0; i < limit; i++) {
+        if (qTokens[i] !== fTokens[i]) break;
+        prefix++;
+      }
+      const prefixRatio = prefix / qTokens.length;
+      if (prefixRatio === 1) score += 2;
+      else score += prefixRatio * 0.4;
+      if (covered === 1) score += 0.2;
+      if (asks && kind !== "when" && fTokens.includes("?")) score += 0.15;
+      const novel = tokenize(answer).filter(w => !qSet.has(w) && !glue.has(w));
+      if (novel.length === 0) score -= 0.45;
+      hits.push({ fact, answer, score });
+    }
+    if (!hits.length) return null;
+    hits.sort((a, b) => b.score - a.score);
+    const best = hits[0];
+    if (best.score < 0.45) return null;
+    const predicted = this.continueFact(best.fact, prompt);
+    if (!predicted) return null;
+    const spoken = this.speak(prompt) || predicted.text;
+    return {
+      word: spoken,
+      reason: `predicted from "${best.fact}"`,
+      predictions: [{ word: spoken, prob: predicted.prob }]
+    };
+  }
+
+  generate(prompt, maxTokens = 3) {
+    let current = prompt;
+    const generated = [];
+    for (let i = 0; i < maxTokens; i++) {
+      const res = this.predictNext(current, 1);
+      if (!res || !res.topWord) break;
+      generated.push(res.topWord);
+      current += " " + res.topWord;
+      if ([".", "!", "?"].includes(res.topWord)) break;
+    }
+    return generated.join(" ");
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   INDEXEDDB DATABASE ENGINE
+   ═══════════════════════════════════════════════════════════════════ */
+class NeuralDatabase {
+  constructor(dbName = "NeuralBrainDB", version = 2) {
+    this.dbName = dbName;
+    this.version = version;
+    this.db = null;
+  }
+
+  async open() {
+    return new Promise((resolve, reject) => {
+      const req = indexedDB.open(this.dbName, this.version);
+      req.onupgradeneeded = e => {
+        const db = e.target.result;
+        if (!db.objectStoreNames.contains("models")) {
+          db.createObjectStore("models", { keyPath: "id" });
+        }
+      };
+      req.onsuccess = e => {
+        this.db = e.target.result;
+        resolve(this.db);
+      };
+      req.onerror = e => reject(e);
+    });
+  }
+
+  async saveModel(brain) {
+    if (!this.db) await this.open();
+    const serializedParams = {};
+    if (brain.params) {
+      for (const k in brain.params) {
+        const v = brain.params[k];
+        if (typeof v[0] === 'number') {
+          serializedParams[k] = Array.from(v);
+        } else {
+          serializedParams[k] = v.map(row => Array.from(row));
+        }
+      }
+    }
+
+    const record = {
+      id: "active_brain",
+      savedAt: new Date().toISOString(),
+      knowledge: brain.knowledge,
+      d_model: brain.d_model,
+      max_seq_len: brain.max_seq_len,
+      lr: brain.lr,
+      i2w: brain.i2w,
+      w2i: brain.w2i,
+      lossHistory: brain.lossHistory,
+      isTrained: brain.isTrained,
+      curriculumRev: CURRICULUM_REV,
+      params: serializedParams
+    };
+
+    return new Promise((resolve, reject) => {
+      const tx = this.db.transaction(["models"], "readwrite");
+      const store = tx.objectStore("models");
+      const req = store.put(record);
+      req.onsuccess = () => resolve(record);
+      req.onerror = e => reject(e);
+    });
+  }
+
+  async loadModel() {
+    if (!this.db) await this.open();
+    return new Promise((resolve, reject) => {
+      const tx = this.db.transaction(["models"], "readonly");
+      const store = tx.objectStore("models");
+      const req = store.get("active_brain");
+      req.onsuccess = e => resolve(e.target.result || null);
+      req.onerror = e => reject(e);
+    });
+  }
+
+  async clear() {
+    if (!this.db) await this.open();
+    return new Promise((resolve, reject) => {
+      const tx = this.db.transaction(["models"], "readwrite");
+      const store = tx.objectStore("models");
+      const req = store.delete("active_brain");
+      req.onsuccess = () => resolve();
+      req.onerror = e => reject(e);
+    });
+  }
+
+  async saveLearned(facts) {
+    if (!this.db) await this.open();
+    const record = { id: "learned_facts", savedAt: new Date().toISOString(), facts };
+    return new Promise((resolve, reject) => {
+      const tx = this.db.transaction(["models"], "readwrite");
+      const req = tx.objectStore("models").put(record);
+      req.onsuccess = () => resolve(record);
+      req.onerror = e => reject(e);
+    });
+  }
+
+  async loadLearned() {
+    if (!this.db) await this.open();
+    return new Promise((resolve, reject) => {
+      const tx = this.db.transaction(["models"], "readonly");
+      const req = tx.objectStore("models").get("learned_facts");
+      req.onsuccess = e => resolve((e.target.result && e.target.result.facts) || []);
+      req.onerror = e => reject(e);
+    });
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   EXPANDED MASTER CURRICULUM (111 Facts & Lessons)
+   ═══════════════════════════════════════════════════════════════════ */
+const CURRICULUM = {
+  sky: [
+    "what is the sky during the day ? blue",
+    "what is the sky during the night ? dark",
+    "the sky is blue during the day",
+    "the sky is dark during the night",
+    "what shines during the day ? sun",
+    "what shines during the night ? moon",
+    "the sun shines during the day",
+    "the moon shines during the night",
+    "stars shine during the night",
+    "rain falls from the clouds",
+    "where does rain fall from ? clouds"
+  ],
+  colors: [
+    "what color is grass ? green",
+    "what color is snow ? white",
+    "what color is coal ? black",
+    "what color is the ocean ? blue",
+    "what color are bananas ? yellow",
+    "what color are flamingos ? pink",
+    "roses are red",
+    "violets are blue",
+    "grass is green",
+    "snow is white",
+    "bananas are yellow"
+  ],
+  science: [
+    "what is fire ? hot",
+    "what is ice ? cold",
+    "what is water ? wet",
+    "what is sugar ? sweet",
+    "what is lemon ? sour",
+    "fire is hot",
+    "ice is cold",
+    "water is wet",
+    "sugar is sweet",
+    "lemons are sour"
+  ],
+  animals: [
+    "what do dogs say ? woof",
+    "what do cats say ? meow",
+    "what do cows say ? moo",
+    "what do lions say ? roar",
+    "what do birds say ? chirp",
+    "what do bees say ? buzz",
+    "what do frogs say ? croak",
+    "what do ducks say ? quack",
+    "what do sheep say ? baa",
+    "what do wolves say ? howl",
+    "dogs say woof",
+    "cats say meow",
+    "cows say moo",
+    "lions say roar",
+    "birds say chirp",
+    "bees say buzz",
+    "frogs say croak",
+    "ducks say quack",
+    "sheep say baa",
+    "wolves say howl",
+    "where do birds fly ? sky",
+    "where do fish swim ? water",
+    "where do moles dig ? earth",
+    "birds fly in the sky",
+    "fish swim in the water"
+  ],
+  capitals: [
+    "what is the capital of france ? paris",
+    "what is the capital of japan ? tokyo",
+    "what is the capital of italy ? rome",
+    "what is the capital of germany ? berlin",
+    "what is the capital of spain ? madrid",
+    "what is the capital of egypt ? cairo",
+    "what is the capital of england ? london",
+    "what is the capital of canada ? ottawa",
+    "the capital of france is paris",
+    "the capital of japan is tokyo",
+    "the capital of italy is rome",
+    "the capital of germany is berlin",
+    "the capital of spain is madrid",
+    "the capital of egypt is cairo",
+    "the capital of england is london",
+    "the capital of canada is ottawa"
+  ],
+  opposites: [
+    "the opposite of hot is cold",
+    "the opposite of cold is hot",
+    "the opposite of day is night",
+    "the opposite of night is day",
+    "the opposite of big is small",
+    "the opposite of small is big",
+    "the opposite of up is down",
+    "the opposite of down is up",
+    "the opposite of happy is sad",
+    "the opposite of fast is slow"
+  ],
+  verification: [
+    "is ice cold ? yes",
+    "is ice hot ? no",
+    "is fire hot ? yes",
+    "is fire cold ? no",
+    "is water wet ? yes",
+    "is water dry ? no",
+    "is sugar sweet ? yes",
+    "is sugar sour ? no",
+    "is the sky blue during the day ? yes",
+    "is the sky dark during the day ? no",
+    "is the sky dark during the night ? yes",
+    "is the sky blue during the night ? no",
+    "do dogs say woof ? yes",
+    "do dogs say meow ? no",
+    "do cats say meow ? yes",
+    "do cats say woof ? no",
+    "is the capital of france paris ? yes",
+    "is the capital of france tokyo ? no",
+    "is the ice hot ? no",
+    "is the ice cold ? yes",
+    "is the fire hot ? yes",
+    "is the fire cold ? no",
+    "is the water wet ? yes",
+    "is the water dry ? no",
+    "is snow hot ? no",
+    "is snow cold ? yes",
+    "is the sun hot ? yes",
+    "is the moon hot ? no"
+  ]
+};
+
+// Combine all into the Master Pack
+CURRICULUM.master = [
+  ...CURRICULUM.sky,
+  ...CURRICULUM.colors,
+  ...CURRICULUM.science,
+  ...CURRICULUM.animals,
+  ...CURRICULUM.capitals,
+  ...CURRICULUM.opposites,
+  ...CURRICULUM.verification
+];
+
+/* ═══════════════════════════════════════════════════════════════════
+   APPLICATION CONTROLLER
+   ═══════════════════════════════════════════════════════════════════ */
+const CURRICULUM_REV = 4;
+const net = new BrowserTransformer(32, 64, 0.005);
+const db = new NeuralDatabase();
+let learnedFacts = [];
+let currentAttention = null;
+let currentTokens = [];
+
+function nextLearnedId() {
+  return Math.max(3000, ...learnedFacts.map(f => f.id || 0)) + 1;
+}
+
+async function rememberFact(text) {
+  if (typeof parseKnowledgeLine !== "function") return { ok: false, reason: "short" };
+  const lesson = parseKnowledgeLine(text);
+  if (!lesson) return { ok: false, reason: "short" };
+  const known = (typeof SCIENCE_LIBRARY !== "undefined" ? SCIENCE_LIBRARY : []).concat(learnedFacts);
+  if (known.some(f => String(f.text).toLowerCase() === lesson.text.toLowerCase())) {
+    return { ok: false, reason: "already" };
+  }
+  learnedFacts.push({
+    id: nextLearnedId(),
+    category: "Learned",
+    text: lesson.text,
+    question: lesson.question || ""
+  });
+  await db.saveLearned(learnedFacts);
+  renderUI();
+  return { ok: true, lesson };
+}
+
+async function init() {
+  setDbStatus("Connecting to IndexedDB...", "saving");
+  try {
+    await db.open();
+    learnedFacts = await db.loadLearned();
+    const saved = await db.loadModel();
+    if (saved && saved.knowledge && saved.knowledge.length > 0) {
+      net.knowledge = saved.knowledge;
+      net.d_model = saved.d_model || 32;
+      net.max_seq_len = 64;
+      net.lr = saved.lr || 0.005;
+      net.i2w = saved.i2w || [];
+      net.w2i = saved.w2i || {};
+      net.lossHistory = saved.lossHistory || [];
+      net.isTrained = saved.isTrained || false;
+
+      if (saved.params) {
+        net.params = {};
+        for (const k in saved.params) {
+          const v = saved.params[k];
+          if (typeof v[0] === 'number') {
+            net.params[k] = new Float32Array(v);
+          } else {
+            net.params[k] = v.map(row => new Float32Array(row));
+          }
+        }
+      }
+
+      const timeStr = new Date(saved.savedAt).toLocaleTimeString();
+      setDbStatus(`IndexedDB Loaded (${timeStr})`, "connected");
+      toast(`Loaded saved brain (${net.knowledge.length} facts) from IndexedDB!`);
+      const missingLessons = CURRICULUM.master.filter(f => !net.knowledge.includes(f));
+      if (missingLessons.length > 0) net.knowledge.push(...missingLessons);
+      if (missingLessons.length > 0 || saved.curriculumRev !== CURRICULUM_REV) {
+        await trainNetwork(false);
+        toast(`Retrained on ${net.knowledge.length} lessons. Facts you added yourself are still in the list.`);
+      }
+    } else {
+      // First boot: load Master Curriculum
+      net.knowledge = Array.from(CURRICULUM.master);
+      setDbStatus("IndexedDB Ready (Master Pack)", "connected");
+      await trainNetwork(false);
+    }
+  } catch (err) {
+    console.error("IndexedDB error:", err);
+    net.knowledge = Array.from(CURRICULUM.master);
+    setDbStatus("DB Fallback", "saving");
+    await trainNetwork(false);
+  }
+
+  renderUI();
+  runPrompt(0);
+  restoreKnowledgePanel();
+  startDiagramAnim();
+  runScoreboard();
+}
+
+function setDbStatus(text, state) {
+  const dot = document.getElementById("db-status-dot");
+  const txt = document.getElementById("db-status-text");
+  txt.textContent = text;
+  dot.className = "status-dot " + (state === "saving" ? "saving" : "");
+}
+
+/* ── Training & Teaching ────────────────────────────────────────── */
+async function trainNetwork(notify = true) {
+  const btn = document.getElementById("btn-train");
+  const pWrap = document.getElementById("train-progress-wrap");
+  const pBar = document.getElementById("train-progress-bar");
+
+  btn.disabled = true;
+  btn.textContent = "⏳ Training...";
+  pWrap.style.display = "block";
+  pBar.style.width = "0%";
+  setDbStatus("Training & Optimizing...", "saving");
+
+  await new Promise(r => setTimeout(r, 20));
+
+  const startTime = performance.now();
+  net.train(150, (pct, loss) => {
+    pBar.style.width = `${pct * 100}%`;
+  });
+  const elapsed = (performance.now() - startTime).toFixed(0);
+
+  btn.disabled = false;
+  btn.textContent = "Train short lessons";
+  pWrap.style.display = "none";
+
+  await saveToDatabase(false);
+
+  renderUI();
+  runPrompt(0);
+
+  if (notify) {
+    toast(`⚡ Trained on ${net.knowledge.length} facts in ${elapsed}ms & saved!`);
+  }
+}
+
+async function addFact() {
+  const input = document.getElementById("teach-input");
+  const text = input.value.trim();
+  if (!text) return;
+  const saved = await rememberFact(text);
+  input.value = "";
+  if (saved.ok) toast("Saved in the knowledge database. The other fields were left as they are.");
+  else if (saved.reason === "already") toast("Already in the knowledge database.");
+  else toast("Write a full fact, or a question followed by an answer of at least a few words.");
+}
+
+async function deleteLearned(idx) {
+  if (idx < 0 || idx >= learnedFacts.length) return;
+  learnedFacts.splice(idx, 1);
+  await db.saveLearned(learnedFacts);
+  renderUI();
+}
+
+document.getElementById("teach-input").addEventListener("keydown", e => {
+  if (e.key === "Enter") addFact();
+});
+
+async function deleteFact(idx) {
+  if (idx >= 0 && idx < net.knowledge.length) {
+    net.knowledge.splice(idx, 1);
+    renderFacts();
+    await trainNetwork(true);
+  }
+}
+
+async function loadPreset(name) {
+  if (!CURRICULUM[name]) return;
+  net.knowledge = Array.from(CURRICULUM[name]);
+  renderFacts();
+
+  const prompts = {
+    master: "what is the capital of japan ?",
+    verification: "is the ice hot ?",
+    sky: "what is the sky during the day ?",
+    animals: "what do lions say ?",
+    science: "what is fire ?",
+    colors: "what color is snow ?",
+    capitals: "what is the capital of france ?",
+    opposites: "the opposite of hot is"
+  };
+  if (prompts[name]) {
+    document.getElementById("prompt-input").value = prompts[name];
+  }
+
+  await trainNetwork(true);
+}
+
+function runScoreboard() {
+  const el = document.getElementById("scoreboard");
+  if (!el || !net || !net.isTrained) return;
+  const checks = [
+    ["Short", "what is the sky during the day ?", s => /blue/i.test(s)],
+    ["Short", "is the ice hot ?", s => /^no\b/i.test(s)],
+    ["Science", "what is the deepest freshwater lake ?", s => /baikal/i.test(s)],
+    ["Science", "why is venus hotter than mercury ?", s => /hot/i.test(s) && /mercury/i.test(s) && !/liquid at standard/i.test(s)],
+    ["Unknown", "what is the capital of mars ?", s => /not in the library/i.test(s)]
+  ];
+  const lines = checks.map(([group, q, ok]) => {
+    let answer = "";
+    if (group === "Short") {
+      const hit = net.recall(q);
+      answer = hit ? hit.word : "";
+    } else {
+      const hit = typeof answerFromLessons === "function" ? answerFromLessons(q, []) : null;
+      answer = hit ? hit.text : "not in the library";
+    }
+    const pass = ok(answer);
+    return (pass ? "pass" : "fail") + " · " + group + " · " + q;
+  });
+  const passed = lines.filter(l => l.startsWith("pass")).length;
+  el.textContent = "Scoreboard " + passed + "/" + checks.length + " — " + lines.join(" | ");
+}
+
+let lastLive = null;
+let liveLayer = -1;
+let heldDiagramNote = false;
+let lastAnswerParts = null;
+
+function escLive(s) {
+  return String(s == null ? "" : s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+}
+
+function liveHits(prompt) {
+  if (typeof rankLessons !== "function") return [];
+  const science = typeof SCIENCE_LIBRARY !== "undefined" ? rankLessons(prompt, SCIENCE_LIBRARY) : [];
+  const yours = (typeof learnedFacts !== "undefined" ? learnedFacts : []).map((item, i) => {
+    if (item && typeof item === "object") {
+      return { id: item.id || ("yours-" + (i + 1)), category: "Yours", text: item.text || "", question: item.question || "" };
+    }
+    return { id: "yours-" + (i + 1), category: "Yours", text: String(item || ""), question: "" };
+  }).filter(f => f.text);
+  const userHits = yours.length ? rankLessons(prompt, yours) : [];
+  return science.concat(userHits).sort((a, b) => b.coverage - a.coverage).slice(0, 5);
+}
+
+function renderLive(spec) {
+  const same = spec && spec === lastLive;
+  lastLive = spec;
+  const route = document.getElementById("trace-route");
+  const path = document.getElementById("trace-path");
+  const lessons = document.getElementById("trace-lessons");
+  const layersEl = document.getElementById("trace-layers");
+  const headsEl = document.getElementById("trace-heads");
+  const probsEl = document.getElementById("trace-probs");
+  const archEl = document.getElementById("trace-arch");
+  const shapeEl = document.getElementById("trace-shape");
+  const sourceEl = document.getElementById("attn-source");
+  if (!route) return;
+
+  const brain = typeof STAGE3_BRAIN !== "undefined" ? STAGE3_BRAIN : null;
+  const libN = typeof SCIENCE_LIBRARY !== "undefined" ? SCIENCE_LIBRARY.length : 0;
+  const shortN = (typeof net !== "undefined" && net && net.knowledge) ? net.knowledge.length : 0;
+  const shortV = (typeof net !== "undefined" && net && net.i2w) ? net.i2w.length : 0;
+  shapeEl.textContent = brain
+    ? "Deep network: " + brain.n_layers + " blocks, width " + brain.d_model + ", " + brain.n_heads + " heads, context " + brain.max_seq_len + ", vocabulary " + brain.i2w.length + ". Short network: width " + (net && net.d_model) + ", " + shortN + " lessons, vocabulary " + shortV + ". Library: " + libN + " lessons. The answer sentence comes from the library. The drawing is shown only when that pass stays on the lesson."
+    : "The deep network is not loaded.";
+
+  const blockCount = spec && spec.layers ? spec.layers.length : (brain ? brain.n_layers : 0);
+  const activeBlock = blockCount ? (liveLayer < 0 || liveLayer >= blockCount ? blockCount - 1 : liveLayer) : -1;
+  archEl.innerHTML = Array.from({ length: blockCount }, (_, i) =>
+    `<button type="button" class="${i === activeBlock && spec ? "on" : ""}" data-layer="${i}">Block ${i + 1}</button>`
+  ).join("");
+  archEl.querySelectorAll("button").forEach(btn => {
+    btn.onclick = () => {
+      liveLayer = Number(btn.dataset.layer);
+      if (lastLive) renderLive(lastLive);
+    };
+  });
+
+  if (!spec) {
+    route.textContent = "Ask a question. The path, the lessons, the attention, and the next-word guess update from that pass.";
+    path.innerHTML = "";
+    lessons.innerHTML = `<p class="arch-note">${libN} lessons are ready to search.</p>`;
+    layersEl.innerHTML = "";
+    headsEl.innerHTML = `<p class="arch-note">Each head looks at the words already read. They fill in after a question.</p>`;
+    probsEl.innerHTML = "";
+    sourceEl.textContent = "";
+    currentTokens = null;
+    currentAttention = null;
+    drawHeatmap(null, null);
+    return;
+  }
+
+  route.textContent = spec.route || "";
+  path.innerHTML = (spec.steps || []).map(step => `
+    <li class="path-step">
+      <i class="path-dot"></i>
+      <div><strong>${escLive(step.name)}</strong><span>${escLive(step.detail)}</span></div>
+    </li>
+  `).join("");
+  path.querySelectorAll(".path-step").forEach((el, i) => {
+    if (same) el.classList.add("on");
+    else setTimeout(() => el.classList.add("on"), 30 + i * 90);
+  });
+
+  const chosen = new Set((spec.chosen || []).map(f => f.category + "#" + f.id));
+  lessons.innerHTML = (spec.hits && spec.hits.length) ? spec.hits.map(h => {
+    const used = chosen.has(h.fact.category + "#" + h.fact.id);
+    const pct = Math.round(h.coverage * 100);
+    return `<div class="hit-row${used ? " chosen" : ""}">
+      <div class="hit-top"><b>${escLive(h.fact.category)} #${escLive(h.fact.id)}${used ? " · used" : ""}</b><span>${pct}%</span></div>
+      <div class="hit-bar"><i style="width:${Math.max(2, pct)}%"></i></div>
+      <div class="hit-note">${escLive((h.hit || []).join(", "))} — ${escLive(String(h.fact.text).slice(0, 120))}</div>
+    </div>`;
+  }).join("") : `<p class="arch-note">No lesson shared enough words with this question.</p>`;
+
+  const layerList = spec.layers || [];
+  const layerIndex = layerList.length ? (liveLayer < 0 || liveLayer >= layerList.length ? layerList.length - 1 : liveLayer) : -1;
+  layersEl.innerHTML = layerList.map((_, i) =>
+    `<button type="button" class="${i === layerIndex ? "on" : ""}" data-layer="${i}">Layer ${i + 1}</button>`
+  ).join("");
+  layersEl.querySelectorAll("button").forEach(btn => {
+    btn.onclick = () => {
+      liveLayer = Number(btn.dataset.layer);
+      renderLive(lastLive);
+    };
+  });
+
+  const map = layerIndex >= 0 ? layerList[layerIndex] : null;
+  const attention = (map && map.attention) || spec.attention;
+  const tokens = spec.tokens;
+  sourceEl.textContent = spec.source ? "· " + spec.source : "";
+  heldDiagramNote = !!spec.held;
+  if (attention && tokens && tokens.length === attention.length) {
+    currentAttention = attention;
+    currentTokens = tokens;
+    drawHeatmap(tokens, attention);
+  } else {
+    currentAttention = null;
+    currentTokens = null;
+    drawHeatmap(null, null);
+  }
+
+  const headMap = spec.headLayers && layerIndex >= 0 ? spec.headLayers[layerIndex] : map;
+  const headTokens = spec.headTokens || tokens;
+  if (headMap && headMap.heads && headTokens && headTokens.length === headMap.heads[0].length) {
+    headsEl.innerHTML = headMap.heads.map((row, i) => {
+      let best = 0;
+      for (let j = 1; j < row.length; j++) if (row[j] > row[best]) best = j;
+      const pct = Math.round((row[best] || 0) * 100);
+      return `<div class="head-row"><span>Head ${i + 1}</span><div class="head-track"><i style="width:${pct}%"></i></div><b>${escLive(headTokens[best] || "")} ${pct}%</b></div>`;
+    }).join("");
+  } else {
+    headsEl.innerHTML = `<p class="arch-note">${spec.held
+      ? "No heads to show. The answer is the lesson you added. The deep network has not learned these words, so it has no attention to draw."
+      : "One head. Its attention is the diagram above."}</p>`;
+  }
+
+  const next = spec.next || [];
+  const top = next.length ? next[0].prob : 1;
+  probsEl.innerHTML = next.length ? next.map(p => `
+    <div class="prob-row">
+      <span class="prob-word">${escLive(p.word)}</span>
+      <div class="prob-bar-bg"><div class="prob-bar-fill" style="width:${Math.max(4, (p.prob / (top || 1)) * 100)}%"></div></div>
+      <span class="prob-pct">${(p.prob * 100).toFixed(1)}%</span>
+    </div>
+  `).join("") : `<p class="arch-note">${spec.held
+    ? "No next-word guess. The sentence you stored is the answer, and these words are not in the deep network."
+    : "No next-word guess on this pass."}</p>`;
+}
+
+function tailView(tokens, attention, layers, n) {
+  if (!tokens || !attention || tokens.length <= n || tokens.length !== attention.length) {
+    return { tokens, attention, layers };
+  }
+  const start = tokens.length - n;
+  const cut = rows => rows.slice(start).map(row => row.slice(start));
+  return {
+    tokens: tokens.slice(start),
+    attention: cut(attention),
+    layers: (layers || []).map(layer => ({
+      attention: cut(layer.attention),
+      heads: layer.heads.map(row => row.slice(start))
+    }))
+  };
+}
+
+function showPass(prompt, extra) {
+  const stray = extra.allowStray === false ? null : (typeof LAST_DEEP_PASS !== "undefined" ? LAST_DEEP_PASS : null);
+  const traced = extra.deep || stray;
+  const res = extra.res || null;
+  const layers = traced && traced.layers;
+  const useDeep = layers && traced.tokens && traced.attention && traced.tokens.length === traced.attention.length;
+  const held = extra.allowStray === false && !useDeep;
+  const view = useDeep
+    ? tailView(traced.tokens, traced.attention, layers, 14)
+    : (held
+      ? { tokens: null, attention: null, layers: null }
+      : { tokens: res && res.tokens, attention: res && res.attention, layers: null });
+  renderLive({
+    route: extra.route,
+    steps: extra.steps,
+    hits: extra.hits || liveHits(prompt),
+    chosen: extra.chosen || [],
+    layers: view.layers,
+    attention: view.attention,
+    tokens: view.tokens,
+    headLayers: useDeep ? layers : null,
+    headTokens: useDeep ? traced.tokens : null,
+    next: held ? [] : ((traced && traced.next) || (res && res.predictions) || []),
+    source: useDeep ? "Deep network · last words of this pass" : (held ? "Lesson only" : "Short network"),
+    held: held
+  });
+}
+
+function showDeep(prompt, facts) {
+  const box = document.getElementById("deep-stream");
+  if (!box) return null;
+  const deep = facts && facts.length && typeof groundedContinue === "function"
+    ? groundedContinue(prompt, facts)
+    : null;
+  if (!deep || !deep.text) {
+    box.style.display = "none";
+    return null;
+  }
+  box.style.display = "block";
+  document.getElementById("deep-text").textContent = deep.text;
+  return deep;
+}
+
+/* ── Prompt & Predict ───────────────────────────────────────────── */
+async function runPrompt(genCount = 0) {
+  const input = document.getElementById("prompt-input");
+  const prompt = input.value.trim();
+  if (!prompt) return;
+  if (typeof LAST_DEEP_PASS !== "undefined") LAST_DEEP_PASS = null;
+  lastAnswerParts = null;
+
+  if (typeof looksLikeLesson === "function" && looksLikeLesson(prompt)) {
+    const saved = await rememberFact(prompt);
+    document.getElementById("pred-label").textContent = "Answer";
+    document.getElementById("pred-word").textContent = saved.ok ? "Remembered" : "Already known";
+    document.getElementById("pred-conf").textContent = saved.ok
+      ? "Added to your knowledge. Science, biology, and math were not changed."
+      : "This is already in the knowledge database.";
+    document.getElementById("prob-list").innerHTML = "";
+    document.getElementById("deep-stream").style.display = "none";
+    showPass(prompt, {
+      route: saved.ok
+        ? "That sentence was stored with your facts. The network weights were not changed."
+        : "This sentence was already stored. Nothing was retrained.",
+      steps: [
+        { name: "Words", detail: tokenize(prompt).join(" ") },
+        { name: "Library", detail: "Left as it is" },
+        { name: "Network", detail: "Not run" },
+        { name: "Answer", detail: saved.ok ? "Remembered" : "Already known" }
+      ],
+      hits: []
+    });
+    publishTurn();
+    return;
+  }
+
+  const res = net.predictNext(prompt);
+  const fact = res && net.recall(prompt);
+  const library = typeof answerFromLessons === "function" ? answerFromLessons(prompt, learnedFacts) : null;
+  const hits = liveHits(prompt);
+  if (library && library.coverage >= 0.72) {
+    const deep = showDeep(prompt, library.facts);
+    let diagram = deep;
+    let diagramFromLesson = false;
+    const lessonQuestion = library.facts && library.facts[0] && library.facts[0].question;
+    if (!diagram && lessonQuestion && typeof groundedContinue === "function") {
+      diagram = groundedContinue(lessonQuestion, library.facts);
+      diagramFromLesson = !!diagram;
+    }
+    const yesNo = /^(yes|no)$/i.test(library.text);
+    const vote = yesNo && library.facts && library.facts.length === 1 && typeof claimVote === "function"
+      ? claimVote(library.facts[0].text, prompt)
+      : null;
+    const networkYesNo = vote && vote === library.text.toLowerCase();
+    const shown = networkYesNo ? vote : library.text;
+    const drew = !!(diagram && !networkYesNo);
+    lastAnswerParts = (!networkYesNo && library.facts && library.facts.length > 1)
+      ? library.facts.map(f => ({
+          text: f.text,
+          source: (f.category || "Lesson") + " #" + f.id
+        }))
+      : null;
+    document.getElementById("deep-stream").style.display = "none";
+    renderPredictions({
+      predictions: [{ word: shown, prob: library.coverage }],
+      reason: library.reason
+    }, null);
+    const best = hits[0];
+    showPass(prompt, {
+      route: networkYesNo
+        ? "The library and the network agreed on " + vote + "."
+        : (drew
+          ? "The full lesson is the answer. The drawing is the deep network reading that lesson."
+          : (diagramFromLesson
+            ? "The full lesson is the answer. The drawing is the deep network reading the lesson's own question."
+            : "The full lesson is the answer.")),
+      steps: [
+        { name: "Words", detail: tokenize(prompt).slice(0, 12).join(" ") },
+        { name: "Library", detail: best ? (Math.round(best.coverage * 100) + "% of the question's words · " + best.fact.category + " #" + best.fact.id) : library.reason },
+        { name: "Network", detail: networkYesNo ? ("Voted " + vote) : (drew ? "Read the lesson" : (diagramFromLesson ? "Drew the lesson's own question" : "Guess kept off the answer")) },
+        { name: "Shown", detail: shown.slice(0, 180) }
+      ],
+      hits,
+      chosen: library.facts,
+      deep: networkYesNo ? null : diagram,
+      allowStray: !!networkYesNo,
+      res
+    });
+    return;
+  }
+  if (fact) {
+    res.predictions = fact.predictions;
+    res.topWord = fact.word;
+    res.reason = fact.reason;
+  } else {
+    const asks = /[?]/.test(prompt) || /^(what|why|how|is|are|do|does|did|where|who|when|can|has|have)\b/i.test(prompt);
+    if (!res || asks) {
+      if (typeof deepContinue === "function") deepContinue(prompt, 1);
+      document.getElementById("pred-label").textContent = "Answer";
+      document.getElementById("pred-word").textContent = "not in the library";
+      document.getElementById("pred-conf").textContent = "No lesson matches this question. State the fact in a sentence, or add a question and its answer, and it will be remembered.";
+      document.getElementById("prob-list").innerHTML = "";
+      showDeep(prompt);
+      showPass(prompt, {
+        route: "No lesson matched, so the page did not invent an answer. The next-word bars are only what the network would have guessed.",
+        steps: [
+          { name: "Words", detail: tokenize(prompt).slice(0, 12).join(" ") || "—" },
+          { name: "Library", detail: hits[0] ? ("Best overlap " + Math.round(hits[0].coverage * 100) + "%, below the line to answer") : "No overlap" },
+          { name: "Network", detail: "One step, not shown as the answer" },
+          { name: "Shown", detail: "not in the library" }
+        ],
+        hits,
+        res
+      });
+      publishTurn();
+      return;
+    }
+  }
+
+  if (typeof deepContinue === "function") deepContinue(prompt, 1);
+  renderPredictions(res, genCount > 0 ? net.generate(prompt, genCount) : null);
+  showPass(prompt, {
+    route: "The short network answered from its own lessons. The attention diagram is the deep network when those words are in its vocabulary, otherwise the short network.",
+    steps: [
+      { name: "Words", detail: (res.tokens || []).join(" ") },
+      { name: "Library", detail: hits[0] ? ("Best overlap " + Math.round(hits[0].coverage * 100) + "%") : "No library lesson" },
+      { name: "Network", detail: "Short lesson · next word " + (res.topWord || "—") },
+      { name: "Shown", detail: res.topWord || "—" }
+    ],
+    hits,
+    res
+  });
+}
+
+document.getElementById("prompt-input").addEventListener("keydown", e => {
+  const box = document.getElementById("prompt-suggest");
+  const open = box.classList.contains("on");
+  const buttons = open ? [...box.querySelectorAll("button")] : [];
+  if (e.key === "ArrowDown" && buttons.length) {
+    e.preventDefault();
+    suggestIndex = Math.min(buttons.length - 1, suggestIndex + 1);
+    paintSuggest();
+    return;
+  }
+  if (e.key === "ArrowUp" && buttons.length) {
+    e.preventDefault();
+    suggestIndex = Math.max(-1, suggestIndex - 1);
+    paintSuggest();
+    return;
+  }
+  if (e.key === "Escape") {
+    hideSuggest();
+    return;
+  }
+  if (e.key === "Enter") {
+    if (open && suggestIndex >= 0 && buttons[suggestIndex]) {
+      e.preventDefault();
+      useSuggestion(buttons[suggestIndex].textContent);
+      return;
+    }
+    runPrompt(0);
+  }
+});
+document.getElementById("prompt-input").addEventListener("input", () => {
+  suggestIndex = -1;
+  renderSuggest(document.getElementById("prompt-input").value);
+});
+
+let suggestIndex = -1;
+
+function hideSuggest() {
+  const box = document.getElementById("prompt-suggest");
+  box.classList.remove("on");
+  box.innerHTML = "";
+  suggestIndex = -1;
+}
+
+function paintSuggest() {
+  const box = document.getElementById("prompt-suggest");
+  [...box.querySelectorAll("button")].forEach((button, i) => {
+    button.classList.toggle("on", i === suggestIndex);
+  });
+}
+
+function useSuggestion(text) {
+  const input = document.getElementById("prompt-input");
+  input.value = text;
+  hideSuggest();
+  runPrompt(0);
+}
+
+function renderSuggest(raw) {
+  const box = document.getElementById("prompt-suggest");
+  const typed = String(raw || "").trim();
+  if (typed.length < 2 || typeof questionContent !== "function" || typeof scienceTokens !== "function") {
+    hideSuggest();
+    return;
+  }
+  const qc = questionContent(typed);
+  const typedWords = scienceTokens(typed);
+  const rows = [];
+  const seen = new Set();
+  const lists = [];
+  if (typeof SCIENCE_LIBRARY !== "undefined") lists.push(SCIENCE_LIBRARY);
+  if (typeof learnedFacts !== "undefined") lists.push(learnedFacts);
+  lists.forEach(list => (list || []).forEach(fact => {
+    const q = String(fact && fact.question || "").trim();
+    const key = q.toLowerCase();
+    if (!q || seen.has(key) || key === typed.toLowerCase()) return;
+    const words = questionContent(q);
+    const hit = qc.filter(w => words.includes(w));
+    const prefix = typedWords.some(w => w.length >= 3 && words.some(qw => qw.startsWith(scienceStem(w))));
+    if (!hit.length && !prefix && !q.toLowerCase().includes(typed.toLowerCase())) return;
+    seen.add(key);
+    rows.push({ q, score: hit.length + (prefix ? 0.5 : 0) + (q.toLowerCase().startsWith(typed.toLowerCase()) ? 1 : 0) });
+  }));
+  rows.sort((a, b) => b.score - a.score || a.q.length - b.q.length);
+  const top = rows.slice(0, 5);
+  if (!top.length) {
+    hideSuggest();
+    return;
+  }
+  box.innerHTML = "";
+  top.forEach(row => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.textContent = row.q;
+    button.addEventListener("mousedown", e => {
+      e.preventDefault();
+      useSuggestion(row.q);
+    });
+    box.appendChild(button);
+  });
+  box.classList.add("on");
+  paintSuggest();
+}
+
+function renderPredictions(res, generatedText) {
+  const badge = document.getElementById("pred-word");
+  const conf = document.getElementById("pred-conf");
+  const list = document.getElementById("prob-list");
+  const stream = document.getElementById("gen-stream");
+  const genText = document.getElementById("gen-text");
+
+  if (res.predictions && res.predictions.length > 0) {
+    const top = res.predictions[0];
+    const yesNo = /^(yes|no)$/i.test(top.word.trim());
+    const phrase = yesNo || top.word.includes(" ") || top.word.includes(",");
+    document.getElementById("pred-label").textContent = phrase ? "Answer" : "Next Token";
+    badge.textContent = yesNo ? top.word : (phrase ? top.word : `"${top.word}"`);
+    conf.textContent = res.reason
+      ? `${res.reason}`
+      : `${(top.prob * 100).toFixed(1)}% probability`;
+
+    list.innerHTML = res.predictions.map(p => `
+      <div class="prob-row">
+        <span class="prob-word">${p.word}</span>
+        <div class="prob-bar-bg">
+          <div class="prob-bar-fill" style="width:${Math.max(2, p.prob * 100)}%"></div>
+        </div>
+        <span class="prob-pct">${(p.prob * 100).toFixed(1)}%</span>
+      </div>
+    `).join("");
+  } else {
+    badge.textContent = "—";
+    conf.textContent = "";
+    list.innerHTML = "";
+  }
+
+  if (generatedText) {
+    stream.style.display = "block";
+    genText.textContent = `"${document.getElementById("prompt-input").value.trim()} ${generatedText}"`;
+  } else {
+    stream.style.display = "none";
+  }
+  publishTurn();
+}
+
+const LOCAL_WRITER = "qwen2.5:7b";
+
+function writerLesson(answer, why) {
+  if (answer === "not in the library") return "";
+  if (/^(yes|no)$/i.test(answer)) return why || answer;
+  return answer;
+}
+
+async function writeFuller(box, question, lesson) {
+  box.hidden = true;
+  const guide = lesson
+    ? "A stored lesson follows. Do not contradict it. Explain it in plain sentences a person would want to read: what it means, why it matters, and one concrete comparison when you can do that without inventing a new number. About 120 to 180 words."
+    : "No stored lesson matches this question. Say that in the first sentence, then answer from general knowledge in a few plain sentences. Do not invent a precise number you are unsure of.";
+  try {
+    const res = await fetch("http://127.0.0.1:11434/api/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        model: LOCAL_WRITER,
+        stream: true,
+        messages: [
+          { role: "system", content: "You explain one question clearly, the way a careful teacher would. Short paragraphs. No title, no markdown heading, no list of sources." },
+          { role: "user", content: guide + "\n\nQuestion: " + question + (lesson ? "\n\nStored lesson:\n" + lesson : "") }
+        ]
+      })
+    });
+    if (!res.ok || !res.body) throw new Error(String(res.status));
+    const reader = res.body.getReader();
+    const dec = new TextDecoder();
+    let buf = "";
+    let text = "";
+    box.className = "fuller";
+    box.textContent = "";
+    while (true) {
+      const step = await reader.read();
+      if (step.done) break;
+      buf += dec.decode(step.value, { stream: true });
+      const lines = buf.split("\n");
+      buf = lines.pop();
+      for (const line of lines) {
+        if (!line.trim()) continue;
+        let msg;
+        try { msg = JSON.parse(line); } catch (e) { continue; }
+        const bit = msg.message && msg.message.content;
+        if (bit) {
+          text += bit;
+          box.hidden = false;
+          box.className = "fuller";
+          box.textContent = text;
+        }
+      }
+    }
+    if (!text.trim()) box.remove();
+  } catch (err) {
+    box.remove();
+  }
+}
+
+function publishTurn() {
+  const asked = document.getElementById("prompt-input").value.trim();
+  const answer = document.getElementById("pred-word").textContent.replace(/^"|"$/g, "").trim();
+  const why = document.getElementById("pred-conf").textContent.trim();
+  const deepBox = document.getElementById("deep-stream");
+  const deep = document.getElementById("deep-text").textContent.trim();
+  const parts = lastAnswerParts && lastAnswerParts.length > 1 ? lastAnswerParts : null;
+  lastAnswerParts = null;
+  if (!asked || !answer || answer === "—" || answer === "–") return;
+  const stage = document.getElementById("stage");
+  const thread = document.getElementById("thread");
+  stage.classList.add("chatting");
+  document.body.classList.add("chatting");
+  const turn = document.createElement("article");
+  turn.className = "turn";
+  const you = document.createElement("p");
+  you.className = "you";
+  you.textContent = asked;
+  turn.appendChild(you);
+  if (parts) {
+    const stack = document.createElement("div");
+    stack.className = "answer-stack";
+    parts.forEach(part => {
+      const card = document.createElement("article");
+      card.className = "answer-card";
+      const src = document.createElement("p");
+      src.className = "answer-source";
+      src.textContent = part.source;
+      const body = document.createElement("p");
+      body.className = "model";
+      body.textContent = part.text;
+      card.appendChild(src);
+      card.appendChild(body);
+      stack.appendChild(card);
+    });
+    turn.appendChild(stack);
+  } else {
+    const model = document.createElement("p");
+    model.className = "model";
+    model.textContent = answer;
+    turn.appendChild(model);
+    if (why && why !== "—") {
+      const note = document.createElement("p");
+      note.className = "why";
+      note.textContent = why;
+      turn.appendChild(note);
+    }
+  }
+  if (deepBox.style.display !== "none" && deep) {
+    const extra = document.createElement("p");
+    extra.className = "why";
+    extra.textContent = deep;
+    turn.appendChild(extra);
+  }
+  if (answer !== "Remembered" && answer !== "Already known") {
+    const fuller = document.createElement("p");
+    fuller.className = "fuller pending";
+    turn.appendChild(fuller);
+    writeFuller(fuller, asked, writerLesson(answer, why));
+    const more = document.createElement("p");
+    more.className = "more";
+    const link = document.createElement("a");
+    link.href = "https://www.google.com/search?udm=50&hl=en&q=" + encodeURIComponent(asked.trim());
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.textContent = "Ask Gemini";
+    more.appendChild(link);
+    turn.appendChild(more);
+  }
+  thread.appendChild(turn);
+  thread.scrollTop = thread.scrollHeight;
+  document.getElementById("prompt-input").value = "";
+  hideSuggest();
+}
+
+function newChat() {
+  document.getElementById("thread").innerHTML = "";
+  document.getElementById("stage").classList.remove("chatting");
+  document.body.classList.remove("chatting");
+  document.getElementById("prompt-input").value = "";
+  hideSuggest();
+  document.getElementById("pred-word").textContent = "—";
+  closeDrawers();
+}
+
+function toggleSettings() {
+  document.getElementById("settings").classList.toggle("open");
+}
+
+function closeDrawers() {
+  document.getElementById("knowledge-card").classList.remove("open");
+  syncDrawers();
+}
+
+function syncDrawers() {
+  const teach = document.getElementById("knowledge-card").classList.contains("open");
+  const diagram = document.getElementById("heatmap-card").classList.contains("open");
+  document.getElementById("scrim").classList.toggle("on", teach);
+  document.body.classList.toggle("diagram-open", diagram);
+  document.getElementById("rail-teach").classList.toggle("on", teach);
+  document.getElementById("rail-diagram").classList.toggle("on", diagram);
+  localStorage.setItem("nn-teach-open", teach ? "1" : "0");
+  localStorage.setItem("nn-inspector-open", diagram ? "1" : "0");
+  if (diagram && currentTokens && currentAttention) drawHeatmap(currentTokens, currentAttention);
+}
+
+/* ── Database Actions ───────────────────────────────────────────── */
+async function saveToDatabase(showToast = true) {
+  setDbStatus("Saving parameters...", "saving");
+  try {
+    await db.saveModel(net);
+    const now = new Date().toLocaleTimeString();
+    setDbStatus(`IndexedDB Saved (${now})`, "connected");
+    if (showToast) toast("💾 All weights & facts saved to IndexedDB!");
+  } catch (err) {
+    console.error("Save error:", err);
+    setDbStatus("Save Error", "saving");
+    if (showToast) toast("⚠️ Error saving to database");
+  }
+}
+
+async function exportBrainFile() {
+  const data = {
+    exportedAt: new Date().toISOString(),
+    knowledge: net.knowledge,
+    d_model: net.d_model,
+    max_seq_len: net.max_seq_len,
+    lr: net.lr,
+    i2w: net.i2w,
+    w2i: net.w2i,
+    lossHistory: net.lossHistory,
+    isTrained: net.isTrained,
+    params: {}
+  };
+  if (net.params) {
+    for (const k in net.params) {
+      const v = net.params[k];
+      data.params[k] = typeof v[0] === 'number' ? Array.from(v) : v.map(row => Array.from(row));
+    }
+  }
+
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `neural_brain_curriculum_${new Date().toISOString().slice(0,10)}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+  toast("⬇️ Brain exported to JSON file!");
+}
+
+async function importBrainFile(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = async e => {
+    try {
+      const data = JSON.parse(e.target.result);
+      net.knowledge = data.knowledge || [];
+      net.d_model = data.d_model || 32;
+      net.max_seq_len = data.max_seq_len || 24;
+      net.lr = data.lr || 0.005;
+      net.i2w = data.i2w || [];
+      net.w2i = data.w2i || {};
+      net.lossHistory = data.lossHistory || [];
+      net.isTrained = data.isTrained || false;
+
+      if (data.params) {
+        net.params = {};
+        for (const k in data.params) {
+          const v = data.params[k];
+          net.params[k] = typeof v[0] === 'number' ? new Float32Array(v) : v.map(row => new Float32Array(row));
+        }
+      }
+
+      await db.saveModel(net);
+      setDbStatus("IndexedDB Restored", "connected");
+      renderUI();
+      runPrompt(0);
+      toast("⬆️ Brain successfully imported & saved!");
+    } catch (err) {
+      toast("⚠️ Failed to read brain JSON file");
+      console.error(err);
+    }
+  };
+  reader.readAsText(file);
+}
+
+async function resetDatabase() {
+  if (!confirm("Reset database to initial Master Curriculum?")) return;
+  await db.clear();
+  net.knowledge = Array.from(CURRICULUM.master);
+  await trainNetwork(true);
+  toast("🔄 Database reset to Master Curriculum!");
+}
+
+/* ── UI Rendering & Charts ──────────────────────────────────────── */
+function renderUI() {
+  renderFacts();
+  renderStats();
+  drawLoss(net.lossHistory);
+  updateQuickPrompts();
+}
+
+function renderFacts() {
+  const learnedList = document.getElementById("learned-list");
+  if (learnedList) {
+    learnedList.innerHTML = learnedFacts.map((f, i) => `
+      <div class="fact-item">
+        <span class="text">"${f.question ? f.question + " " : ""}${f.text}"</span>
+        <button class="del" onclick="deleteLearned(${i})" title="Remove learned fact">&times;</button>
+      </div>
+    `).join("");
+  }
+  const list = document.getElementById("facts-list");
+  list.innerHTML = net.knowledge.map((f, i) => `
+    <div class="fact-item">
+      <span class="text">"${f}"</span>
+      <button class="del" onclick="deleteFact(${i})" title="Remove fact">&times;</button>
+    </div>
+  `).join("");
+}
+
+function renderStats() {
+  document.getElementById("stat-facts").textContent = net.knowledge.length;
+  document.getElementById("stat-vocab").textContent = net.i2w.length;
+  document.getElementById("stat-weights").textContent = net.countParameters().toLocaleString();
+  const lastLoss = net.lossHistory[net.lossHistory.length - 1];
+  document.getElementById("stat-loss").textContent = lastLoss !== undefined ? lastLoss.toFixed(4) : "—";
+  const built = typeof SCIENCE_LIBRARY !== "undefined" ? SCIENCE_LIBRARY.length : 0;
+  const total = built + learnedFacts.length;
+  const count = document.getElementById("knowledge-count");
+  if (count) count.textContent = total ? total + " lessons" : "";
+  const note = document.getElementById("library-note");
+  if (note) {
+    note.textContent = "Knowledge database: " + built + " built-in lessons (science, biology, math, gemstones, chemistry, geography) and " + learnedFacts.length + " you added. A new fact is stored beside the others. Nothing already there is replaced.";
+  }
+}
+
+function toggleKnowledge() {
+  document.getElementById("heatmap-card").classList.remove("open");
+  document.getElementById("knowledge-card").classList.toggle("open");
+  syncDrawers();
+}
+
+function toggleDiagram() {
+  document.getElementById("knowledge-card").classList.remove("open");
+  document.getElementById("heatmap-card").classList.toggle("open");
+  syncDrawers();
+}
+
+function restoreKnowledgePanel() {
+  document.getElementById("knowledge-card").classList.remove("open");
+  const open = localStorage.getItem("nn-inspector-open") !== "0";
+  document.getElementById("heatmap-card").classList.toggle("open", open);
+  syncDrawers();
+  renderLive(null);
+}
+
+function updateQuickPrompts() {
+  const container = document.getElementById("quick-prompts");
+  const samples = [
+    "What is the sky during the day?",
+    "Is the Sahara hot?",
+    "What is pi?",
+    "What are tardigrades?",
+    "What is a light-year?"
+  ];
+  container.innerHTML = samples.map(s => `
+    <span class="quick-chip" onclick="setPrompt('${s}')">${s}</span>
+  `).join("");
+}
+
+function setPrompt(text) {
+  document.getElementById("prompt-input").value = text;
+  runPrompt(0);
+}
+
+/* ── Live network diagram + attention matrix ───────────────────── */
+let hoveredCell = null;
+let flowPhase = 0;
+let diagramAnimStarted = false;
+
+function startDiagramAnim() {
+  if (diagramAnimStarted) return;
+  diagramAnimStarted = true;
+  const loop = () => {
+    flowPhase += 0.012;
+    const open = document.getElementById("heatmap-card").classList.contains("open");
+    if (open && currentTokens && currentAttention) paintFlow(currentTokens, currentAttention);
+    requestAnimationFrame(loop);
+  };
+  requestAnimationFrame(loop);
+}
+
+function fitCanvas(canvas) {
+  const dpr = window.devicePixelRatio || 1;
+  const width = canvas.clientWidth || 420;
+  const height = canvas.clientHeight || 220;
+  canvas.width = Math.max(1, Math.round(width * dpr));
+  canvas.height = Math.max(1, Math.round(height * dpr));
+  const ctx = canvas.getContext("2d");
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  return { ctx, W: width, H: height };
+}
+
+function roundRect(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.arcTo(x + w, y, x + w, y + h, r);
+  ctx.arcTo(x + w, y + h, x, y + h, r);
+  ctx.arcTo(x, y + h, x, y, r);
+  ctx.arcTo(x, y, x + w, y, r);
+  ctx.closePath();
+}
+
+function cubicPoint(x0, y0, x1, y1, x2, y2, x3, y3, t) {
+  const u = 1 - t;
+  return {
+    x: u * u * u * x0 + 3 * u * u * t * x1 + 3 * u * t * t * x2 + t * t * t * x3,
+    y: u * u * u * y0 + 3 * u * u * t * y1 + 3 * u * t * t * y2 + t * t * t * y3
+  };
+}
+
+function paintFlow(tokens, A) {
+  const canvas = document.getElementById("flow-canvas");
+  if (!canvas) return;
+  if (!tokens || !tokens.length || !A) {
+    canvas.style.height = "180px";
+    const { ctx, W, H } = fitCanvas(canvas);
+    ctx.fillStyle = "#10141c";
+    ctx.fillRect(0, 0, W, H);
+    ctx.fillStyle = "#c5cdd6";
+    ctx.font = "13px system-ui";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    const focus = document.getElementById("attn-focus");
+    if (heldDiagramNote) {
+      ctx.fillText("The answer came from the lesson.", W / 2, H / 2 - 12);
+      ctx.fillText("The deep network has not learned these words yet.", W / 2, H / 2 + 10);
+      if (focus) focus.textContent = "No attention drawing for this lesson. Adding it to the lesson file is enough for the answer.";
+    } else {
+      ctx.fillText("Ask something to see attention move", W / 2, H / 2);
+      if (focus) focus.textContent = "Waiting for a question";
+    }
+    return;
+  }
+
+  const last = tokens.length - 1;
+  const ranked = tokens.map((word, i) => ({ word, i, w: A[last][i] || 0 }))
+    .filter(r => r.i < last && r.w >= 0.03)
+    .sort((a, b) => b.w - a.w)
+    .slice(0, 5);
+  if (!ranked.length) ranked.push({ word: tokens[Math.max(0, last - 1)] || tokens[0], i: Math.max(0, last - 1), w: A[last][Math.max(0, last - 1)] || 0 });
+
+  const sig = tokens.join("|") + ":" + ranked.map(r => r.i).join(",");
+  const rows = ranked.length;
+  const nextH = 36 + rows * 56;
+  if (canvas.dataset.sig !== sig) {
+    canvas.dataset.sig = sig;
+    canvas.style.height = nextH + "px";
+  }
+  const { ctx, W, H } = fitCanvas(canvas);
+  const bg = ctx.createLinearGradient(0, 0, W, H);
+  bg.addColorStop(0, "#141922");
+  bg.addColorStop(1, "#0e131b");
+  ctx.fillStyle = bg;
+  ctx.fillRect(0, 0, W, H);
+
+  const focusX = W - 86;
+  const focusY = H / 2;
+  const pillW = 132;
+  const pillX = 18;
+
+  ranked.forEach((r, idx) => {
+    const y = 28 + idx * 56 + 18;
+    const x0 = pillX + pillW;
+    const y0 = y;
+    const x1 = x0 + 54;
+    const y1 = y;
+    const x2 = focusX - 70;
+    const y2 = focusY + (y - focusY) * 0.25;
+    const x3 = focusX - 34;
+    const y3 = focusY;
+    const strong = idx === 0;
+    ctx.beginPath();
+    ctx.moveTo(x0, y0);
+    ctx.bezierCurveTo(x1, y1, x2, y2, x3, y3);
+    ctx.strokeStyle = strong ? "rgba(57,197,187,0.9)" : "rgba(138,180,255,0.45)";
+    ctx.lineWidth = strong ? 2.6 : 1.5;
+    ctx.stroke();
+
+    [0, 0.45].forEach(shift => {
+      if (!strong && shift) return;
+      const t = (flowPhase * 0.55 + idx * 0.16 + shift) % 1;
+      const p = cubicPoint(x0, y0, x1, y1, x2, y2, x3, y3, t);
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, strong ? 4.2 : 3, 0, Math.PI * 2);
+      ctx.fillStyle = strong ? "#f3fffd" : "#e7eeff";
+      ctx.shadowColor = strong ? "#39c5bb" : "#8ab4ff";
+      ctx.shadowBlur = 14;
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    });
+
+    roundRect(ctx, pillX, y - 16, pillW, 32, 16);
+    ctx.fillStyle = strong ? "#102824" : "#1a1f29";
+    ctx.fill();
+    ctx.lineWidth = 1.5;
+    ctx.strokeStyle = strong ? "#39c5bb" : "rgba(255,255,255,.12)";
+    ctx.stroke();
+    const label = r.word.length > 10 ? r.word.slice(0, 9) + "…" : r.word;
+    ctx.font = (strong ? "600 " : "") + "13px system-ui";
+    ctx.textAlign = "left";
+    ctx.textBaseline = "middle";
+    ctx.fillStyle = "#e8eaed";
+    ctx.fillText(label, pillX + 12, y);
+    ctx.font = "12px system-ui";
+    ctx.textAlign = "right";
+    ctx.fillStyle = strong ? "#7dffe9" : "#9aa0a6";
+    ctx.fillText(Math.round(r.w * 100) + "%", pillX + pillW - 12, y);
+  });
+
+  const pulse = 0.5 + 0.5 * Math.sin(flowPhase * Math.PI * 2);
+  ctx.beginPath();
+  ctx.arc(focusX, focusY, 30 + pulse * 7, 0, Math.PI * 2);
+  ctx.strokeStyle = `rgba(188,140,255,${0.28 + pulse * 0.4})`;
+  ctx.lineWidth = 2;
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.arc(focusX, focusY, 26, 0, Math.PI * 2);
+  ctx.fillStyle = "#24183a";
+  ctx.fill();
+  ctx.lineWidth = 2;
+  ctx.strokeStyle = "#bc8cff";
+  ctx.stroke();
+  const focusWord = tokens[last].length > 8 ? tokens[last].slice(0, 7) + "…" : tokens[last];
+  ctx.font = "600 14px system-ui";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillStyle = "#f3e9ff";
+  ctx.fillText(focusWord, focusX, focusY);
+
+  const focus = document.getElementById("attn-focus");
+  if (focus) {
+    const line = "“" + tokens[last] + "” is reading  " + ranked.slice(0, 3).map(r => r.word + " " + Math.round(r.w * 100) + "%").join("   ·   ");
+    if (focus.textContent !== line) focus.textContent = line;
+  }
+  const vocab = document.getElementById("vocab-stat");
+  if (vocab) {
+    const vocabN = (typeof net !== "undefined" && net && net.i2w) ? net.i2w.length : "—";
+    const line = tokens.length + " words · vocab " + vocabN;
+    if (vocab.textContent !== line) vocab.textContent = line;
+  }
+}
+
+function drawHeatmap(tokens, A) {
+  paintFlow(tokens, A);
+  paintMatrix(tokens, A);
+}
+
+function paintMatrix(tokens, A) {
+  const canvas = document.getElementById("heatmap-canvas");
+  if (!canvas) return;
+  if (!tokens || tokens.length === 0 || !A) {
+    canvas.style.height = heldDiagramNote ? "72px" : "160px";
+    const { ctx, W, H } = fitCanvas(canvas);
+    ctx.fillStyle = "#10141c";
+    ctx.fillRect(0, 0, W, H);
+    if (heldDiagramNote) {
+      ctx.fillStyle = "#8b949e";
+      ctx.font = "12px system-ui";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText("The weight grid stays empty for the same reason.", W / 2, H / 2);
+    }
+    return;
+  }
+
+  const N = tokens.length;
+  const sig = "m:" + N;
+  if (canvas.dataset.sig !== sig) {
+    canvas.dataset.sig = sig;
+    canvas.style.height = Math.min(420, 78 + N * 28) + "px";
+  }
+  const { ctx, W, H } = fitCanvas(canvas);
+  ctx.fillStyle = "#10141c";
+  ctx.fillRect(0, 0, W, H);
+
+  const labelMargin = Math.min(92, Math.max(64, W * 0.2));
+  const topPad = 54;
+  const availableW = W - labelMargin - 18;
+  const availableH = H - topPad - 14;
+  const cellSize = Math.min(availableW / N, availableH / N, 36);
+  const startX = labelMargin + (availableW - cellSize * N) / 2;
+  const startY = topPad;
+
+  ctx.font = "bold 11px system-ui";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "bottom";
+  for (let c = 0; c < N; c++) {
+    const cx = startX + c * cellSize + cellSize / 2;
+    ctx.save();
+    ctx.translate(cx, startY - 6);
+    ctx.rotate(-Math.PI / 4);
+    ctx.fillStyle = (hoveredCell && hoveredCell.c === c) ? "#58a6ff" : "#8b949e";
+    ctx.fillText(tokens[c], 0, 0);
+    ctx.restore();
+  }
+
+  ctx.textAlign = "right";
+  ctx.textBaseline = "middle";
+  for (let r = 0; r < N; r++) {
+    const cy = startY + r * cellSize + cellSize / 2;
+    ctx.fillStyle = (hoveredCell && hoveredCell.r === r) ? "#bc8cff" : "#8b949e";
+    ctx.fillText(tokens[r], startX - 8, cy);
+  }
+
+  let maxVal = 0;
+  for (let r = 0; r < N; r++) for (let c = 0; c <= r; c++) maxVal = Math.max(maxVal, A[r][c]);
+
+  for (let r = 0; r < N; r++) {
+    for (let c = 0; c < N; c++) {
+      const val = A[r][c];
+      const x = startX + c * cellSize;
+      const y = startY + r * cellSize;
+      if (c > r) {
+        ctx.fillStyle = "rgba(255,255,255,0.02)";
+        ctx.fillRect(x + 1, y + 1, cellSize - 2, cellSize - 2);
+        continue;
+      }
+      const t = maxVal > 0 ? val / maxVal : 0;
+      const alpha = 0.12 + t * 0.88;
+      ctx.fillStyle = `rgba(${Math.round(88 + t * 20)}, ${Math.round(140 + t * 57)}, ${Math.round(255 - t * 68)}, ${alpha})`;
+      ctx.fillRect(x + 1, y + 1, cellSize - 2, cellSize - 2);
+      if (hoveredCell && (hoveredCell.r === r || hoveredCell.c === c)) {
+        ctx.strokeStyle = (hoveredCell.r === r && hoveredCell.c === c) ? "#fff" : "rgba(188,140,255,.45)";
+        ctx.lineWidth = (hoveredCell.r === r && hoveredCell.c === c) ? 2 : 1;
+        ctx.strokeRect(x + 1, y + 1, cellSize - 2, cellSize - 2);
+      }
+      if (cellSize >= 26) {
+        ctx.font = "9px system-ui";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillStyle = t > 0.55 ? "#041018" : "#e6edf3";
+        ctx.fillText(val.toFixed(2), x + cellSize / 2, y + cellSize / 2);
+      }
+    }
+  }
+
+  canvas._layout = { startX, startY, cellSize, N, tokens, A };
+}
+
+document.getElementById("heatmap-canvas").addEventListener("mousemove", e => {
+  const canvas = e.target;
+  const layout = canvas._layout;
+  if (!layout) return;
+
+  const rect = canvas.getBoundingClientRect();
+  const mx = e.clientX - rect.left;
+  const my = e.clientY - rect.top;
+
+  const c = Math.floor((mx - layout.startX) / layout.cellSize);
+  const r = Math.floor((my - layout.startY) / layout.cellSize);
+
+  if (r >= 0 && r < layout.N && c >= 0 && c < layout.N) {
+    hoveredCell = { r, c };
+    const val = layout.A[r][c];
+    const info = document.getElementById("hover-info");
+    if (c > r) {
+      info.innerHTML = `Token <strong>"${layout.tokens[r]}"</strong> cannot look at future token <strong>"${layout.tokens[c]}"</strong> (Causal Mask)`;
+    } else {
+      info.innerHTML = `Token <strong>"${layout.tokens[r]}"</strong> attends to <strong>"${layout.tokens[c]}"</strong> with weight: <strong>${(val * 100).toFixed(1)}%</strong>`;
+    }
+    paintMatrix(layout.tokens, layout.A);
+  } else if (hoveredCell !== null) {
+    hoveredCell = null;
+    paintMatrix(layout.tokens, layout.A);
+  }
+});
+
+document.getElementById("heatmap-canvas").addEventListener("mouseleave", () => {
+  hoveredCell = null;
+  if (currentTokens && currentAttention) paintMatrix(currentTokens, currentAttention);
+});
+
+/* ── Loss Chart ─────────────────────────────────────────────────── */
+function drawLoss(history) {
+  const canvas = document.getElementById("loss-canvas");
+  const ctx = canvas.getContext("2d");
+  const dpr = window.devicePixelRatio || 1;
+  const rect = canvas.getBoundingClientRect();
+  canvas.width = rect.width * dpr;
+  canvas.height = rect.height * dpr;
+  ctx.scale(dpr, dpr);
+  const W = rect.width, H = rect.height;
+
+  ctx.fillStyle = "#0d1117";
+  ctx.fillRect(0, 0, W, H);
+
+  if (!history || history.length < 2) return;
+
+  const pad = 10;
+  const plotW = W - pad * 2;
+  const plotH = H - pad * 2;
+  const maxL = Math.max(...history);
+  const minL = Math.min(...history);
+
+  ctx.beginPath();
+  for (let i = 0; i < history.length; i++) {
+    const x = pad + plotW * i / (history.length - 1);
+    const y = pad + plotH * (1 - (history[i] - minL) / Math.max(0.001, maxL - minL));
+    if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+  }
+  ctx.strokeStyle = "#39c5bb";
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  ctx.lineTo(pad + plotW, pad + plotH);
+  ctx.lineTo(pad, pad + plotH);
+  ctx.closePath();
+  const grad = ctx.createLinearGradient(0, 0, 0, H);
+  grad.addColorStop(0, "rgba(57,197,187,.2)");
+  grad.addColorStop(1, "rgba(57,197,187,0)");
+  ctx.fillStyle = grad;
+  ctx.fill();
+}
+
+/* ── Toast ──────────────────────────────────────────────────────── */
+let toastTimer;
+function toast(msg) {
+  const el = document.getElementById("toast");
+  el.textContent = msg;
+  el.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove("show"), 2800);
+}
+
+window.addEventListener("resize", () => {
+  if (currentTokens && currentAttention) drawHeatmap(currentTokens, currentAttention);
+  if (net) drawLoss(net.lossHistory);
+});
+
+// Boot
+window.addEventListener("DOMContentLoaded", init);
+</script>
+</body>
+</html>

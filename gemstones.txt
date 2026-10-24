@@ -1,0 +1,289 @@
+# Copyright (c) 2026 M.Milde <m.milde@gmail.com>
+# Free use; no sale, rebrand, or profit from this software.
+# See LICENSE.
+
+{
+"dataset_name": "gemstones",
+"facts": [
+{
+"id": 1,
+"category": "Gemstones",
+"fact": "Ruby is a red variety of the mineral corundum, and its deep red color comes from the trace element chromium.",
+"question": "What gives ruby its deep red color?",
+"answer": "Ruby is a red variety of the mineral corundum, and its deep red color comes from the trace element chromium."
+},
+{
+"id": 2,
+"category": "Gemstones",
+"fact": "Sapphire belongs to the corundum mineral family and most famously appears in blue, though it can occur in every color except red.",
+"question": "What colors can sapphire appear in?",
+"answer": "Sapphire belongs to the corundum mineral family and most famously appears in blue, though it can occur in every color except red."
+},
+{
+"id": 3,
+"category": "Gemstones",
+"fact": "Emerald is a green gemstone that owes its vivid green color to trace amounts of chromium and vanadium.",
+"question": "What causes the vivid green color in emerald?",
+"answer": "Emerald is a green gemstone that owes its vivid green color to trace amounts of chromium and vanadium."
+},
+{
+"id": 4,
+"category": "Gemstones",
+"fact": "Diamond has a rating of 10 on the Mohs scale of mineral hardness, making it the hardest known natural substance on Earth.",
+"question": "What is the hardness rating of diamond on the Mohs scale?",
+"answer": "Diamond has a rating of 10 on the Mohs scale of mineral hardness, making it the hardest known natural substance on Earth."
+},
+{
+"id": 5,
+"category": "Gemstones",
+"fact": "Amethyst is a purple variety of quartz that gets its violet shade from irradiation and iron impurities.",
+"question": "What creates the purple shade in amethyst?",
+"answer": "Amethyst is a purple variety of quartz that gets its violet shade from irradiation and iron impurities."
+},
+{
+"id": 6,
+"category": "Gemstones",
+"fact": "Topaz is a silicate mineral of aluminium and fluorine that can form massive crystals, though pure topaz is colorless.",
+"question": "What color is pure topaz?",
+"answer": "Topaz is a silicate mineral of aluminium and fluorine that can form massive crystals, though pure topaz is colorless."
+},
+{
+"id": 7,
+"category": "Gemstones",
+"fact": "Opal is a hydrated amorphous form of silica that displays a unique play of internal colors due to light diffraction.",
+"question": "Why does opal display a unique play of internal colors?",
+"answer": "Opal is a hydrated amorphous form of silica that displays a unique play of internal colors due to light diffraction."
+},
+{
+"id": 8,
+"category": "Gemstones",
+"fact": "Jade is an ornamental gemstone that actually refers to two different mineral species known as jadeite and nephrite.",
+"question": "What two mineral species are referred to as jade?",
+"answer": "Jade is an ornamental gemstone that actually refers to two different mineral species known as jadeite and nephrite."
+},
+{
+"id": 9,
+"category": "Gemstones",
+"fact": "Garnet is a group of silicate minerals that have been used since the Bronze Age as gemstones and abrasives.",
+"question": "What group of minerals does garnet belong to?",
+"answer": "Garnet is a group of silicate minerals that have been used since the Bronze Age as gemstones and abrasives."
+},
+{
+"id": 10,
+"category": "Gemstones",
+"fact": "Aquamarine is a pale blue or cyan variety of beryl that shares its mineral family with emerald.",
+"question": "What mineral family does aquamarine share with emerald?",
+"answer": "Aquamarine is a pale blue or cyan variety of beryl that shares its mineral family with emerald."
+},
+{
+"id": 11,
+"category": "Gemstones",
+"fact": "Peridot is a gem-quality olivine mineral that is notable for being one of the few gemstones that occurs in only one color, olive green.",
+"question": "What color does peridot occur in?",
+"answer": "Peridot is a gem-quality olivine mineral that is notable for being one of the few gemstones that occurs in only one color, olive green."
+},
+{
+"id": 12,
+"category": "Gemstones",
+"fact": "Turquoise is an opaque, blue-to-green mineral that is a hydrated phosphate of copper and aluminium.",
+"question": "What chemical elements make up turquoise?",
+"answer": "Turquoise is an opaque, blue-to-green mineral that is a hydrated phosphate of copper and aluminium."
+},
+{
+"id": 13,
+"category": "Gemstones",
+"fact": "Tanzanite is a rare blue and violet gemstone variety of the mineral zoisite found only in a small mining area in Tanzania.",
+"question": "Where is tanzanite found?",
+"answer": "Tanzanite is a rare blue and violet gemstone variety of the mineral zoisite found only in a small mining area in Tanzania."
+},
+{
+"id": 14,
+"category": "Gemstones",
+"fact": "Pearl is an organic gemstone formed within the soft tissue of a living shelled mollusk.",
+"question": "How is pearl formed as an organic gemstone?",
+"answer": "Pearl is an organic gemstone formed within the soft tissue of a living shelled mollusk."
+},
+{
+"id": 15,
+"category": "Gemstones",
+"fact": "Amber is fossilized tree resin that has been appreciated for its color and natural organic beauty since Neolithic times.",
+"question": "What is amber made of?",
+"answer": "Amber is fossilized tree resin that has been appreciated for its color and natural organic beauty since Neolithic times."
+},
+{
+"id": 16,
+"category": "Gemstones",
+"fact": "Tourmaline is a crystalline boron silicate mineral compounded with elements such as aluminium, iron, and magnesium, displaying a vast array of colors.",
+"question": "What type of mineral is tourmaline?",
+"answer": "Tourmaline is a crystalline boron silicate mineral compounded with elements such as aluminium, iron, and magnesium, displaying a vast array of colors."
+},
+{
+"id": 17,
+"category": "Gemstones",
+"fact": "Citrine is a yellow-to-brown variety of quartz whose color is due to iron impurities within its crystalline structure.",
+"question": "What causes the color of citrine?",
+"answer": "Citrine is a yellow-to-brown variety of quartz whose color is due to iron impurities within its crystalline structure."
+},
+{
+"id": 18,
+"category": "Gemstones",
+"fact": "Spinel is a magnesium aluminium oxide mineral that forms hard octahedral crystals, and red spinel was historically mistaken for ruby.",
+"question": "What gemstone was spinel historically mistaken for due to its red color?",
+"answer": "Spinel is a magnesium aluminium oxide mineral that forms hard octahedral crystals, and red spinel was historically mistaken for ruby."
+},
+{
+"id": 19,
+"category": "Gemstones",
+"fact": "Zircon is a mineral belonging to the group of nesosilicates, and natural zircon is known for its high refractive index and diamond-like brilliance.",
+"question": "What is natural zircon known for?",
+"answer": "Zircon is a mineral belonging to the group of nesosilicates, and natural zircon is known for its high refractive index and diamond-like brilliance."
+},
+{
+"id": 20,
+"category": "Gemstones",
+"fact": "Moonstone is a sodium potassium aluminium silicate belonging to the feldspar group that exhibits a milky, bluish shimmer called adularescence.",
+"question": "What optical phenomenon does moonstone exhibit?",
+"answer": "Moonstone is a sodium potassium aluminium silicate belonging to the feldspar group that exhibits a milky, bluish shimmer called adularescence."
+},
+{
+"id": 21,
+"category": "Gemstones",
+"fact": "Lapis lazuli is a deep blue metamorphic rock that has been prized as a semi-precious gemstone since antiquity.",
+"question": "What kind of rock is lapis lazuli?",
+"answer": "Lapis lazuli is a deep blue metamorphic rock that has been prized as a semi-precious gemstone since antiquity."
+},
+{
+"id": 22,
+"category": "Gemstones",
+"fact": "Morganite is a rare pink-to-orange variety of beryl that contains trace amounts of manganese.",
+"question": "What gives morganite its pink color?",
+"answer": "Morganite is a rare pink-to-orange variety of beryl that contains trace amounts of manganese."
+},
+{
+"id": 23,
+"category": "Gemstones",
+"fact": "Onyx is a banded variety of the silicate mineral chalcedony, featuring parallel bands of black and white.",
+"question": "What kind of mineral is onyx?",
+"answer": "Onyx is a banded variety of the silicate mineral chalcedony, featuring parallel bands of black and white."
+},
+{
+"id": 24,
+"category": "Gemstones",
+"fact": "Quartz is one of the most abundant minerals in Earth's continental crust and serves as the parent material for many popular gemstones.",
+"question": "Why is quartz significant in the study of gemstones?",
+"answer": "Quartz is one of the most abundant minerals in Earth's continental crust and serves as the parent material for many popular gemstones."
+},
+{
+"id": 25,
+"category": "Gemstones",
+"fact": "Coral is an organic gemstone formed from the hard skeletons of marine invertebrates known as coral polyps.",
+"question": "Where does organic coral gemstone come from?",
+"answer": "Coral is an organic gemstone formed from the hard skeletons of marine invertebrates known as coral polyps."
+},
+{
+"id": 26,
+"category": "Gemstones",
+"fact": "Chrysoprase is a gemstone variety of chalcedony that contains small quantities of nickel, giving it an apple-green color.",
+"question": "What gives chrysoprase its apple-green color?",
+"answer": "Chrysoprase is a gemstone variety of chalcedony that contains small quantities of nickel, giving it an apple-green color."
+},
+{
+"id": 27,
+"category": "Gemstones",
+"fact": "Alexandrite is a rare variety of chrysoberyl that remarkably changes color depending on the ambient lighting conditions.",
+"question": "What is unique about alexandrite?",
+"answer": "Alexandrite is a rare variety of chrysoberyl that remarkably changes color depending on the ambient lighting conditions."
+},
+{
+"id": 28,
+"category": "Gemstones",
+"fact": "Sunstone is a plagioclase feldspar that exhibits a glittering appearance due to tiny reflective mineral inclusions.",
+"question": "Why does sunstone exhibit a glittering appearance?",
+"answer": "Sunstone is a plagioclase feldspar that exhibits a glittering appearance due to tiny reflective mineral inclusions."
+},
+{
+"id": 29,
+"category": "Gemstones",
+"fact": "Labradorite is a feldspar mineral famous for its iridescent optical effect known as labradorescence.",
+"question": "What optical effect is labradorite famous for?",
+"answer": "Labradorite is a feldspar mineral famous for its iridescent optical effect known as labradorescence."
+},
+{
+"id": 30,
+"category": "Gemstones",
+"fact": "Hematite is a common iron oxide mineral that can be polished into a dark, metallic gemstone with a heavy feel.",
+"question": "What is hematite made of when used as a gemstone?",
+"answer": "Hematite is a common iron oxide mineral that can be polished into a dark, metallic gemstone with a heavy feel."
+},
+{
+"id": 31,
+"category": "Gemstones",
+"fact": "Jet is an organic gemstone derived from fossilized wood that has undergone extreme pressure over millions of years.",
+"question": "How is organic jet formed?",
+"answer": "Jet is an organic gemstone derived from fossilized wood that has undergone extreme pressure over millions of years."
+},
+{
+"id": 32,
+"category": "Gemstones",
+"fact": "Chalcedony is a cryptocrystalline form of silica that acts as the base category for agates, jaspers, and carnelians.",
+"question": "What is chalcedony?",
+"answer": "Chalcedony is a cryptocrystalline form of silica that acts as the base category for agates, jaspers, and carnelians."
+},
+{
+"id": 33,
+"category": "Gemstones",
+"fact": "Carnelian is a reddish-brown variety of chalcedony whose color is primarily caused by iron oxide impurities.",
+"question": "What causes the reddish-brown color in carnelian?",
+"answer": "Carnelian is a reddish-brown variety of chalcedony whose color is primarily caused by iron oxide impurities."
+},
+{
+"id": 34,
+"category": "Gemstones",
+"fact": "Jasper is an opaque, impure variety of silica that can display vibrant patterns, making it a popular ornamental gemstone.",
+"question": "What is jasper classified as?",
+"answer": "Jasper is an opaque, impure variety of silica that can display vibrant patterns, making it a popular ornamental gemstone."
+},
+{
+"id": 35,
+"category": "Gemstones",
+"fact": "Malachite is a copper carbonate hydroxide mineral that features distinctive green banding and a soft Mohs hardness of 3.5 to 4.",
+"question": "What is the hardness of malachite on the Mohs scale?",
+"answer": "Malachite is a copper carbonate hydroxide mineral that features distinctive green banding and a soft Mohs hardness of 3.5 to 4."
+},
+{
+"id": 36,
+"category": "Gemstones",
+"fact": "Obsidian is a natural volcanic glass that forms when rapidly cooling lava extrudes from a volcano, occasionally used as a gemstone.",
+"question": "How is obsidian formed?",
+"answer": "Obsidian is a natural volcanic glass that forms when rapidly cooling lava extrudes from a volcano, occasionally used as a gemstone."
+},
+{
+"id": 37,
+"category": "Gemstones",
+"fact": "Pyrite is an iron sulfide mineral commonly known as fool's gold that is sometimes cut and polished for jewelry.",
+"question": "What is pyrite commonly known as?",
+"answer": "Pyrite is an iron sulfide mineral commonly known as fool's gold that is sometimes cut and polished for jewelry."
+},
+{
+"id": 38,
+"category": "Gemstones",
+"fact": "Kyanite is a typically blue aluminum silicate mineral that has significantly different hardness values depending on the direction of the crystal axis.",
+"question": "What is distinctive about kyanite hardness?",
+"answer": "Kyanite is a typically blue aluminum silicate mineral that has significantly different hardness values depending on the direction of the crystal axis."
+},
+{
+"id": 39,
+"category": "Gemstones",
+"fact": "Sphene, also known as titanite, is a neosilicate mineral prized by collectors for its exceptional fire and dispersion exceeding that of diamond.",
+"question": "What is another name for sphene?",
+"answer": "Sphene, also known as titanite, is a neosilicate mineral prized by collectors for its exceptional fire and dispersion exceeding that of diamond."
+},
+{
+"id": 40,
+"category": "Gemstones",
+"fact": "Ammolite is a rare opal-like organic gemstone made from the fossilized shell material of ancient ammonites found primarily in North America.",
+"question": "What is ammolite made from?",
+"answer": "Ammolite is a rare opal-like organic gemstone made from the fossilized shell material of ancient ammonites found primarily in North America."
+}
+]
+}

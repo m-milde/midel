@@ -1,0 +1,37 @@
+# Copyright (c) 2026 M.Milde <m.milde@gmail.com>
+# Free use; no sale, rebrand, or profit from this software.
+# See LICENSE.
+
+You are writing a knowledge pack for a small neural network that learns one lesson at a time. It can hold about 120 words of context. A long essay will be cut off and will not be learned.
+
+Write facts for this field only:
+FIELD: Gemstones
+
+Cover the well-known gem stones, not only the famous four. Include precious and common stones, a few organic gems such as pearl and amber, and a few facts about color, hardness, or origin when you are sure. One stone can appear more than once only when the second fact says something different.
+
+Produce 40 facts. Reply with JSON only, no markdown fence and no commentary. Use this shape:
+
+{
+  "dataset_name": "gemstones",
+  "facts": [
+    {
+      "id": 1,
+      "category": "Gemstones",
+      "fact": "One or two plain sentences.",
+      "question": "A question a person would ask?",
+      "answer": "The same fact, written as the direct answer."
+    }
+  ]
+}
+
+Rules for every item:
+- The fact is 12 to 35 words. One main claim. A second claim is allowed only when joined with "but" or "though".
+- Name the stone in both the question and the fact, so "What is ruby?" is not answered by a sentence that never says ruby.
+- The question can be answered from that fact alone. Use what, why, where, when, who, or is/are.
+- The answer is the same sentence as the fact. Do not answer with only "yes" or "no".
+- Plain words. Write numbers as digits. Hardness may use the Mohs scale when you are sure of the number.
+- No LaTeX, no citations, no URLs, no bullet lists, no quotes from books or articles.
+- Skip a fact if you are not sure of the number, the color cause, or the place it is found. Do not invent a precise figure.
+- Do not repeat these lessons, which are already known: gold does not tarnish or rust, and diamond and graphite are both pure carbon with different crystal lattices. You may still write a separate gemstone fact about diamond as a cut stone, as long as it is not that same sentence.
+
+After the JSON, stop.

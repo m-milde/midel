@@ -1,0 +1,1687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🧠 Neural Attention Lab — Master Curriculum & Standalone</title>
+<style>
+/* ── Reset & Core Theme ─────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:        #0d1117;
+  --bg-card:   #161b22;
+  --bg-input:  #0d1117;
+  --border:    #30363d;
+  --text:      #e6edf3;
+  --text-dim:  #8b949e;
+  --blue:      #58a6ff;
+  --cyan:      #39c5bb;
+  --green:     #3fb950;
+  --red:       #f85149;
+  --orange:    #d29922;
+  --purple:    #bc8cff;
+  --radius:    12px;
+  --shadow:    0 4px 20px rgba(0,0,0,.45);
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+/* ── Header & DB Status Bar ──────────────────────────────────────── */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-card);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.header-brand h1 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.badge-standalone {
+  font-size: .75rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: rgba(57,197,187,.15);
+  color: var(--cyan);
+  border: 1px solid rgba(57,197,187,.3);
+  letter-spacing: .03em;
+}
+.db-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: .8rem;
+  background: rgba(255,255,255,.03);
+  padding: 5px 12px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+}
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 8px var(--green);
+}
+.status-dot.saving {
+  background: var(--orange);
+  box-shadow: 0 0 8px var(--orange);
+}
+.header-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+
+/* ── Buttons ────────────────────────────────────────────────────── */
+button {
+  font-family: inherit;
+  font-size: .82rem;
+  font-weight: 600;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 12px;
+  cursor: pointer;
+  background: var(--bg-card);
+  color: var(--text);
+  transition: all .15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+button:hover { border-color: var(--text-dim); background: #1c2129; }
+button:active { transform: scale(.97); }
+
+.btn-primary {
+  background: #0c2d6b; border-color: #1f6feb; color: var(--blue);
+}
+.btn-primary:hover { background: #0f3a8a; }
+
+.btn-accent {
+  background: #271a47; border-color: #8957e5; color: var(--purple);
+}
+.btn-accent:hover { background: #34225e; }
+
+.btn-success {
+  background: #0d2818; border-color: #196c2e; color: var(--green);
+}
+.btn-success:hover { background: #122d1f; }
+
+.btn-sm { padding: 4px 10px; font-size: .78rem; }
+.btn-preset { padding: 4px 9px; font-size: .76rem; border-radius: 6px; }
+
+/* ── Layout Grid ────────────────────────────────────────────────── */
+main {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 16px;
+  padding: 16px 24px 24px;
+  max-width: 1480px;
+  margin: 0 auto;
+}
+@media (max-width: 1040px) {
+  main { grid-template-columns: 1fr; }
+}
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+}
+
+.card h2 {
+  font-size: .85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--text-dim);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ── Prompt & Predictions ───────────────────────────────────────── */
+.input-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.input-row input {
+  flex: 1;
+  padding: 10px 14px;
+  font-family: inherit;
+  font-size: .95rem;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  outline: none;
+  transition: border-color .15s;
+}
+.input-row input:focus { border-color: var(--blue); }
+.input-row input::placeholder { color: var(--text-dim); }
+
+.quick-prompts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+  max-height: 120px;
+  overflow-y: auto;
+  padding: 4px 0;
+}
+.quick-chip {
+  font-size: .74rem;
+  padding: 3px 9px;
+  border-radius: 12px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: all .15s;
+  white-space: nowrap;
+}
+.quick-chip:hover {
+  background: rgba(88,166,255,.12);
+  color: var(--blue);
+  border-color: var(--blue);
+}
+
+/* ── Result Box ─────────────────────────────────────────────────── */
+.result-box {
+  background: rgba(255,255,255,.02);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.prediction-highlight {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255,255,255,.05);
+}
+.prediction-word-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.prediction-badge {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--green);
+  text-shadow: 0 0 16px rgba(63,185,80,.4);
+}
+.prediction-confidence {
+  font-size: .85rem;
+  color: var(--text-dim);
+}
+
+.generation-stream {
+  margin-top: 10px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: rgba(88,166,255,.05);
+  border: 1px dashed rgba(88,166,255,.3);
+  font-size: .95rem;
+  color: var(--text);
+  line-height: 1.4;
+}
+.generation-stream strong { color: var(--cyan); }
+
+/* Probability Bars */
+.prob-list {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.prob-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: .82rem;
+}
+.prob-word {
+  width: 75px;
+  font-weight: 600;
+  text-align: right;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.prob-bar-bg {
+  flex: 1;
+  height: 14px;
+  background: #21262d;
+  border-radius: 7px;
+  overflow: hidden;
+}
+.prob-bar-fill {
+  height: 100%;
+  border-radius: 7px;
+  background: linear-gradient(90deg, #1f6feb, #39c5bb);
+  transition: width .25s ease;
+}
+.prob-pct {
+  width: 48px;
+  text-align: right;
+  color: var(--text-dim);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Attention Heatmap ──────────────────────────────────────────── */
+#heatmap-card { min-height: 480px; }
+.canvas-wrap {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 340px;
+  margin-top: 4px;
+}
+#heatmap-canvas {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  background: #0d1117;
+}
+
+.heatmap-info {
+  margin-top: 10px;
+  padding: 8px 12px;
+  background: rgba(255,255,255,.02);
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  font-size: .8rem;
+  color: var(--text-dim);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.heatmap-info strong { color: var(--purple); }
+
+/* ── Knowledge Studio ───────────────────────────────────────────── */
+.preset-row {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.preset-label {
+  font-size: .75rem;
+  color: var(--text-dim);
+  margin-right: 4px;
+}
+
+.facts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  max-height: 200px;
+  overflow-y: auto;
+  margin-bottom: 12px;
+}
+.fact-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 12px;
+  background: rgba(255,255,255,.02);
+  border: 1px solid rgba(255,255,255,.05);
+  border-radius: 7px;
+  font-size: .83rem;
+}
+.fact-item .text { color: var(--text); flex: 1; }
+.fact-item button.del {
+  background: transparent;
+  border: none;
+  color: var(--text-dim);
+  padding: 2px 6px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.fact-item button.del:hover { color: var(--red); }
+
+/* Training bar */
+.train-progress-wrap {
+  height: 6px;
+  background: #21262d;
+  border-radius: 3px;
+  overflow: hidden;
+  margin: 6px 0 10px;
+  display: none;
+}
+.train-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--blue), var(--cyan));
+  transition: width .1s ease;
+}
+
+/* ── Loss Chart ─────────────────────────────────────────────────── */
+#loss-canvas {
+  width: 100%;
+  height: 100px;
+  border-radius: 6px;
+  background: #0d1117;
+}
+.stats-strip {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+  font-size: .78rem;
+  color: var(--text-dim);
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.stats-strip span strong { color: var(--blue); }
+
+/* ── Toast ──────────────────────────────────────────────────────── */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: .88rem;
+  box-shadow: 0 4px 24px rgba(0,0,0,.6);
+  transition: transform .3s ease, opacity .3s ease;
+  opacity: 0;
+  z-index: 100;
+  pointer-events: none;
+}
+.toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+input[type="file"] { display: none; }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<!-- ── Header ────────────────────────────────────────────────────── -->
+<header>
+  <div class="header-brand">
+    <h1><span>🧠</span> Neural Attention Lab</h1>
+    <span class="badge-standalone">Standalone Transformer</span>
+  </div>
+
+  <div class="db-pill">
+    <div class="status-dot" id="db-status-dot"></div>
+    <span id="db-status-text">Database: Initializing...</span>
+  </div>
+
+  <div class="header-actions">
+    <button class="btn-sm" onclick="saveToDatabase()" title="Save current parameters to browser database">💾 Save to DB</button>
+    <button class="btn-sm" onclick="exportBrainFile()" title="Download brain file (.json) to your computer">⬇️ Export</button>
+    <label class="btn-sm" style="cursor:pointer;" title="Upload a previously saved brain file">
+      ⬆️ Import
+      <input type="file" id="file-import" accept=".json" onchange="importBrainFile(event)">
+    </label>
+    <button class="btn-sm" onclick="resetDatabase()" title="Reset to initial default brain">🔄 Reset</button>
+  </div>
+</header>
+
+<!-- ── Main Grid ─────────────────────────────────────────────────── -->
+<main>
+
+  <!-- Left Column: Self-Attention Matrix -->
+  <div class="card" id="heatmap-card">
+    <h2>
+      <span>🔍 Live Self-Attention Matrix</span>
+      <span style="font-size:.7rem;color:var(--purple);font-weight:normal">Query (Y) attends to Key (X)</span>
+    </h2>
+    <div class="canvas-wrap">
+      <canvas id="heatmap-canvas"></canvas>
+    </div>
+    <div class="heatmap-info">
+      <span id="hover-info">Hover over any attention cell to inspect weights</span>
+      <span id="vocab-stat">Tokens: &mdash;</span>
+    </div>
+  </div>
+
+  <!-- Right Column: Prompt & Teaching -->
+  <div style="display:flex;flex-direction:column;gap:16px;">
+
+    <!-- Prompt & Test -->
+    <div class="card">
+      <h2>🔮 Prompt & Next-Token Generation</h2>
+
+      <div class="input-row">
+        <input type="text" id="prompt-input" placeholder="Type a prompt to test the network…"
+               value="what is the sky during the day ?" autocomplete="off">
+        <button class="btn-primary" onclick="runPrompt(0)">Predict</button>
+        <button class="btn-accent" onclick="runPrompt(3)" title="Generate next 3 tokens">Auto ✦</button>
+      </div>
+
+      <!-- Quick prompts -->
+      <div class="quick-prompts" id="quick-prompts"></div>
+
+      <!-- Result Box -->
+      <div class="result-box" id="result-box">
+        <div class="prediction-highlight">
+          <div class="prediction-word-wrap">
+            <span style="font-size:.85rem;color:var(--text-dim)">Next Token:</span>
+            <span class="prediction-badge" id="pred-word">&mdash;</span>
+          </div>
+          <div class="prediction-confidence" id="pred-conf">&mdash;</div>
+        </div>
+
+        <div class="prob-list" id="prob-list"></div>
+
+        <div class="generation-stream" id="gen-stream" style="display:none">
+          Full Output: <strong id="gen-text"></strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Teaching Studio & Knowledge Base -->
+    <div class="card">
+      <h2>
+        <span>📚 Knowledge Base (Teaching)</span>
+        <button class="btn-success btn-sm" id="btn-train" onclick="trainNetwork()">⚡ Train Model</button>
+      </h2>
+
+      <!-- Presets & Curriculum -->
+      <div class="preset-row">
+        <span class="preset-label">Curriculum:</span>
+        <button class="btn-preset" onclick="loadPreset('master')" style="background:#271a47;border-color:#8957e5;color:#bc8cff">🎓 Master</button>
+        <button class="btn-preset" onclick="loadPreset('verification')" style="background:#0d2818;border-color:#196c2e;color:#3fb950">✅ Yes / No</button>
+        <button class="btn-preset" onclick="loadPreset('sky')">☀️ Sky</button>
+        <button class="btn-preset" onclick="loadPreset('animals')">🦁 Animals</button>
+        <button class="btn-preset" onclick="loadPreset('science')">🔬 Science</button>
+        <button class="btn-preset" onclick="loadPreset('colors')">🌈 Colors</button>
+        <button class="btn-preset" onclick="loadPreset('capitals')">🌍 Capitals</button>
+        <button class="btn-preset" onclick="loadPreset('opposites')">🔄 Opposites</button>
+      </div>
+
+      <div class="input-row">
+        <input type="text" id="teach-input" placeholder="Add a fact (e.g. 'what is the color of grass ? green')">
+        <button class="btn-primary" onclick="addFact()">Add</button>
+      </div>
+
+      <!-- Training progress bar -->
+      <div class="train-progress-wrap" id="train-progress-wrap">
+        <div class="train-progress-bar" id="train-progress-bar"></div>
+      </div>
+
+      <!-- Facts List -->
+      <div class="facts-list" id="facts-list"></div>
+
+      <!-- Training Loss Curve -->
+      <div style="margin-top:6px">
+        <div style="font-size:.72rem;color:var(--text-dim);margin-bottom:4px">TRAINING LOSS CURVE (ADAM + GRADIENT CLIPPING)</div>
+        <canvas id="loss-canvas"></canvas>
+      </div>
+
+      <div class="stats-strip">
+        <span>Facts: <strong id="stat-facts">0</strong></span>
+        <span>Vocab: <strong id="stat-vocab">0</strong></span>
+        <span>Weights: <strong id="stat-weights">0</strong></span>
+        <span>Loss: <strong id="stat-loss">&mdash;</strong></span>
+      </div>
+    </div>
+
+  </div>
+
+</main>
+
+<div class="toast" id="toast"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     JAVASCRIPT NEURAL NETWORK & DATABASE ENGINE
+     ═══════════════════════════════════════════════════════════════════ -->
+<script>
+/* ── Tokenizer ──────────────────────────────────────────────────── */
+function tokenize(text) {
+  if (!text) return [];
+  return (text.toLowerCase().trim().match(/[a-z0-9]+|[?.!,]/g) || []);
+}
+
+/* ── Matrix & Vector Math in Pure JS ────────────────────────────── */
+function randn(rows, cols, scale = 0.1) {
+  const out = [];
+  for (let i = 0; i < rows; i++) {
+    const row = new Float32Array(cols);
+    for (let j = 0; j < cols; j++) {
+      const u = Math.max(1e-15, Math.random());
+      const v = Math.random();
+      row[j] = Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v) * scale;
+    }
+    out.push(row);
+  }
+  return out;
+}
+
+function zeros(rows, cols) {
+  return Array.from({length: rows}, () => new Float32Array(cols));
+}
+
+function clip(v, m = 1.0) {
+  return Math.max(-m, Math.min(m, v));
+}
+
+function softmax(arr) {
+  const max = Math.max(...arr);
+  let sum = 0;
+  const exp = new Float32Array(arr.length);
+  for (let i = 0; i < arr.length; i++) {
+    exp[i] = Math.exp(arr[i] - max);
+    sum += exp[i];
+  }
+  for (let i = 0; i < arr.length; i++) exp[i] /= (sum + 1e-12);
+  return exp;
+}
+
+function matmul(A, B) {
+  const rA = A.length, cA = A[0].length, cB = B[0].length;
+  const out = Array.from({length: rA}, () => new Float32Array(cB));
+  for (let i = 0; i < rA; i++) {
+    for (let k = 0; k < cA; k++) {
+      const a = A[i][k];
+      if (a === 0) continue;
+      for (let j = 0; j < cB; j++) {
+        out[i][j] += a * B[k][j];
+      }
+    }
+  }
+  return out;
+}
+
+function transpose(A) {
+  const r = A.length, c = A[0].length;
+  const out = Array.from({length: c}, () => new Float32Array(r));
+  for (let i = 0; i < r; i++) {
+    for (let j = 0; j < c; j++) out[j][i] = A[i][j];
+  }
+  return out;
+}
+
+/* ── Causal Transformer Class (Client-Side) ───────────────────────── */
+class BrowserTransformer {
+  constructor(d_model = 32, max_seq_len = 24, lr = 0.005) {
+    this.d_model = d_model;
+    this.max_seq_len = max_seq_len;
+    this.lr = lr;
+    this.w2i = {};
+    this.i2w = [];
+    this.params = null;
+    this.lossHistory = [];
+    this.knowledge = [];
+    this.isTrained = false;
+  }
+
+  buildVocab(texts) {
+    const set = new Set();
+    for (const t of texts) {
+      for (const tok of tokenize(t)) set.add(tok);
+    }
+    this.i2w = Array.from(set).sort();
+    this.w2i = Object.fromEntries(this.i2w.map((w, i) => [w, i]));
+    this.initParams();
+  }
+
+  initParams() {
+    const V = Math.max(2, this.i2w.length);
+    const D = this.d_model;
+    const T = this.max_seq_len;
+    this.params = {
+      E: randn(V, D, 0.1),
+      P: randn(T, D, 0.1),
+      Wq: randn(D, D, 0.1),
+      Wk: randn(D, D, 0.1),
+      Wv: randn(D, D, 0.1),
+      Wo: randn(D, D, 0.1),
+      W1: randn(D, 2 * D, 0.1),
+      b1: new Float32Array(2 * D),
+      W2: randn(2 * D, D, 0.1),
+      b2: new Float32Array(D),
+      Whead: randn(D, V, 0.1)
+    };
+    this.lossHistory = [];
+  }
+
+  countParameters() {
+    if (!this.params) return 0;
+    let total = 0;
+    for (const k in this.params) {
+      const v = this.params[k];
+      if (typeof v[0] === 'number') total += v.length;
+      else total += v.length * v[0].length;
+    }
+    return total;
+  }
+
+  forward(token_ids) {
+    const T = token_ids.length;
+    const D = this.d_model;
+    const X = Array.from({length: T}, (_, t) => {
+      const row = new Float32Array(D);
+      const e = this.params.E[token_ids[t]];
+      const p = this.params.P[t];
+      for (let j = 0; j < D; j++) row[j] = e[j] + p[j];
+      return row;
+    });
+
+    const Q = matmul(X, this.params.Wq);
+    const K = matmul(X, this.params.Wk);
+    const V_mat = matmul(X, this.params.Wv);
+
+    const scale = Math.sqrt(D);
+    const scores = matmul(Q, transpose(K));
+    const A = [];
+    for (let i = 0; i < T; i++) {
+      const row = new Float32Array(T);
+      for (let j = 0; j < T; j++) {
+        row[j] = j > i ? -1e9 : scores[i][j] / scale;
+      }
+      A.push(softmax(row));
+    }
+
+    const C = matmul(A, V_mat);
+    const C_Wo = matmul(C, this.params.Wo);
+    const H = Array.from({length: T}, (_, i) => {
+      const r = new Float32Array(D);
+      for (let j = 0; j < D; j++) r[j] = C_Wo[i][j] + X[i][j];
+      return r;
+    });
+
+    const H_W1 = matmul(H, this.params.W1);
+    const F1 = Array.from({length: T}, (_, i) => {
+      const r = new Float32Array(2 * D);
+      for (let j = 0; j < 2 * D; j++) r[j] = Math.max(0, H_W1[i][j] + this.params.b1[j]);
+      return r;
+    });
+
+    const F1_W2 = matmul(F1, this.params.W2);
+    const Z = Array.from({length: T}, (_, i) => {
+      const r = new Float32Array(D);
+      for (let j = 0; j < D; j++) r[j] = F1_W2[i][j] + this.params.b2[j] + H[i][j];
+      return r;
+    });
+
+    const logits = matmul(Z, this.params.Whead);
+    const probs = logits.map(row => softmax(row));
+
+    return { probs, A, X, Q, K, V_mat, C, H, F1, F2: F1_W2, Z };
+  }
+
+  train(epochs = 150, onProgress = null) {
+    if (!this.knowledge || this.knowledge.length === 0) return;
+    this.buildVocab(this.knowledge);
+
+    const V = this.i2w.length;
+    const D = this.d_model;
+    const lr = this.lr, beta1 = 0.9, beta2 = 0.999, eps = 1e-8;
+
+    const m = {}, v_opt = {};
+    for (const k in this.params) {
+      if (typeof this.params[k][0] === "number") {
+        m[k] = new Float32Array(this.params[k].length);
+        v_opt[k] = new Float32Array(this.params[k].length);
+      } else {
+        m[k] = zeros(this.params[k].length, this.params[k][0].length);
+        v_opt[k] = zeros(this.params[k].length, this.params[k][0].length);
+      }
+    }
+
+    let step = 0;
+    this.lossHistory = [];
+
+    for (let epoch = 0; epoch < epochs; epoch++) {
+      let totalLoss = 0;
+      let validCount = 0;
+
+      for (const s of this.knowledge) {
+        const tokens = tokenize(s).map(w => this.w2i[w]).filter(x => x !== undefined);
+        if (tokens.length < 2) continue;
+
+        const T = Math.min(tokens.length - 1, this.max_seq_len - 1);
+        const x_tok = tokens.slice(0, T);
+        const y_tok = tokens.slice(1, T + 1);
+
+        const { probs, A, X, Q, K, V_mat, C, H, F1, Z } = this.forward(x_tok);
+
+        let sentLoss = 0;
+        for (let t = 0; t < T; t++) {
+          sentLoss -= Math.log(probs[t][y_tok[t]] + 1e-10);
+        }
+        totalLoss += sentLoss / T;
+        validCount++;
+
+        // Backward
+        const dlogits = probs.map((row, i) => {
+          const r = new Float32Array(row);
+          r[y_tok[i]] -= 1.0;
+          for (let j = 0; j < V; j++) r[j] /= T;
+          return r;
+        });
+
+        const dWhead = matmul(transpose(Z), dlogits);
+        const dZ = matmul(dlogits, transpose(this.params.Whead));
+
+        const dF2 = dZ;
+        const dH = Array.from({length: T}, (_, i) => new Float32Array(dZ[i]));
+        const dW2 = matmul(transpose(F1), dF2);
+        const db2 = new Float32Array(D);
+        for (let i = 0; i < T; i++) for (let j = 0; j < D; j++) db2[j] += dF2[i][j];
+
+        const dF1_raw = matmul(dF2, transpose(this.params.W2));
+        const dF1 = Array.from({length: T}, (_, i) => {
+          const r = new Float32Array(2 * D);
+          for (let j = 0; j < 2 * D; j++) r[j] = F1[i][j] > 0 ? dF1_raw[i][j] : 0;
+          return r;
+        });
+        const dW1 = matmul(transpose(H), dF1);
+        const db1 = new Float32Array(2 * D);
+        for (let i = 0; i < T; i++) for (let j = 0; j < 2 * D; j++) db1[j] += dF1[i][j];
+
+        const dH_mlp = matmul(dF1, transpose(this.params.W1));
+        for (let i = 0; i < T; i++) for (let j = 0; j < D; j++) dH[i][j] += dH_mlp[i][j];
+
+        const dC = matmul(dH, transpose(this.params.Wo));
+        const dWo = matmul(transpose(C), dH);
+        const dX = Array.from({length: T}, (_, i) => new Float32Array(dH[i]));
+
+        const dV_mat = matmul(transpose(A), dC);
+        const dA = matmul(dC, transpose(V_mat));
+
+        const scale = Math.sqrt(D);
+        const dscores = Array.from({length: T}, (_, i) => {
+          const row = new Float32Array(T);
+          let sum_dA_A = 0;
+          for (let j = 0; j < T; j++) sum_dA_A += dA[i][j] * A[i][j];
+          for (let j = 0; j < T; j++) {
+            if (j <= i) row[j] = (A[i][j] * (dA[i][j] - sum_dA_A)) / scale;
+          }
+          return row;
+        });
+
+        const dQ = matmul(dscores, K);
+        const dK = matmul(transpose(dscores), Q);
+
+        const dX_Q = matmul(dQ, transpose(this.params.Wq));
+        const dX_K = matmul(dK, transpose(this.params.Wk));
+        const dX_V = matmul(dV_mat, transpose(this.params.Wv));
+        for (let i = 0; i < T; i++) {
+          for (let j = 0; j < D; j++) dX[i][j] += dX_Q[i][j] + dX_K[i][j] + dX_V[i][j];
+        }
+
+        const dWq = matmul(transpose(X), dQ);
+        const dWk = matmul(transpose(X), dK);
+        const dWv = matmul(transpose(X), dV_mat);
+
+        step++;
+        const grads = { Whead: dWhead, W2: dW2, b2: db2, W1: dW1, b1: db1, Wo: dWo, Wq: dWq, Wk: dWk, Wv: dWv };
+        for (const k in grads) {
+          const g = grads[k], p = this.params[k], mk = m[k], vk = v_opt[k];
+          if (typeof g[0] === "number") {
+            for (let j = 0; j < g.length; j++) {
+              const val = clip(g[j], 1.0);
+              mk[j] = beta1 * mk[j] + (1 - beta1) * val;
+              vk[j] = beta2 * vk[j] + (1 - beta2) * val * val;
+              const mhat = mk[j] / (1 - Math.pow(beta1, step));
+              const vhat = vk[j] / (1 - Math.pow(beta2, step));
+              p[j] -= lr * mhat / (Math.sqrt(vhat) + eps);
+            }
+          } else {
+            for (let r = 0; r < g.length; r++) {
+              for (let c = 0; c < g[0].length; c++) {
+                const val = clip(g[r][c], 1.0);
+                mk[r][c] = beta1 * mk[r][c] + (1 - beta1) * val;
+                vk[r][c] = beta2 * vk[r][c] + (1 - beta2) * val * val;
+                const mhat = mk[r][c] / (1 - Math.pow(beta1, step));
+                const vhat = vk[r][c] / (1 - Math.pow(beta2, step));
+                p[r][c] -= lr * mhat / (Math.sqrt(vhat) + eps);
+              }
+            }
+          }
+        }
+
+        for (let t = 0; t < T; t++) {
+          const idx = x_tok[t];
+          for (let j = 0; j < D; j++) {
+            this.params.E[idx][j] -= lr * clip(dX[t][j], 1.0);
+            this.params.P[t][j] -= lr * clip(dX[t][j], 1.0);
+          }
+        }
+      }
+
+      const avgLoss = validCount > 0 ? totalLoss / validCount : 0;
+      if (epoch % 5 === 0 || epoch === epochs - 1) {
+        this.lossHistory.push(avgLoss);
+      }
+      if (onProgress && epoch % 10 === 0) {
+        onProgress((epoch + 1) / epochs, avgLoss);
+      }
+    }
+
+    this.isTrained = true;
+    if (onProgress) onProgress(1.0, this.lossHistory[this.lossHistory.length - 1]);
+  }
+
+  predictNext(prompt, topK = 6) {
+    if (!this.params || !this.isTrained) return null;
+    const rawTokens = tokenize(prompt);
+    const known = rawTokens.filter(w => this.w2i[w] !== undefined);
+    if (known.length === 0) return null;
+
+    const token_ids = known.slice(-this.max_seq_len).map(w => this.w2i[w]);
+    const { probs, A } = this.forward(token_ids);
+
+    const lastProbs = probs[probs.length - 1];
+    const top = Array.from({length: this.i2w.length}, (_, i) => ({
+      word: this.i2w[i],
+      prob: lastProbs[i]
+    }))
+    .filter(x => x.prob > 0.0005)
+    .sort((a, b) => b.prob - a.prob)
+    .slice(0, topK);
+
+    return {
+      tokens: known.slice(-this.max_seq_len),
+      predictions: top,
+      topWord: top.length > 0 ? top[0].word : null,
+      attention: A
+    };
+  }
+
+  generate(prompt, maxTokens = 3) {
+    let current = prompt;
+    const generated = [];
+    for (let i = 0; i < maxTokens; i++) {
+      const res = this.predictNext(current, 1);
+      if (!res || !res.topWord) break;
+      generated.push(res.topWord);
+      current += " " + res.topWord;
+      if ([".", "!", "?"].includes(res.topWord)) break;
+    }
+    return generated.join(" ");
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   INDEXEDDB DATABASE ENGINE
+   ═══════════════════════════════════════════════════════════════════ */
+class NeuralDatabase {
+  constructor(dbName = "NeuralBrainDB", version = 2) {
+    this.dbName = dbName;
+    this.version = version;
+    this.db = null;
+  }
+
+  async open() {
+    return new Promise((resolve, reject) => {
+      const req = indexedDB.open(this.dbName, this.version);
+      req.onupgradeneeded = e => {
+        const db = e.target.result;
+        if (!db.objectStoreNames.contains("models")) {
+          db.createObjectStore("models", { keyPath: "id" });
+        }
+      };
+      req.onsuccess = e => {
+        this.db = e.target.result;
+        resolve(this.db);
+      };
+      req.onerror = e => reject(e);
+    });
+  }
+
+  async saveModel(brain) {
+    if (!this.db) await this.open();
+    const serializedParams = {};
+    if (brain.params) {
+      for (const k in brain.params) {
+        const v = brain.params[k];
+        if (typeof v[0] === 'number') {
+          serializedParams[k] = Array.from(v);
+        } else {
+          serializedParams[k] = v.map(row => Array.from(row));
+        }
+      }
+    }
+
+    const record = {
+      id: "active_brain",
+      savedAt: new Date().toISOString(),
+      knowledge: brain.knowledge,
+      d_model: brain.d_model,
+      max_seq_len: brain.max_seq_len,
+      lr: brain.lr,
+      i2w: brain.i2w,
+      w2i: brain.w2i,
+      lossHistory: brain.lossHistory,
+      isTrained: brain.isTrained,
+      params: serializedParams
+    };
+
+    return new Promise((resolve, reject) => {
+      const tx = this.db.transaction(["models"], "readwrite");
+      const store = tx.objectStore("models");
+      const req = store.put(record);
+      req.onsuccess = () => resolve(record);
+      req.onerror = e => reject(e);
+    });
+  }
+
+  async loadModel() {
+    if (!this.db) await this.open();
+    return new Promise((resolve, reject) => {
+      const tx = this.db.transaction(["models"], "readonly");
+      const store = tx.objectStore("models");
+      const req = store.get("active_brain");
+      req.onsuccess = e => resolve(e.target.result || null);
+      req.onerror = e => reject(e);
+    });
+  }
+
+  async clear() {
+    if (!this.db) await this.open();
+    return new Promise((resolve, reject) => {
+      const tx = this.db.transaction(["models"], "readwrite");
+      const store = tx.objectStore("models");
+      const req = store.delete("active_brain");
+      req.onsuccess = () => resolve();
+      req.onerror = e => reject(e);
+    });
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   EXPANDED MASTER CURRICULUM (83 Facts & Lessons)
+   ═══════════════════════════════════════════════════════════════════ */
+const CURRICULUM = {
+  sky: [
+    "what is the sky during the day ? blue",
+    "what is the sky during the night ? dark",
+    "the sky is blue during the day",
+    "the sky is dark during the night",
+    "what shines during the day ? sun",
+    "what shines during the night ? moon",
+    "the sun shines during the day",
+    "the moon shines during the night",
+    "stars shine during the night",
+    "rain falls from the clouds",
+    "where does rain fall from ? clouds"
+  ],
+  colors: [
+    "what color is grass ? green",
+    "what color is snow ? white",
+    "what color is coal ? black",
+    "what color is the ocean ? blue",
+    "what color are bananas ? yellow",
+    "what color are flamingos ? pink",
+    "roses are red",
+    "violets are blue",
+    "grass is green",
+    "snow is white",
+    "bananas are yellow"
+  ],
+  science: [
+    "what is fire ? hot",
+    "what is ice ? cold",
+    "what is water ? wet",
+    "what is sugar ? sweet",
+    "what is lemon ? sour",
+    "fire is hot",
+    "ice is cold",
+    "water is wet",
+    "sugar is sweet",
+    "lemons are sour"
+  ],
+  animals: [
+    "what do dogs say ? woof",
+    "what do cats say ? meow",
+    "what do cows say ? moo",
+    "what do lions say ? roar",
+    "what do birds say ? chirp",
+    "what do bees say ? buzz",
+    "what do frogs say ? croak",
+    "what do ducks say ? quack",
+    "what do sheep say ? baa",
+    "what do wolves say ? howl",
+    "dogs say woof",
+    "cats say meow",
+    "cows say moo",
+    "lions say roar",
+    "birds say chirp",
+    "bees say buzz",
+    "frogs say croak",
+    "ducks say quack",
+    "sheep say baa",
+    "wolves say howl",
+    "where do birds fly ? sky",
+    "where do fish swim ? water",
+    "where do moles dig ? earth",
+    "birds fly in the sky",
+    "fish swim in the water"
+  ],
+  capitals: [
+    "what is the capital of france ? paris",
+    "what is the capital of japan ? tokyo",
+    "what is the capital of italy ? rome",
+    "what is the capital of germany ? berlin",
+    "what is the capital of spain ? madrid",
+    "what is the capital of egypt ? cairo",
+    "what is the capital of england ? london",
+    "what is the capital of canada ? ottawa",
+    "the capital of france is paris",
+    "the capital of japan is tokyo",
+    "the capital of italy is rome",
+    "the capital of germany is berlin",
+    "the capital of spain is madrid",
+    "the capital of egypt is cairo",
+    "the capital of england is london",
+    "the capital of canada is ottawa"
+  ],
+  opposites: [
+    "the opposite of hot is cold",
+    "the opposite of cold is hot",
+    "the opposite of day is night",
+    "the opposite of night is day",
+    "the opposite of big is small",
+    "the opposite of small is big",
+    "the opposite of up is down",
+    "the opposite of down is up",
+    "the opposite of happy is sad",
+    "the opposite of fast is slow"
+  ],
+  verification: [
+    "is ice cold ? yes",
+    "is ice hot ? no",
+    "is fire hot ? yes",
+    "is fire cold ? no",
+    "is water wet ? yes",
+    "is water dry ? no",
+    "is sugar sweet ? yes",
+    "is sugar sour ? no",
+    "is the sky blue during the day ? yes",
+    "is the sky dark during the day ? no",
+    "is the sky dark during the night ? yes",
+    "is the sky blue during the night ? no",
+    "do dogs say woof ? yes",
+    "do dogs say meow ? no",
+    "do cats say meow ? yes",
+    "do cats say woof ? no",
+    "is the capital of france paris ? yes",
+    "is the capital of france tokyo ? no"
+  ]
+};
+
+// Combine all into the Master Pack
+CURRICULUM.master = [
+  ...CURRICULUM.sky,
+  ...CURRICULUM.colors,
+  ...CURRICULUM.science,
+  ...CURRICULUM.animals,
+  ...CURRICULUM.capitals,
+  ...CURRICULUM.opposites,
+  ...CURRICULUM.verification
+];
+
+/* ═══════════════════════════════════════════════════════════════════
+   APPLICATION CONTROLLER
+   ═══════════════════════════════════════════════════════════════════ */
+const net = new BrowserTransformer(32, 24, 0.005);
+const db = new NeuralDatabase();
+let currentAttention = null;
+let currentTokens = [];
+
+async function init() {
+  setDbStatus("Connecting to IndexedDB...", "saving");
+  try {
+    await db.open();
+    const saved = await db.loadModel();
+    if (saved && saved.knowledge && saved.knowledge.length > 0) {
+      net.knowledge = saved.knowledge;
+      net.d_model = saved.d_model || 32;
+      net.max_seq_len = saved.max_seq_len || 24;
+      net.lr = saved.lr || 0.005;
+      net.i2w = saved.i2w || [];
+      net.w2i = saved.w2i || {};
+      net.lossHistory = saved.lossHistory || [];
+      net.isTrained = saved.isTrained || false;
+
+      if (saved.params) {
+        net.params = {};
+        for (const k in saved.params) {
+          const v = saved.params[k];
+          if (typeof v[0] === 'number') {
+            net.params[k] = new Float32Array(v);
+          } else {
+            net.params[k] = v.map(row => new Float32Array(row));
+          }
+        }
+      }
+
+      const timeStr = new Date(saved.savedAt).toLocaleTimeString();
+      setDbStatus(`IndexedDB Loaded (${timeStr})`, "connected");
+      toast(`Loaded saved brain (${net.knowledge.length} facts) from IndexedDB!`);
+    } else {
+      // First boot: load Master Curriculum
+      net.knowledge = Array.from(CURRICULUM.master);
+      setDbStatus("IndexedDB Ready (Master Pack)", "connected");
+      await trainNetwork(false);
+    }
+  } catch (err) {
+    console.error("IndexedDB error:", err);
+    net.knowledge = Array.from(CURRICULUM.master);
+    setDbStatus("DB Fallback", "saving");
+    await trainNetwork(false);
+  }
+
+  renderUI();
+  runPrompt(0);
+}
+
+function setDbStatus(text, state) {
+  const dot = document.getElementById("db-status-dot");
+  const txt = document.getElementById("db-status-text");
+  txt.textContent = text;
+  dot.className = "status-dot " + (state === "saving" ? "saving" : "");
+}
+
+/* ── Training & Teaching ────────────────────────────────────────── */
+async function trainNetwork(notify = true) {
+  const btn = document.getElementById("btn-train");
+  const pWrap = document.getElementById("train-progress-wrap");
+  const pBar = document.getElementById("train-progress-bar");
+
+  btn.disabled = true;
+  btn.textContent = "⏳ Training...";
+  pWrap.style.display = "block";
+  pBar.style.width = "0%";
+  setDbStatus("Training & Optimizing...", "saving");
+
+  await new Promise(r => setTimeout(r, 20));
+
+  const startTime = performance.now();
+  net.train(150, (pct, loss) => {
+    pBar.style.width = `${pct * 100}%`;
+  });
+  const elapsed = (performance.now() - startTime).toFixed(0);
+
+  btn.disabled = false;
+  btn.textContent = "⚡ Train Model";
+  pWrap.style.display = "none";
+
+  await saveToDatabase(false);
+
+  renderUI();
+  runPrompt(0);
+
+  if (notify) {
+    toast(`⚡ Trained on ${net.knowledge.length} facts in ${elapsed}ms & saved!`);
+  }
+}
+
+async function addFact() {
+  const input = document.getElementById("teach-input");
+  const text = input.value.trim();
+  if (!text) return;
+  net.knowledge.push(text);
+  input.value = "";
+  renderFacts();
+  await trainNetwork(true);
+}
+
+document.getElementById("teach-input").addEventListener("keydown", e => {
+  if (e.key === "Enter") addFact();
+});
+
+async function deleteFact(idx) {
+  if (idx >= 0 && idx < net.knowledge.length) {
+    net.knowledge.splice(idx, 1);
+    renderFacts();
+    await trainNetwork(true);
+  }
+}
+
+async function loadPreset(name) {
+  if (!CURRICULUM[name]) return;
+  net.knowledge = Array.from(CURRICULUM[name]);
+  renderFacts();
+
+  const prompts = {
+    master: "what is the capital of japan ?",
+    verification: "is ice hot ?",
+    sky: "what is the sky during the day ?",
+    animals: "what do lions say ?",
+    science: "what is fire ?",
+    colors: "what color is snow ?",
+    capitals: "what is the capital of france ?",
+    opposites: "the opposite of hot is"
+  };
+  if (prompts[name]) {
+    document.getElementById("prompt-input").value = prompts[name];
+  }
+
+  await trainNetwork(true);
+}
+
+/* ── Prompt & Predict ───────────────────────────────────────────── */
+function runPrompt(genCount = 0) {
+  const input = document.getElementById("prompt-input");
+  const prompt = input.value.trim();
+  if (!prompt) return;
+
+  const res = net.predictNext(prompt);
+  if (!res) {
+    document.getElementById("pred-word").textContent = "—";
+    document.getElementById("pred-conf").textContent = "Prompt has no learned words yet";
+    document.getElementById("prob-list").innerHTML = "";
+    return;
+  }
+
+  currentAttention = res.attention;
+  currentTokens = res.tokens;
+
+  renderPredictions(res, genCount > 0 ? net.generate(prompt, genCount) : null);
+  drawHeatmap(res.tokens, res.attention);
+}
+
+document.getElementById("prompt-input").addEventListener("keydown", e => {
+  if (e.key === "Enter") runPrompt(0);
+});
+
+function renderPredictions(res, generatedText) {
+  const badge = document.getElementById("pred-word");
+  const conf = document.getElementById("pred-conf");
+  const list = document.getElementById("prob-list");
+  const stream = document.getElementById("gen-stream");
+  const genText = document.getElementById("gen-text");
+
+  if (res.predictions && res.predictions.length > 0) {
+    const top = res.predictions[0];
+    badge.textContent = `"${top.word}"`;
+    conf.textContent = `${(top.prob * 100).toFixed(1)}% probability`;
+
+    list.innerHTML = res.predictions.map(p => `
+      <div class="prob-row">
+        <span class="prob-word">${p.word}</span>
+        <div class="prob-bar-bg">
+          <div class="prob-bar-fill" style="width:${Math.max(2, p.prob * 100)}%"></div>
+        </div>
+        <span class="prob-pct">${(p.prob * 100).toFixed(1)}%</span>
+      </div>
+    `).join("");
+  } else {
+    badge.textContent = "—";
+    conf.textContent = "";
+    list.innerHTML = "";
+  }
+
+  if (generatedText) {
+    stream.style.display = "block";
+    genText.textContent = `"${document.getElementById("prompt-input").value.trim()} ${generatedText}"`;
+  } else {
+    stream.style.display = "none";
+  }
+}
+
+/* ── Database Actions ───────────────────────────────────────────── */
+async function saveToDatabase(showToast = true) {
+  setDbStatus("Saving parameters...", "saving");
+  try {
+    await db.saveModel(net);
+    const now = new Date().toLocaleTimeString();
+    setDbStatus(`IndexedDB Saved (${now})`, "connected");
+    if (showToast) toast("💾 All weights & facts saved to IndexedDB!");
+  } catch (err) {
+    console.error("Save error:", err);
+    setDbStatus("Save Error", "saving");
+    if (showToast) toast("⚠️ Error saving to database");
+  }
+}
+
+async function exportBrainFile() {
+  const data = {
+    exportedAt: new Date().toISOString(),
+    knowledge: net.knowledge,
+    d_model: net.d_model,
+    max_seq_len: net.max_seq_len,
+    lr: net.lr,
+    i2w: net.i2w,
+    w2i: net.w2i,
+    lossHistory: net.lossHistory,
+    isTrained: net.isTrained,
+    params: {}
+  };
+  if (net.params) {
+    for (const k in net.params) {
+      const v = net.params[k];
+      data.params[k] = typeof v[0] === 'number' ? Array.from(v) : v.map(row => Array.from(row));
+    }
+  }
+
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `neural_brain_curriculum_${new Date().toISOString().slice(0,10)}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+  toast("⬇️ Brain exported to JSON file!");
+}
+
+async function importBrainFile(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = async e => {
+    try {
+      const data = JSON.parse(e.target.result);
+      net.knowledge = data.knowledge || [];
+      net.d_model = data.d_model || 32;
+      net.max_seq_len = data.max_seq_len || 24;
+      net.lr = data.lr || 0.005;
+      net.i2w = data.i2w || [];
+      net.w2i = data.w2i || {};
+      net.lossHistory = data.lossHistory || [];
+      net.isTrained = data.isTrained || false;
+
+      if (data.params) {
+        net.params = {};
+        for (const k in data.params) {
+          const v = data.params[k];
+          net.params[k] = typeof v[0] === 'number' ? new Float32Array(v) : v.map(row => new Float32Array(row));
+        }
+      }
+
+      await db.saveModel(net);
+      setDbStatus("IndexedDB Restored", "connected");
+      renderUI();
+      runPrompt(0);
+      toast("⬆️ Brain successfully imported & saved!");
+    } catch (err) {
+      toast("⚠️ Failed to read brain JSON file");
+      console.error(err);
+    }
+  };
+  reader.readAsText(file);
+}
+
+async function resetDatabase() {
+  if (!confirm("Reset database to initial Master Curriculum?")) return;
+  await db.clear();
+  net.knowledge = Array.from(CURRICULUM.master);
+  await trainNetwork(true);
+  toast("🔄 Database reset to Master Curriculum!");
+}
+
+/* ── UI Rendering & Charts ──────────────────────────────────────── */
+function renderUI() {
+  renderFacts();
+  renderStats();
+  drawLoss(net.lossHistory);
+  updateQuickPrompts();
+}
+
+function renderFacts() {
+  const list = document.getElementById("facts-list");
+  list.innerHTML = net.knowledge.map((f, i) => `
+    <div class="fact-item">
+      <span class="text">"${f}"</span>
+      <button class="del" onclick="deleteFact(${i})" title="Remove fact">&times;</button>
+    </div>
+  `).join("");
+}
+
+function renderStats() {
+  document.getElementById("stat-facts").textContent = net.knowledge.length;
+  document.getElementById("stat-vocab").textContent = net.i2w.length;
+  document.getElementById("stat-weights").textContent = net.countParameters().toLocaleString();
+  const lastLoss = net.lossHistory[net.lossHistory.length - 1];
+  document.getElementById("stat-loss").textContent = lastLoss !== undefined ? lastLoss.toFixed(4) : "—";
+}
+
+function updateQuickPrompts() {
+  const container = document.getElementById("quick-prompts");
+  const samples = [
+    "is ice hot ?",
+    "is ice cold ?",
+    "is fire hot ?",
+    "is fire cold ?",
+    "is the sky blue during the day ?",
+    "is the sky dark during the day ?",
+    "what is the sky during the day ?",
+    "what shines during the day ?",
+    "what color is grass ?",
+    "what color is snow ?",
+    "what is fire ?",
+    "what is ice ?",
+    "what do lions say ?",
+    "where do birds fly ?",
+    "what is the capital of france ?",
+    "the opposite of hot is"
+  ];
+  container.innerHTML = samples.map(s => `
+    <span class="quick-chip" onclick="setPrompt('${s}')">${s}</span>
+  `).join("");
+}
+
+function setPrompt(text) {
+  document.getElementById("prompt-input").value = text;
+  runPrompt(0);
+}
+
+/* ── Self-Attention Heatmap Canvas ──────────────────────────────── */
+let hoveredCell = null;
+
+function drawHeatmap(tokens, A) {
+  const canvas = document.getElementById("heatmap-canvas");
+  const ctx = canvas.getContext("2d");
+  const dpr = window.devicePixelRatio || 1;
+  const rect = canvas.getBoundingClientRect();
+  canvas.width = rect.width * dpr;
+  canvas.height = rect.height * dpr;
+  ctx.scale(dpr, dpr);
+
+  const W = rect.width, H = rect.height;
+  ctx.fillStyle = "#0d1117";
+  ctx.fillRect(0, 0, W, H);
+
+  if (!tokens || tokens.length === 0 || !A) {
+    ctx.fillStyle = "#8b949e";
+    ctx.font = "13px system-ui";
+    ctx.textAlign = "center";
+    ctx.fillText("Enter a prompt to see live Self-Attention weights", W / 2, H / 2);
+    return;
+  }
+
+  const N = tokens.length;
+  const labelMargin = Math.min(80, Math.max(50, W * 0.18));
+  const availableW = W - labelMargin - 20;
+  const availableH = H - labelMargin - 20;
+  const cellSize = Math.min(availableW / N, availableH / N, 48);
+
+  const startX = labelMargin + (availableW - cellSize * N) / 2;
+  const startY = labelMargin + (availableH - cellSize * N) / 2;
+
+  // Key tokens (columns, top)
+  ctx.font = "bold 11px system-ui";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "bottom";
+  for (let c = 0; c < N; c++) {
+    const cx = startX + c * cellSize + cellSize / 2;
+    ctx.save();
+    ctx.translate(cx, startY - 8);
+    ctx.rotate(-Math.PI / 4);
+    ctx.fillStyle = (hoveredCell && hoveredCell.c === c) ? "#58a6ff" : "#8b949e";
+    ctx.fillText(tokens[c], 0, 0);
+    ctx.restore();
+  }
+
+  // Query tokens (rows, left)
+  ctx.textAlign = "right";
+  ctx.textBaseline = "middle";
+  for (let r = 0; r < N; r++) {
+    const cy = startY + r * cellSize + cellSize / 2;
+    ctx.fillStyle = (hoveredCell && hoveredCell.r === r) ? "#bc8cff" : "#8b949e";
+    ctx.fillText(tokens[r], startX - 10, cy);
+  }
+
+  // Heatmap Cells
+  for (let r = 0; r < N; r++) {
+    for (let c = 0; c < N; c++) {
+      const val = A[r][c];
+      const x = startX + c * cellSize;
+      const y = startY + r * cellSize;
+
+      if (c > r) {
+        ctx.fillStyle = "rgba(255,255,255,0.015)";
+        ctx.fillRect(x + 1, y + 1, cellSize - 2, cellSize - 2);
+        continue;
+      }
+
+      const alpha = Math.min(1.0, val * 1.25);
+      ctx.fillStyle = `rgba(57, 197, 187, ${Math.max(0.08, alpha)})`;
+      ctx.fillRect(x + 1, y + 1, cellSize - 2, cellSize - 2);
+
+      if (hoveredCell && (hoveredCell.r === r || hoveredCell.c === c)) {
+        ctx.strokeStyle = (hoveredCell.r === r && hoveredCell.c === c) ? "#fff" : "rgba(88,166,255,.3)";
+        ctx.lineWidth = (hoveredCell.r === r && hoveredCell.c === c) ? 2 : 1;
+        ctx.strokeRect(x + 1, y + 1, cellSize - 2, cellSize - 2);
+      }
+
+      if (cellSize >= 28) {
+        ctx.font = "9px system-ui";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillStyle = val > 0.45 ? "#0d1117" : "#e6edf3";
+        ctx.fillText(val.toFixed(2), x + cellSize / 2, y + cellSize / 2);
+      }
+    }
+  }
+
+  canvas._layout = { startX, startY, cellSize, N, tokens, A };
+}
+
+document.getElementById("heatmap-canvas").addEventListener("mousemove", e => {
+  const canvas = e.target;
+  const layout = canvas._layout;
+  if (!layout) return;
+
+  const rect = canvas.getBoundingClientRect();
+  const mx = e.clientX - rect.left;
+  const my = e.clientY - rect.top;
+
+  const c = Math.floor((mx - layout.startX) / layout.cellSize);
+  const r = Math.floor((my - layout.startY) / layout.cellSize);
+
+  if (r >= 0 && r < layout.N && c >= 0 && c < layout.N) {
+    hoveredCell = { r, c };
+    const val = layout.A[r][c];
+    const info = document.getElementById("hover-info");
+    if (c > r) {
+      info.innerHTML = `Token <strong>"${layout.tokens[r]}"</strong> cannot look at future token <strong>"${layout.tokens[c]}"</strong> (Causal Mask)`;
+    } else {
+      info.innerHTML = `Token <strong>"${layout.tokens[r]}"</strong> attends to <strong>"${layout.tokens[c]}"</strong> with weight: <strong>${(val * 100).toFixed(1)}%</strong>`;
+    }
+    drawHeatmap(layout.tokens, layout.A);
+  } else if (hoveredCell !== null) {
+    hoveredCell = null;
+    drawHeatmap(layout.tokens, layout.A);
+  }
+});
+
+document.getElementById("heatmap-canvas").addEventListener("mouseleave", () => {
+  hoveredCell = null;
+  if (currentTokens && currentAttention) drawHeatmap(currentTokens, currentAttention);
+});
+
+/* ── Loss Chart ─────────────────────────────────────────────────── */
+function drawLoss(history) {
+  const canvas = document.getElementById("loss-canvas");
+  const ctx = canvas.getContext("2d");
+  const dpr = window.devicePixelRatio || 1;
+  const rect = canvas.getBoundingClientRect();
+  canvas.width = rect.width * dpr;
+  canvas.height = rect.height * dpr;
+  ctx.scale(dpr, dpr);
+  const W = rect.width, H = rect.height;
+
+  ctx.fillStyle = "#0d1117";
+  ctx.fillRect(0, 0, W, H);
+
+  if (!history || history.length < 2) return;
+
+  const pad = 10;
+  const plotW = W - pad * 2;
+  const plotH = H - pad * 2;
+  const maxL = Math.max(...history);
+  const minL = Math.min(...history);
+
+  ctx.beginPath();
+  for (let i = 0; i < history.length; i++) {
+    const x = pad + plotW * i / (history.length - 1);
+    const y = pad + plotH * (1 - (history[i] - minL) / Math.max(0.001, maxL - minL));
+    if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+  }
+  ctx.strokeStyle = "#39c5bb";
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  ctx.lineTo(pad + plotW, pad + plotH);
+  ctx.lineTo(pad, pad + plotH);
+  ctx.closePath();
+  const grad = ctx.createLinearGradient(0, 0, 0, H);
+  grad.addColorStop(0, "rgba(57,197,187,.2)");
+  grad.addColorStop(1, "rgba(57,197,187,0)");
+  ctx.fillStyle = grad;
+  ctx.fill();
+}
+
+/* ── Toast ──────────────────────────────────────────────────────── */
+let toastTimer;
+function toast(msg) {
+  const el = document.getElementById("toast");
+  el.textContent = msg;
+  el.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove("show"), 2800);
+}
+
+window.addEventListener("resize", () => {
+  if (currentTokens && currentAttention) drawHeatmap(currentTokens, currentAttention);
+  if (net) drawLoss(net.lossHistory);
+});
+
+// Boot
+window.addEventListener("DOMContentLoaded", init);
+</script>
+</body>
+</html>
