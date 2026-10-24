@@ -10,7 +10,7 @@ Use this machine for chat, Teaching Add, `--learn-new`, and the PyTorch joint tr
 2. Clone or pull the lab:
 
 ```bash
-git clone https://github.com/mmilde-tech/midel.git
+git clone https://github.com/m-milde/midel.git
 cd midel
 ```
 

@@ -11,7 +11,7 @@ Use the desktop for the same work as the Mac: chat, Teaching Add, `--learn-new`,
 3. Clone or pull:
 
 ```powershell
-git clone https://github.com/mmilde-tech/midel.git
+git clone https://github.com/m-milde/midel.git
 cd midel
 ```
 

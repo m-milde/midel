@@ -48,7 +48,7 @@ Both need a reload after you change them. Remember needs the writer on the machi
 | Mac laptop | [docs/MAC.md](docs/MAC.md) |
 | Windows desktop | [docs/WINDOWS.md](docs/WINDOWS.md) |
 
-Clone [github.com/mmilde-tech/midel](https://github.com/mmilde-tech/midel), install the two venvs from the OS guide, then use the same commands on both: **`npm run writer`**, **`npm run learn:new`**, **`npm run trainer:joint`**. Pull before you teach or train; push after a finished save. Only one machine should write `taught_facts.js` or `stage3_brain.js` at a time.
+Clone [github.com/m-milde/midel](https://github.com/m-milde/midel), install the two venvs from the OS guide, then use the same commands on both: **`npm run writer`**, **`npm run learn:new`**, **`npm run trainer:joint`**. Pull before you teach or train; push after a finished save. Only one machine should write `taught_facts.js` or `stage3_brain.js` at a time.
 
 For static FTP or the web, upload **`dist/midel-YYYY-MM-DD-deploy.zip`** (only the files the page loads). For another computer with trainer and writer you can also use **`dist/midel-YYYY-MM-DD-dev.zip`**, or just `git clone`. Both zips unpack to a folder named `midel`. The deploy archive does not need Python. Create a new pair from this folder with **`npm run backup`** (see [MODEL.md](./MODEL.md#backup)).
 
